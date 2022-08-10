@@ -11333,6 +11333,8 @@ body {
 
 .page-section {
   padding: 4rem 0;
+  width: 100%;
+  height: auto;
 }
 
 .text-white-75 {
@@ -11553,6 +11555,11 @@ img {vertical-align: middle;}
 .third{
   width: 33%;
   text-align: center;
+}
+
+.third-center-profs{
+  width: 33%;
+  align-items: center;
 }
 
 .font-weight-custom{
