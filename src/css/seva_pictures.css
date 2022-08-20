@@ -7,15 +7,15 @@
 body{
         background: linear-gradient(to right, #2c5364, #0f2027);
         height:100vh;
-        display:flex;
         align-items: center;
         justify-content: center;
-        overflow: hidden;
+        
 }
 
 .slider{
     position: relative;
     width: 200px;
+    left: 37%;
     height: 200px;
     transform-style: preserve-3d;
     animation: rotate 30s linear infinite;
@@ -55,4 +55,29 @@ body{
 
 .slider span:hover img{
     transform:translateY(-50px) scale(1.2)
+}
+
+
+
+.margin-top-custom {
+    margin-top: 14%;
+}
+.margin-top-sm {
+    margin-top: 10%;
+}
+
+
+.carousel-indicators{
+    position:absolute;
+    bottom:10px;
+    left:50%;z-index:15;
+    width:50%;
+    padding-left:0;
+    margin-left:-26%;
+    text-align:center;
+    list-style:none
+}
+
+.col-custom{
+    width: 50%;
 }
