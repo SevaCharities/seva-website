@@ -1,0 +1,23 @@
+.margin-top-custom {
+    margin-top: 25%;
+}
+
+iframe{
+    filter: invert(.9) saturate(0.5) hue-rotate(145deg);
+ }
+
+ .col-maj{
+    width: 75%;
+    
+ }
+
+ .col-min{
+    width: 25%;
+ }
+
+ .custom-text{
+    margin-top: 70%;
+    font-size: xx-large;
+    margin-right: 50%;
+    color: aliceblue;
+ }

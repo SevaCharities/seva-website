@@ -701,6 +701,10 @@ progress {
   width:35%
 }
 
+.col-test{
+  width:50%;
+}
+
 .row-cols-auto > * {
   flex: 0 0 auto;
   width: auto;
@@ -7832,11 +7836,11 @@ textarea.form-control-lg {
 }
 .bg-facts {
   --bs-bg-opacity: 1;
-  background-color: #A1FCDF !important;
+  background-color: #96c3b9 !important;
 }
 .bg-facts2 {
   --bs-bg-opacity: 1;
-  background-color: #7FD8BE !important;
+  background-color: #96c3b9 !important;
 }
 
 .bg-secondary {
@@ -11431,7 +11435,7 @@ hr.divider-dark {
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 4.5rem);
-  background:  url("../assets/img/bg-masthead.jpg");
+  background:  linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/bg-masthead.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -11544,10 +11548,7 @@ img {vertical-align: middle;}
   color: black;
 }
 
-.leftside{
-  text-align: left;
 
-}
 .leftside, .rightside{
   height:auto;
 }
