@@ -694,6 +694,19 @@ progress {
 .col {
   flex: 1 0 0%;
 }
+
+.col-half {
+  width: 50%;
+}
+
+.col-big {
+  width: 55%;
+}
+
+.col-small {
+  width: 45%;
+}
+
 .col-bigger{
   width: 65%
 }
