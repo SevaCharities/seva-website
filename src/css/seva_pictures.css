@@ -42,6 +42,14 @@ body{
     transform: rotateY(calc(var(--i)*45deg)) translateZ(350px);
 }
 
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+  
 .slider span img{
     position: absolute;
     top: 0;

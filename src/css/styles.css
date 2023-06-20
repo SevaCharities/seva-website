@@ -646,6 +646,13 @@ progress {
   padding-left: var(--bs-gutter-x, 0.75rem);
 }
 
+.container-wider-longer {
+  width: 100%;
+  height: 90px
+  padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem);
+}
+
 
 
 @media (min-width: 576px) {
@@ -11448,7 +11455,7 @@ hr.divider-dark {
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 4.5rem);
-  background:  linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/bg-masthead.jpg");
+  background:  linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 30%), url("../assets/img/bg-masthead.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
