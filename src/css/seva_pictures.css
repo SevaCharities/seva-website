@@ -18,7 +18,7 @@ body{
     left: 37%;
     height: 200px;
     transform-style: preserve-3d;
-    animation: rotate 30s linear infinite;
+    animation: rotate 20s linear infinite;
 }
 
 @keyframes rotate{
@@ -60,12 +60,6 @@ body{
     object-fit: cover;
     transition: 2s;
 }
-
-.slider span:hover img{
-    transform:translateY(-50px) scale(1.2)
-}
-
-
 
 .margin-top-custom {
     margin-top: 14%;
