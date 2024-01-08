@@ -22,61 +22,201 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <img src="./assets/img/updated_logo.png" height = 30  width = 30 style ="margin: 5px" href="./index.html"> <!--might need to change-->
-                <a class="navbar-brand" href="./index.html">Seva Charities</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="./index.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./Alumni_Page.html">Alumni Page</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#top">Officers</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./calendar.html">Calendar</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./newspapers.html">Newspapers</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./index.html#contact">Contact Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="https://www.apusa.org/donate/">DONATE</a></li>
-                    </ul>
-                </div>
+       <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+          <div class="container px-4 px-lg-5">
+              <img src="./assets/img/updated_logo.png" height = 30  width = 30 style ="margin: 5px" href="./index.html"> <!--might need to change-->
+              <a class="navbar-brand" href="./index.html">Seva Charities</a>
+              <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                  <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                      <li class="nav-item"><a class="nav-link" href="./index.html">About</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#top">GM Recaps</a></li>
+                      <li class="nav-item"><a class="nav-link" href="./officers.html">Officers</a></li>
+                      <li class="nav-item"><a class="nav-link" href="https://www.linktr.ee/sevacharities">Linktree</a></li>
+                      <li class="nav-item"><a class="nav-link" href="./calendar.html">Calendar</a></li>
+                      <li class="nav-item"><a class="nav-link" href="./Alumni_Page.html">Alumni Page</a></li>
+                      <li class="nav-item"><a class="nav-link" href="./index.html#contact">Contact Us</a></li>
+                      <li class="nav-item"><a class="nav-link" href="https://www.apusa.org/donate/">DONATE</a></li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+
+      <!-- to add a new newsletter recap, add the newsletter pdf and images in assets folder,
+      add a new page section div and change as necessary, rename slide image class
+      to mySlides++ and change plusSlides to have that number as the second digit, 
+      add that slide div into the top of news_pictures.css,
+      add slide div into news_pictures.js and add a showSlides call for that slide
+      and add another 1 into slideIndex -->
+      
+      <div class="page-section" style="margin-top:3%">
+        <h5>Explore our past semesters' newsletters on the <a href="archive.html">archive</a> page!</h5>
+      </div>
+
+      <div class="grid row">
+
+        <div class="page-section" style="background-color: #4d844d; margin-top:3%; border: thin solid black;">
+          <h1 margin-left: auto margin-right: auto>GM #6 Recap</h1>
+          <h3 margin-left: auto margin-right: auto><a href="./assets/news/gm6.pdf">link to full newsletter</a></h3>
+
+          <div class = "flex-container">
+            <div class="flex-child bullet-points">
+              <h4>Topics:</h4>
+              <ul>
+                <li>Rugged Maniac volunteering</li>
+                <li>BeReal x Seva</li>
+                <li>Boat Formal</li>
+                <li>Seva Circles</li>
+              </ul>
             </div>
-        </nav>
+            
+            <div class="flex-child slideshow-container">
+              <div class="mySlides4">
+                <img src="./assets/img/Newspapers/GM6-pic1.png" style="width:100%">
+              </div>
 
-        <!-- <div class="slideshow-container">
-            <div class="mySlides fade">
-              <span style="--i:1;"><img src="./assets/img/Newspapers/newspaper-GM1-pic1.JPG"></span>
-              <span style="--i:2;"><img src="./assets/img/Newspapers/newspaper-GM1-pic2.JPG"></span>
-              <span style="--i:3;"><img src="./assets/img/Newspapers/newspaper-GM1-pic3.JPG"></span>
-              <span style="--i:4;"><img src="./assets/img/Newspapers/newspaper-GM1-pic4.JPG"></span>
-              <span style="--i:5;"><img src="./assets/img/Newspapers/newspaper-GM1-pic5.JPG"></span>
-            </div>
-          </div> -->
+              <div class="mySlides4">
+                <img src="./assets/img/Newspapers/GM6-pic2.png" style="width:100%">
+              </div>
 
-          <div class="page-section bg-light-gray" style="margin-top:3%">
-            <h1 margin-left: auto margin-right: auto>GM 1 Recap</h1>
-            <div class="slideshow-container">
-                <div class="mySlides1">
-                  <img src="./assets/img/Newspapers/newspaper-GM1-pic3.JPG" style="width:100%">
-                </div>
+              <div class="mySlides4">
+              <img src="./assets/img/Newspapers/GM6-pic3.png" style="width:100%">
+              </div>
 
-                <div class="mySlides1">
-                  <img src="./assets/img/Newspapers/newspaper-GM1-pic2.JPG" style="width:100%">
-                </div>
-    
-                <div class="mySlides1">
-                <img src="./assets/img/Newspapers/newspaper-GM1-pic4.JPG" style="width:100%">
-                </div>
-    
-                <div class="mySlides1">
-                <img src="./assets/img/Newspapers/newspaper-GM1-pic5.JPG" style="width:100%">
-                </div>
-          
-                  <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
-                  <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
-    
+              <div class="mySlides4">
+              <img src="./assets/img/Newspapers/GM6-pic4.png" style="width:100%">
+              </div>
+        
+                <a class="prev" onclick="plusSlides(-1, 3)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1, 3)">&#10095;</a>
             </div>
           </div>
-          
+        </div>
 
+        <div class="page-section" style="background-color: rgb(227, 247, 171); margin-top:3%; border: thin solid black;">
+          <h1 margin-left: auto margin-right: auto>GM #5 Recap</h1>
+          <h3 margin-left: auto margin-right: auto><a href="./assets/news/gm5.pdf">link to full newsletter</a></h3>
+
+          <div class = "flex-container">
+            <div class="flex-child bullet-points">
+              <h4>Topics:</h4>
+              <ul>
+                <li>Saanj and Raath</li>
+                <li>Rugged Maniac volunteering</li>
+                <li>Camp Seva</li>
+                <li>Study social</li>
+                <li>Boat Formal</li>
+              </ul>
+            </div>
+            
+            <div class="flex-child slideshow-container">
+              <div class="mySlides3">
+                <img src="./assets/img/Newspapers/GM5-pic1.png" style="width:100%">
+              </div>
+
+              <div class="mySlides3">
+                <img src="./assets/img/Newspapers/GM5-pic2.png" style="width:100%">
+              </div>
+
+              <div class="mySlides3">
+              <img src="./assets/img/Newspapers/GM5-pic3.png" style="width:100%">
+              </div>
+
+              <div class="mySlides3">
+              <img src="./assets/img/Newspapers/GM5-pic4.png" style="width:100%">
+              </div>
+
+              <div class="mySlides3">
+                <img src="./assets/img/Newspapers/GM5-pic5.png" style="width:100%">
+              </div>
+        
+                <a class="prev" onclick="plusSlides(-1, 2)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1, 2)">&#10095;</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-section" style="background-color: #82b882; margin-top:3%; border: thin solid black;">
+          <h1 margin-left: auto margin-right: auto>GM #4 Recap</h1>
+          <h3 margin-left: auto margin-right: auto><a href="./assets/news/gm4.pdf">link to full newsletter</a></h3>
+
+          <div class = "flex-container">
+            <div class="flex-child bullet-points">
+              <h4>Topics:</h4>
+              <ul>
+                <li>Saanj</li>
+                <li>Fright Night Social</li>
+                <li>BOOfest Philanthropy</li>
+                <li>Seva Circle sign-up</li>
+              </ul>
+            </div>
+            
+            <div class="flex-child slideshow-container">
+              <div class="mySlides2">
+                <img src="./assets/img/Newspapers/GM4-pic1.png" style="width:100%">
+              </div>
+
+              <div class="mySlides2">
+                <img src="./assets/img/Newspapers/GM4-pic2.png" style="width:100%">
+              </div>
+
+              <div class="mySlides2">
+              <img src="./assets/img/Newspapers/GM4-pic3.png" style="width:100%">
+              </div>
+
+              <div class="mySlides2">
+              <img src="./assets/img/Newspapers/GM4-pic4.png" style="width:100%">
+              </div>
+
+              <div class="mySlides2">
+                <img src="./assets/img/Newspapers/GM4-pic5.png" style="width:100%">
+              </div>
+        
+                <a class="prev" onclick="plusSlides(-1, 1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1, 1)">&#10095;</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-section" style="background-color: #96df96; border: thin solid black;">
+          <h1 margin-left: auto margin-right: auto>GM #3 Recap</h1>
+          <h3 margin-left: auto margin-right: auto><a href="./assets/news/gm3.pdf">link to full newsletter</a></h3>
+
+          <div class = "flex-container">
+            <div class="flex-child bullet-points" style="font-family: Fantasy">
+              <h4>Topics:</h4>
+              <ul>
+                <li>Night in Monaco</li>
+                <li>Trivia Crack Social</li>
+                <li>Project Yellow Philanthropy</li>
+                <li>Seva Circle sign-up</li>
+                <li>Seva IM teams - basketball and sand volleyball</li>
+              </ul>
+            </div>
+            
+            <div class="flex-child slideshow-container">
+              <div class="mySlides1">
+                <img src="./assets/img/Newspapers/newspaper-GM1-pic3.JPG" style="width:100%">
+              </div>
+
+              <div class="mySlides1">
+                <img src="./assets/img/Newspapers/newspaper-GM1-pic2.png" style="width:100%">
+              </div>
+
+              <div class="mySlides1">
+              <img src="./assets/img/Newspapers/newspaper-GM1-pic4.JPG" style="width:100%">
+              </div>
+
+              <div class="mySlides1">
+              <img src="./assets/img/Newspapers/newspaper-GM1-pic5.JPG" style="width:100%">
+              </div>
+        
+                <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+            </div>
+          </div>
+        </div>
+      </div>
         
         <!-- Footer-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

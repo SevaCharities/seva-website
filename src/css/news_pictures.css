@@ -1,13 +1,24 @@
 * {box-sizing: border-box}
-.mySlides1, .mySlides2 {display: none}
+.mySlides1, .mySlides2, .mySlides3, .mySlides4 {display: none}
 img {vertical-align: middle;}
 
 /* Slideshow container */
 .slideshow-container {
+  flex: 0 1 400px 400px;
   width: 400px;
   height: 400px;
   position: relative;
   margin: auto;
+}
+
+.grid.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Three columns, equal width */
+  gap: 8px; /* Adjust the gap as needed */
+}
+
+body {
+  background-color: rgb(214, 212, 212);
 }
 
 /* .mySlides1 img {
@@ -19,10 +30,34 @@ img {vertical-align: middle;}
     height:200px;
 } */
 
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-child {
+  margin-right: 30px;
+}  
+
+.bullet-points {
+  flex: 1;
+  margin-left: 20px;
+  font-size: 18px;
+}
+
 h1{
-    margin: auto;
-    text-align: center;
+  margin: auto;
+  text-align: center;
  }
+
+h3{
+  margin: auto;
+  text-align: center;
+}
+
+li{
+  font-family: "Monaco", monospace;
+}
 
 /* Next & previous buttons */
 .prev, .next {

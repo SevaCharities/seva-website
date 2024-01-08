@@ -11498,7 +11498,7 @@ header.masthead h1, header.masthead .h1 {
 
 
 * {box-sizing: border-box}
-.mySlides1, .mySlides2 {display: none}
+.mySlides1, .mySlides2, .mySlides3 {display: none}
 img {vertical-align: middle;}
 
 /* Slideshow container */
