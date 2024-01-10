@@ -1,19 +1,38 @@
-* {box-sizing: border-box}
-.mySlides1, .mySlides2, .mySlides3, .mySlides4 {display: none}
-img {vertical-align: middle;}
+
+
+* {
+  box-sizing: border-box;
+}
+
+.mySlides1, .mySlides2, .mySlides3, .mySlides4 {
+  display: none;
+}
+
+.page-section {
+  position: relative;
+  overflow: hidden; /* Ensure the child slideshows won't overflow */
+}
+
+img {
+  vertical-align: middle;
+  max-width: 100%; /* Ensure images don't exceed their container */
+  height: auto; /* Allow the height to adjust proportionally */
+}
 
 /* Slideshow container */
 .slideshow-container {
-  flex: 0 1 400px 400px;
-  width: 400px;
-  height: 400px;
-  position: relative;
-  margin: auto;
+  flex: 0 1 100%; /* Adjusted flex value for responsiveness */
+  max-width: 100%; /* Ensure the container doesn't exceed the screen width */
+  height: auto; /* Allow the height to adjust proportionally */
+  /* position: relative;
+  margin-bottom: 1px; */
+  position: absolute;
+  bottom: 0; /* Align the bottom of the slideshow-container to the bottom of the flex-container */
 }
 
 .grid.row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* Three columns, equal width */
+  grid-template-columns: 1fr; /* Adjusted to a single column for small screens */
   gap: 8px; /* Adjust the gap as needed */
 }
 
@@ -21,41 +40,33 @@ body {
   background-color: rgb(214, 212, 212);
 }
 
-/* .mySlides1 img {
-    display: none
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200px;
-    height:200px;
-} */
 
-.flex-container {
+
+.page-section > .flex-container {
   display: flex;
   flex-direction: column;
 }
+ 
 
 .flex-child {
-  margin-right: 30px;
-}  
+  margin-right: 0; /* Removed margin-right for small screens */
+  /* margin-bottom: 20px; */
+  flex: 1;
+  position: relative;
+}
 
 .bullet-points {
   flex: 1;
-  margin-left: 20px;
+  margin-left: 0; /* Removed margin-left for small screens */
   font-size: 18px;
 }
 
-h1{
-  margin: auto;
-  text-align: center;
- }
-
-h3{
-  margin: auto;
+h1, h3 {
+  margin: 10px auto; /* Adjusted margin for better centering */
   text-align: center;
 }
 
-li{
+li {
   font-family: "Monaco", monospace;
 }
 
@@ -82,9 +93,9 @@ li{
 }
 
 .prev {
-    left: -40px;
-    border-radius: 3px 0 0 3px;
-  }
+  left: -40px;
+  border-radius: 3px 0 0 3px;
+}
 
 /* On hover, add a grey background color */
 .prev:hover, .next:hover {
@@ -92,12 +103,25 @@ li{
   color: black;
 }
 
-.left-gallery{
-    width: 50%;
-    float:left;
+.left-gallery, .right-gallery {
+  width: 100%; /* Full width for small screens */
+  float: none; /* Reset float for small screens */
 }
 
-.right-gallery{
-  width:50%;
-  float:right;
+/* Media Queries for responsiveness */
+@media screen and (min-width: 600px) {
+  .flex-container {
+      flex-direction: row; /* Change to row layout on larger screens */
+  }
+
+  .flex-child {
+      margin-right: 30px;
+      margin-left: 30px;
+      margin-bottom: 0; /* Reset margin-bottom for larger screens */
+      flex: 1; /* Equal width for flex children */
+  }
+
+  .grid.row {
+      grid-template-columns: repeat(3, 1fr); /* Two columns on larger screens */
+  }
 }
