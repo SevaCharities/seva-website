@@ -1,24 +1,37 @@
-* {box-sizing: border-box}
-.mySlides1, .mySlides2, .mySlides3, .mySlides4 {display: none}
-img {vertical-align: middle;}
+* {
+    box-sizing: border-box;
+}
+.mySlides1,
+.mySlides2,
+.mySlides3,
+.mySlides4 {
+    display: none;
+}
+img {
+    vertical-align: middle;
+}
 
 /* Slideshow container */
 .slideshow-container {
-  flex: 0 1 400px 400px;
-  width: 400px;
-  height: 400px;
-  position: relative;
-  margin: auto;
+    /* flex: 0 1 400px 400px; */
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 100%;
+    max-width: 400px;
+    max-height: 400px;
+    position: relative;
+    align-self: center;
+    margin: 0;
 }
 
 .grid.row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* Three columns, equal width */
-  gap: 8px; /* Adjust the gap as needed */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Three columns, equal width */
+    gap: 8px; /* Adjust the gap as needed */
 }
 
 body {
-  background-color: rgb(214, 212, 212);
+    background-color: rgb(214, 212, 212);
 }
 
 /* .mySlides1 img {
@@ -31,73 +44,75 @@ body {
 } */
 
 .flex-container {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .flex-child {
-  margin-right: 30px;
-}  
+    margin-right: 30px;
+}
 
 .bullet-points {
-  flex: 1;
-  margin-left: 20px;
-  font-size: 18px;
+    flex: 1;
+    margin-left: 20px;
+    font-size: 18px;
 }
 
-h1{
-  margin: auto;
-  text-align: center;
- }
-
-h3{
-  margin: auto;
-  text-align: center;
+h1 {
+    margin: auto;
+    text-align: center;
 }
 
-li{
-  font-family: "Monaco", monospace;
+h3 {
+    margin: auto;
+    text-align: center;
+}
+
+li {
+    font-family: "Monaco", monospace;
 }
 
 /* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
 }
 
 /* Position the "next button" to the right */
 .next {
-  right: -40px;
-  border-radius: 3px 0 0 3px;
+    right: -40px;
+    border-radius: 3px 0 0 3px;
 }
 
 .prev {
     left: -40px;
     border-radius: 3px 0 0 3px;
-  }
+}
 
 /* On hover, add a grey background color */
-.prev:hover, .next:hover {
-  background-color: #f1f1f1;
-  color: black;
+.prev:hover,
+.next:hover {
+    background-color: #f1f1f1;
+    color: black;
 }
 
-.left-gallery{
+.left-gallery {
     width: 50%;
-    float:left;
+    float: left;
 }
 
-.right-gallery{
-  width:50%;
-  float:right;
+.right-gallery {
+    width: 50%;
+    float: right;
 }
