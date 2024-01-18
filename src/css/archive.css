@@ -1,5 +1,15 @@
+body
+{
+   
+   justify-content: center;
+   align-items: center;
+   min-height: 100vh;
+   width: 100%;
+   background: #f2f3f7;
+}
+
 body {
-    background-color: #a7e6a7;
+    background-color: #f2f3f7;
   }
   
   h1 {
@@ -13,34 +23,15 @@ body {
     text-align: center;
   }
   
-  /* li {
-    font-family: "Monaco", monospace;
-    font-size: larger;
-    text-align: center;
-    display: inline-block;
-  }
-
-  ul {
-    text-align: center;
-  } */
-
-
-
-  ul {
-    /* list-style-type: disc; Set the desired list-style-type (e.g., disc for bullets) */
-    font-family: "Monaco", monospace;
-    font-size: larger;
-    padding: 0; /* Remove default padding */
-    text-align: center; /* Center the list items */
+a.gm-link {
+  font-family: "Monaco", monospace;
+  font-size: larger;
+  padding: 0; /* Remove default padding */
 }
 
-li {
-    /* display: inline-block; Display list items as inline-block to center them horizontally */
-    margin: 0 10px; /* Adjust margin as needed for spacing between list items */
-}
   
  a.recap-link {
     font-weight: bold;
     text-align: center;
   }
-  
+ 

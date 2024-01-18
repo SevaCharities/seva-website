@@ -1,16 +1,12 @@
-
-
 * {
   box-sizing: border-box;
-}
-
-.mySlides1, .mySlides2, .mySlides3, .mySlides4 {
-  display: none;
 }
 
 .page-section {
   position: relative;
   overflow: hidden; /* Ensure the child slideshows won't overflow */
+  border-radius: 30px;
+  box-shadow: 0.6em 0.6em 1.2em #d2dce9, -0.5em -0.5em 1em #ffffff;
 }
 
 img {
@@ -34,15 +30,14 @@ img {
 
 .grid.row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* Three columns, equal width */
-    gap: 8px; /* Adjust the gap as needed */
+    grid-template-columns: 1fr; /* Three columns, equal width */
+    gap: 40px; /* Adjust the gap as needed */
+    margin: 20px;
 }
 
 body {
-    background-color: rgb(214, 212, 212);
+    background-color: rgb(229, 229, 229);
 }
-
-
 
 .page-section > .flex-container {
   display: flex;
@@ -58,6 +53,7 @@ body {
     flex: 1;
     margin-left: 20px;
     font-size: 18px;
+    font-family: "Monaco", monospace;
 }
 
 h1 {
@@ -67,12 +63,18 @@ h1 {
 
 h3 {
     margin: auto;
+    margin-bottom: 10px;
     text-align: center;
 }
 
-li {
-    font-family: "Monaco", monospace;
+h4 {
+    margin: auto;
+    text-align: center;
 }
+
+/* li {
+    font-family: "Monaco", monospace;
+} */
 
 /* Next & previous buttons */
 .prev,
@@ -114,8 +116,12 @@ li {
   float: none; /* Reset float for small screens */
 }
 
+a {
+    color: rgb(106, 106, 106);
+}
+
 /* Media Queries for responsiveness */
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 650px) {
   .flex-container {
       flex-direction: row; /* Change to row layout on larger screens */
   }
