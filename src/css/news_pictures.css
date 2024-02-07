@@ -105,20 +105,24 @@ h4 {
 }
 
 /* On hover, add a grey background color */
-.prev:hover,
+/* .prev:hover,
 .next:hover {
     background-color: #f1f1f1;
     color: black;
-}
+} */
+
+a:hover {
+    color: #f4623a !important;
+  }
 
 .left-gallery, .right-gallery {
   width: 100%; /* Full width for small screens */
   float: none; /* Reset float for small screens */
 }
 
-a {
+/* a {
     color: rgb(106, 106, 106);
-}
+} */
 
 /* Media Queries for responsiveness */
 @media screen and (min-width: 650px) {
