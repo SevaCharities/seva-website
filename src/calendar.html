@@ -19,6 +19,8 @@
         <!-- styles-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/members.css" rel="stylesheet" />
+        <!-- calendar api-->
+        <script src="https://apis.google.com/js/api.js"></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -45,8 +47,31 @@
         <div class="page-section bg-primary" id="top">
             <div class="container-wider-longer">
                 <div class="row">
-                    
-                        <iframe style="align-items: center; padding-top: 25px;"src="https://calendar.google.com/calendar/embed?src=arpv0efrirrmml4rkp26rf21rg%40group.calendar.google.com&ctz=America%2FChicago" style=" border:solid 1px #777" width="10px" height="600" frameborder="0" scrolling="no"></iframe>
+                    <body>
+                        <div>
+                          <div id="month"></div>
+                          <div class="controls">
+                            <button id="prev"><-</button>
+                            <button id="next">-></button>
+                          </div>
+                        </div>
+                        <table class="calendar">
+                          <thead>
+                            <tr>
+                              <th>Sun</th>
+                              <th>Mon</th>
+                              <th>Tue</th>
+                              <th>Wed</th>
+                              <th>Thu</th>
+                              <th>Fri</th>
+                              <th>Sat</th>
+                            </tr>
+                          </thead>
+                          <tbody id="calendar-body"></tbody>
+                        </table>
+                        <script src="https://apis.google.com/js/api.js"></script>
+                        <script src="script.js"></script>
+                      </body>
                 </div>
             </div>
         </div>
@@ -67,4 +92,6 @@
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script src="./js/members.js"></script>
+    <script src="./js/calendar.js"></script>
+
 </body>
