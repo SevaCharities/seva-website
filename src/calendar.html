@@ -2,96 +2,208 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Seva Charities</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/updated_logo.ico" />
-        <link rel="shortcut icon" href="assets/updated_logo.ico" type="image/x-icon"> 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    
-        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-       
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+        <link
+            rel="shortcut icon"
+            href="assets/updated_logo.ico"
+            type="image/x-icon"
+        />
+
+        <!-- + icon-->
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        />
         <!-- styles-->
         <link href="css/styles.css" rel="stylesheet" />
-        <link href="css/members.css" rel="stylesheet" />
-        <!-- calendar api-->
+
+        <!-- google calendar api-->
         <script src="https://apis.google.com/js/api.js"></script>
+
+        <!-- library calendar.js-->
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <nav
+            class="navbar navbar-expand-lg navbar-light fixed-top py-3"
+            id="mainNav"
+        >
             <div class="container px-4 px-lg-5">
-                <img src="./assets/img/updated_logo.png" height = 30  width = 30 style ="margin: 5px" href="./index.html"> <!--might need to change-->
+                <img
+                    src="./assets/img/updated_logo.png"
+                    height="30"
+                    width="30"
+                    style="margin: 5px"
+                    href="./index.html"
+                />
+                <!--might need to change-->
                 <a class="navbar-brand" href="./index.html">Seva Charities</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <button
+                    class="navbar-toggler navbar-toggler-right"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarResponsive"
+                    aria-controls="navbarResponsive"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="./index.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./newspapers.html">GM Recaps</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./officers.html">Officers</a></li>
-                        <li class="nav-item"><a class="nav-link" href="https://www.linktr.ee/sevacharities">Linktree</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#top">Calendar</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./Alumni_Page.html">Alumni Page</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./index.html#contact">Contact Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="https://www.apusa.org/donate/">DONATE</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./newspapers.html"
+                                >GM Recaps</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./officers.html"
+                                >Officers</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="https://www.linktr.ee/sevacharities"
+                                >Linktree</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#top">Calendar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./Alumni_Page.html"
+                                >Alumni Page</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html#contact"
+                                >Contact Us</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="https://www.apusa.org/donate/"
+                                >DONATE</a
+                            >
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <div class="page-section bg-primary" id="top">
+        <div class="page-section" id="top">
             <div class="container-wider-longer">
-                <div class="row">
-                    <body>
-                        <div>
-                          <div id="month"></div>
-                          <div class="controls">
-                            <button id="prev"><-</button>
-                            <button id="next">-></button>
-                          </div>
-                        </div>
-                        <table class="calendar">
-                          <thead>
-                            <tr>
-                              <th>Sun</th>
-                              <th>Mon</th>
-                              <th>Tue</th>
-                              <th>Wed</th>
-                              <th>Thu</th>
-                              <th>Fri</th>
-                              <th>Sat</th>
-                            </tr>
-                          </thead>
-                          <tbody id="calendar-body"></tbody>
-                        </table>
-                        <script src="https://apis.google.com/js/api.js"></script>
-                        <script src="script.js"></script>
-                      </body>
+                <div class="py-5 d-flex justify-content-center w-100">
+                    <div class="w-75 vh-100 p-2">
+                        <a
+                            href="https://calendar.google.com/calendar/u/0/r?cid=arpv0efrirrmml4rkp26rf21rg@group.calendar.google.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <button class="btn btn-primary btn-lg d-flex">
+                                <span class="material-symbols-outlined">
+                                    add
+                                </span>
+                                Add Calendar
+                            </button></a
+                        >
+
+                        <div id="calendar" class="py-5"></div>
+                    </div>
+                    <style>
+                        .fc-event {
+                            color: #ff8800;
+                        }
+                        #calendar a {
+                            text-decoration: none !important;
+                        }
+                        .fc-button.fc-button-primary {
+                            background-color: #0d6efd !important;
+                        }
+                    </style>
                 </div>
             </div>
         </div>
-        
-        <!-- Footer-->
-    <footer class="bg-light py-5">
-        <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022</div></div>
-    </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- SimpleLightbox plugin JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    <script src="./js/members.js"></script>
-    <script src="./js/calendar.js"></script>
 
-</body>
+        <!-- Calendar render-->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var calendarEl = document.getElementById("calendar");
+
+                if (window.innerWidth >= 800) {
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        displayEventTime: false,
+                        eventBackgroundColor: "#ff8800",
+                        eventBorderColor: "#ff8800",
+                        events: function (
+                            fetchInfo,
+                            successCallback,
+                            failureCallback
+                        ) {
+                            fetch(
+                                "https://www.googleapis.com/calendar/v3/calendars/arpv0efrirrmml4rkp26rf21rg%40group.calendar.google.com/events?key=AIzaSyAiUOYrTsSgf4E_PkOwaskREek3KMQusBs"
+                            )
+                                .then((response) => response.json())
+                                .then((data) => {
+                                    const events = data.items.map((item) => ({
+                                        title: item.summary,
+                                        start:
+                                            item.start.date ||
+                                            item.start.dateTime,
+                                        end: item.end.date || item.end.dateTime,
+                                    }));
+                                    successCallback(events);
+                                })
+                                .catch((error) => {
+                                    console.error(
+                                        "Error fetching events:",
+                                        error
+                                    );
+                                    failureCallback(error);
+                                });
+                        },
+                        time: "UTC",
+                    });
+                    calendar.render();
+                } else {
+                    calendarEl.classList.add("display-6");
+                    calendarEl.innerText = "Calendar not available on Mobile";
+                }
+            });
+        </script>
+
+        <!-- Footer-->
+        <footer class="bg-light py-5">
+            <div class="container px-4 px-lg-5">
+                <div class="small text-center text-muted">
+                    Copyright &copy; 2022
+                </div>
+            </div>
+        </footer>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

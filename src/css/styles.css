@@ -71,14 +71,6 @@
 }
 
 
-.dull {
-  color: aqua;
-}
-
-.cell {
-  width: 100px;
-  height: 100px;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   :root {
