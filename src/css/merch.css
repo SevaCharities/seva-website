@@ -48,9 +48,9 @@
     border-radius: 10px;
   }
   
-  /* .product-image:hover img {
+  .product-image:hover img {
     transform: scale(1.1);
-  } */
+  }
   
   .product-details {
     padding: 20px;
