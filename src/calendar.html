@@ -102,29 +102,36 @@
             .weekdays {
                 width: 100%; /* Make the table span full width */
                 display: table; /* Change display property to table */
-                background: lightblue;
+         
             }
         
             .day {
+                display: flex;
+                flex-direction: column;
+                display: inline-block; /* for inline elements e.g. span, strong, em etc */
+
                 border: 1px solid #dee2e6;
                 padding: 5px;
                 height: 6rem;
                 text-align: center;
-                overflow: hidden; /* Hide the overflow */
+                overflow: hidden;
+                white-space: nowrap;
 
-               
             }
 
-            .div .event{
-                display: inline-block; /* for inline elements e.g. span, strong, em etc */
-text-overflow: ellipsis;
-width: calc(80%); /* The trick is here! */
+            .event {
+                background: #fb923c;
+                padding: 4px 4px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                border-radius: 6px;
             }
 
            
         
             .today {
-              background-color: lightblue;
+              background-color: #fed7aa;
             }
 
             @media (max-width: 992px) {
@@ -143,6 +150,11 @@ width: calc(80%); /* The trick is here! */
               height: 3rem;
               text-align: center;
             }
+  
+            .event {
+                font-size: 0; /* Hide the text content */
+            }
+
             }
         </style>
     </head>
