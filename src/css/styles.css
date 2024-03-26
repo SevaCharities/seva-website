@@ -76,6 +76,10 @@
   }
 }
 
+.no-wrap {
+  white-space: nowrap; /* Prevent line breaks */
+}
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);

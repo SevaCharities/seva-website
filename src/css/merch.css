@@ -26,6 +26,7 @@
   
   .product-card {
     width: 300px;
+    height: 391px;
     border-radius: 30px;
     box-shadow: 0.6em 0.6em 1.2em #d2dce9, -0.5em -0.5em 1em #ffffff;
     margin: 60px 0px 60px 0px;
