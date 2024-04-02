@@ -88,6 +88,7 @@
             </div>
         </nav>
         <style>
+            
             .calendar {
                 max-width: 90%;
                 margin: auto;
@@ -106,33 +107,115 @@
             }
         
             .day {
-                display: flex;
-                flex-direction: column;
-                display: inline-block; /* for inline elements e.g. span, strong, em etc */
-
+                position: relative;
                 border: 1px solid #dee2e6;
-                padding: 5px;
+                padding: 5px 0px;
                 height: 6rem;
                 text-align: center;
-                overflow: hidden;
+                overflow-y: auto; /* Enable vertical scrolling */
+                overflow-x: hidden; /* Hide horizontal scrollbar */
                 white-space: nowrap;
-
+                cursor: pointer;
             }
 
             .event {
-                background: #fb923c;
+                font-size: smaller;
+                /* margin: 0px 5px; */
+                width: 100%;
+                background: #fdba74;
                 padding: 4px 4px;
+                height: 1.5rem;
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
-                border-radius: 6px;
+                border-radius: 2px;
+            }
+            .m{
+                background-color: #f4623a;
+                color: white;
             }
 
            
-        
             .today {
-              background-color: #fed7aa;
+              background-color: #bae6fd;
             }
+
+
+            .prev-month {
+                background-color: #f3f4f6 ;
+            }
+
+            .prev-month .event{
+                visibility: hidden;
+            }
+
+
+            .next-month {
+                background-color: #f3f4f6 ; 
+            }
+
+            .next-month .event{
+                visibility: hidden;
+            }
+
+            .mTag{
+                width: 2rem;
+                height: 2rem;
+                background-color: #f4623a;
+                border-radius: 4px;
+
+
+            }
+
+            .sTag{
+                width: 2rem;
+                height: 2rem;
+                background-color: #fdba74;
+                border-radius: 4px;
+
+            }
+
+            .weekdays {
+                background-color: #fdba74;
+            }
+
+            .popup {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(158, 158, 158, 0.7);
+                z-index: 999;
+            }
+
+            .popup-content {
+                background-color: #fefefe;
+                margin: 5rem auto;
+                padding: 20px;
+                border-radius: 6px;
+                width: 80%;
+                max-width: 400px;
+                position: relative;
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+
+            }
+
+            .popup-header{
+                display: flex;
+                justify-content: end;
+                gap: 1rem;
+            }
+
+            .closePopup{
+                width: 2rem;
+                height: 2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+         
 
             @media (max-width: 992px) {
                 .day {
@@ -150,176 +233,69 @@
               height: 3rem;
               text-align: center;
             }
-  
+
+         
             .event {
-                font-size: 0; /* Hide the text content */
+                font-size: 0; 
             }
 
             }
         </style>
     </head>
     <body>
-        <script>
-            function fetchEvents(year, monthIndex) {
-                const calendarId = 'arpv0efrirrmml4rkp26rf21rg@group.calendar.google.com';
-                        const apiKey = 'AIzaSyAiUOYrTsSgf4E_PkOwaskREek3KMQusBs';
-                const url = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}`;
-
-                fetch(url)
-                    .then(response => response.json())
-                    .then(data => {
-                        const events = data.items;
-                        renderEvents(events,year, monthIndex);
-                    })
-                    .catch(error => {
-                        console.error('Error fetching events:', error);
-                    });
-            }
-
-            // console.log(event.summary, event.start, event.end, event.description, event.htmlLink);
-
-
-            function renderEvents(events, year, monthIndex) {
-            const daysContainer = document.querySelector(".days");
-            let currentDate = new Date();
-
-            events.forEach(event => {
-                
-                let eventType;
-                let eventDateStart, eventDateEnd;
-                let eventDay, eventDays, eventMonth, eventYear;
-                // MULTI DAY 
-                if(event.start.date){
-                    eventType = "m"
-                    eventDateStart = new Date(event.start.date   )
-                    eventDateEnd =new Date(event.end.date   );
-                    eventDateStart.setHours(eventDateStart.getHours()+5); 
-
-                    // while (currentDate <= eventDateEnd) {
-                    //     currentDate.setDate(currentDate.getDate() + 1);
-                    // }
-                } 
-                // SINGLE DAY
-                else {
-                    eventType = "s"
-                    eventDateStart = new Date(event.start.dateTime)
-                    eventDateEnd = eventDateStart;
-                }
-
-                const days = daysContainer.querySelectorAll(".day");
-                const month = monthIndex;
-                    const c_year = year;
-                if (month === eventDateStart.getMonth() && c_year == eventDateStart.getFullYear()) {
-                days.forEach(dayElement => {
-                    const day = parseInt(dayElement.textContent);
-                 
-                    // console.log(day, event.summary, eventDateStart, eventDateStart.getDay(),eventDateStart.getMonth(),eventDateStart.getFullYear());
-                    if(day === eventDateStart.getDate()){
-                        const eventElement = document.createElement("div");
-                        eventElement.textContent = event.summary;
-                        eventElement.classList.add("event");
-                        dayElement.appendChild(eventElement); }
-                    
-                });}
-            });
-        }
-
-            document.addEventListener("DOMContentLoaded", function () {
-                const prevMonthBtn = document.getElementById("prevMonth");
-                const nextMonthBtn = document.getElementById("nextMonth");
-                const currentMonth = document.getElementById("currentMonth");
-                const daysContainer = document.querySelector(".days");
-
-                let currentDate = new Date();
-                let currentYear = currentDate.getFullYear();
-                let currentMonthIndex = currentDate.getMonth();
-                let currentDay = currentDate.getDate();
-
-                renderCalendar(currentYear, currentMonthIndex);
-
-                prevMonthBtn.addEventListener("click", () => {
-                    currentMonthIndex--;
-                    if (currentMonthIndex < 0) {
-                        currentMonthIndex = 11;
-                        currentYear--;
-                    }
-                    renderCalendar(currentYear, currentMonthIndex);
-                });
-
-                nextMonthBtn.addEventListener("click", () => {
-                    currentMonthIndex++;
-                    if (currentMonthIndex > 11) {
-                        currentMonthIndex = 0;
-                        currentYear++;
-                    }
-                    renderCalendar(currentYear, currentMonthIndex);
-                });
-
-                function renderCalendar(year, monthIndex) {
-                    currentMonth.textContent = new Date(year, monthIndex).toLocaleDateString(
-                        "default",
-                        { month: "long", year: "numeric" }
-                    );
-                    daysContainer.innerHTML = "";
-
-                    const firstDayOfMonth = new Date(year, monthIndex, 1).getDay();
-                    const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
-
-                    for (let i = 0; i < firstDayOfMonth; i++) {
-                        const emptyDay = document.createElement("div");
-                        emptyDay.classList.add("day", "p-2");
-                        daysContainer.appendChild(emptyDay);
-                    }
-
-                    for (let day = 1; day <= daysInMonth; day++) {
-                        const dayElement = document.createElement("div");
-                        dayElement.textContent = day;
-                        dayElement.classList.add("day", "p-2");
-                        dayElement.setAttribute("data-day", day);
-                        if (
-                            day === currentDay &&
-                            year === currentDate.getFullYear() &&
-                            monthIndex === currentDate.getMonth()
-                        ) {
-                            dayElement.classList.add("today");
-                        }
-                        daysContainer.appendChild(dayElement);
-                    }
-
-                    fetchEvents(year, monthIndex); // Fetch and render events after rendering calendar
-                }
-            });
-        </script>
+        <script src="./js/calendar.js"></script>
         <div class="page-section" id="top"></div>
         <div class="container">
             <div class="calendar">
-                <div class="header">
-                    <h2 id="currentMonth" class="mx-auto"></h2>
-                    <button id="prevMonth" class="btn btn-primary">&lt;</button>
-                    <button id="nextMonth" class="btn btn-primary">&gt;</button>
+               
+                <!-- Calendar header with navigation buttons -->
+                <div class="header bg-primary d-flex justify-content-between align-items-center p-4">
+                    <div>
+                        <h2 id="currentMonth" class="mx-auto"></h2>
+                    </div>
+                    <div class="d-flex gap-2 flex-wrap justify-content-end">
+                        <button id="todayBtn" class="btn btn-primary ">Today</button>
+                        <div >
+                            <button id="prevMonth" class="btn btn-primary">&lt;</button>
+                            <button id="nextMonth" class="btn btn-primary">&gt;</button>
+                        </div>
+                    </div>
                 </div>
+                <!-- Days of the week row -->
+                <div class="weekdays d-flex justify-content-around align-items-center p-2">
+                    <div class="weekday ">Sun</div>
+                    <div class="weekday">Mon</div>
+                    <div class="weekday">Tue</div>
+                    <div class="weekday">Wed</div>
+                    <div class="weekday">Thu</div>
+                    <div class="weekday">Fri</div>
+                    <div class="weekday">Sat</div>
+                </div>
+                <!-- Calendar days -->
                 <div class="days"></div>
+              
             </div>
+            
         </div>
+        <div id="popup" class="popup">
+            <div id="popup-content" class="popup-content">
+              <span class="close" id="closePopup">&times;</span>
+              <p>This is a popup. Click outside of it or the close button to close.</p>
+            </div>
+          </div>
+        
         <div class="page-section" id="top"></div>
     </div>
-    <!-- Footer-->
-    <footer class="bg-light py-5">
-        <div class="container px-4 px-lg-5">
-            <div class="small text-center text-muted">
-                Copyright &copy; 2022
-            </div>
-        </div>
-    </footer>
+
     <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+   
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <!-- * *                               SB Forms JS                               * *-->
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script src="./js/members.js"></script>
 </body>
 </html>
