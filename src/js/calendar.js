@@ -122,9 +122,9 @@ function renderEvents(events) {
                 // Clear previous content
                 popup.innerHTML = "";
                 const popupContentNew = document.createElement("div");
-                popupContentNew.innerHTML = ` <div class="popup-header">
-                <button class="closePopup btn btn-primary" id="closePopup">&times;</button>
-            </div>`;
+                //     popupContentNew.innerHTML = ` <div class="popup-header">
+                //     <button class="closePopup btn btn-primary" id="closePopup">&times;</button>
+                // </div>`;
                 popupContentNew.classList.add("popup-content"); // Add this line to assign class
                 // Generate the popup content for each event
                 for (let i in eventInfo) {
@@ -136,14 +136,27 @@ function renderEvents(events) {
                     console.log(eventInfo[i]);
 
                     popupItem.innerHTML = `
-                        <div class="d-flex gap-3 py-2">
+                        <div class="d-flex flex-wrap  gap-3 py-2">
+                        <div class="d-flex flex-grow-1 justify-content-between  gap-3 py-2 align-items-start ">
+
+                        <div class="d-flex  gap-2">
                         <div class="${
                             children[i].classList.contains("m")
                                 ? "mTag"
                                 : "sTag"
                         }"></div>
                         
-                         <h2>${eventInfo[i].summary}</h2></div>
+                         <h2>${eventInfo[i].summary}</h2>  </div>
+                         
+                         ${
+                             i == 0
+                                 ? `
+                        <button class="flex-1 closePopup btn btn-primary" id="closePopup">&times;</button>
+                     `
+                                 : ""
+                         }
+                         </div>
+                      
                          
                         <h6>${eventInfo[i].description || ""}</h6>
                         <div class="d-flex gap-5">
