@@ -16,7 +16,7 @@ function fetchEvents(year, monthIndex) {
                     eventDate.getMonth() === monthIndex
                 );
             });
-            console.log(year, monthIndex, events);
+
             renderEvents(events);
         })
         .catch((error) => {
@@ -132,7 +132,6 @@ function renderEvents(events) {
                         eventInfo[i].start.dateTime || eventInfo[i].start.date
                     );
                     const e = new Date(eventInfo[i].end.date || "");
-                    console.log(eventInfo[i]);
 
                     popupItem.innerHTML = `
                         <div class="d-flex flex-wrap  gap-3 py-2">
@@ -245,7 +244,6 @@ document.addEventListener("DOMContentLoaded", function () {
         daysContainer.innerHTML = "";
 
         // Calculate the number of days in the month
-        // console.log(monthIndex, year);
         const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
 
         // Calculate the number of days from the previous month to display
