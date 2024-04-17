@@ -1,3 +1,4 @@
+// fetch events matching year and monthIndex from Seva Google Calendar use API
 function fetchEvents(year, monthIndex) {
     const calendarId = "arpv0efrirrmml4rkp26rf21rg@group.calendar.google.com";
     const apiKey = "AIzaSyAiUOYrTsSgf4E_PkOwaskREek3KMQusBs";
@@ -23,11 +24,11 @@ function fetchEvents(year, monthIndex) {
         });
 }
 
+// render fetched events onto calendar, handling single and multi day events
 function renderEvents(events) {
     const daysContainer = document.querySelector(".days");
     const days = daysContainer.querySelectorAll(".cur-month");
 
-    let currentDate = new Date();
     let dayToEvents = {};
 
     days.forEach((dayElement) => {
@@ -41,7 +42,7 @@ function renderEvents(events) {
 
     events.forEach((event) => {
         let eventDateStart, eventDateEnd;
-        // MULTI DAY
+        // MULTI DAY : start, end diff
         if (event.start.date) {
             eventDateStart = new Date(event.start.date + "T18:30:00");
             eventDateEnd = new Date(event.end.date + "T00:00:00-01:00");
@@ -86,7 +87,7 @@ function renderEvents(events) {
 
     events.forEach((event) => {
         let eventDateStart, eventDateEnd;
-        // MULTI DAY
+        // MULTI DAY : start, end same
         if (event.start.date) {
             eventDateStart = new Date(event.start.date + "T18:30:00");
             eventDateEnd = new Date(event.end.date + "T00:00:00-01:00");
@@ -122,10 +123,8 @@ function renderEvents(events) {
                 // Clear previous content
                 popup.innerHTML = "";
                 const popupContentNew = document.createElement("div");
-                //     popupContentNew.innerHTML = ` <div class="popup-header">
-                //     <button class="closePopup btn btn-primary" id="closePopup">&times;</button>
-                // </div>`;
-                popupContentNew.classList.add("popup-content"); // Add this line to assign class
+
+                popupContentNew.classList.add("popup-content");
                 // Generate the popup content for each event
                 for (let i in eventInfo) {
                     const popupItem = document.createElement("div");
@@ -137,9 +136,10 @@ function renderEvents(events) {
 
                     popupItem.innerHTML = `
                         <div class="d-flex flex-wrap  gap-3 py-2">
-                        <div class="d-flex flex-grow-1 justify-content-between  gap-3 py-2 align-items-start ">
+                        <div class="d-flex flex-grow-1 justify-content-between gap-3 py-2 align-items-start ">
 
-                        <div class="d-flex  gap-2">
+                        <div class="d-flex  gap-2">   
+
                         <div class="${
                             children[i].classList.contains("m")
                                 ? "mTag"
@@ -157,8 +157,9 @@ function renderEvents(events) {
                          }
                          </div>
                       
-                         
                         <h6>${eventInfo[i].description || ""}</h6>
+
+                        <!-- Handle datetime output for single vs multi day events -->
                         <div class="d-flex gap-5">
                         ${
                             eventInfo[i].start.dateTime
@@ -192,6 +193,7 @@ function renderEvents(events) {
     });
 }
 
+// Calendar navigation
 document.addEventListener("DOMContentLoaded", function () {
     const prevMonthBtn = document.getElementById("prevMonth");
     const nextMonthBtn = document.getElementById("nextMonth");
@@ -231,6 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
         renderCalendar(currentYear, currentMonthIndex);
     });
 
+    // Renders empty calendar
     function renderCalendar(year, monthIndex) {
         // Display the current month and year
         currentMonth.textContent = new Date(
@@ -295,6 +298,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+// Popup handler
 document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("click", function (event) {
         const popup = document.getElementById("popup");
