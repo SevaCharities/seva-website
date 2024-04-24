@@ -1,5 +1,10 @@
 /*!
 * Start Bootstrap - Creative v7.0.6 (https://startbootstrap.com/theme/creative)
+* Copyright 2013-2024 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-creative/blob/master/LICENSE)
+*/
+/*!
+* Start Bootstrap - Creative v7.0.6 (https://startbootstrap.com/theme/creative)
 * Copyright 2013-2022 Start Bootstrap
 * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-creative/blob/master/LICENSE)
 */
@@ -15,12 +20,7 @@ window.addEventListener('DOMContentLoaded', event => {
         if (!navbarCollapsible) {
             return;
         }
-        if (window.scrollY === 0) {
-            navbarCollapsible.classList.remove('navbar-shrink')
-        } else {
-            navbarCollapsible.classList.add('navbar-shrink')
-        }
-
+           navbarCollapsible.classList.add('navbar-shrink')
     };
 
     // Shrink the navbar 

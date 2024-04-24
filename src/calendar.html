@@ -1,70 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Seva Charities. A little love, a big difference!">
         <title>Seva Charities</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/updated_logo.ico" />
-        <link rel="shortcut icon" href="assets/updated_logo.ico" type="image/x-icon"> 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    
-        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-       
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="assets/seva_logo.ico">
         <!-- styles-->
-        <link href="css/styles.css" rel="stylesheet" />
-        <link href="css/members.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet">
+        <!-- Calendar JS-->
+        <script src="./js/calendar.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
     </head>
-    <body id="page-top">
+    
+    <nav id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <img src="./assets/img/updated_logo.png" height = 30  width = 30 style ="margin: 5px" href="./index.html"> <!--might need to change-->
+                <img
+                    src="./assets/img/updated_logo.png"
+                    height="30"
+                    width="30"
+                    style="margin: 5px"
+                    href="./index.html"
+                >
+                <!--might need to change-->
                 <a class="navbar-brand" href="./index.html">Seva Charities</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <button
+                    class="navbar-toggler navbar-toggler-right"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarResponsive"
+                    aria-controls="navbarResponsive"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="./index.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./newspapers.html">GM Recaps</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./officers.html">Officers</a></li>
-                        <li class="nav-item"><a class="nav-link" href="https://www.linktr.ee/sevacharities">Linktree</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#top">Calendar</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./Alumni_Page.html">Alumni Page</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./index.html#contact">Contact Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="https://www.apusa.org/donate/">DONATE</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./newspapers.html">
+                                GM Recaps
+                            </a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./officers.html">
+                                Officers
+                            </a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.linktr.ee/sevacharities">
+                                Linktree
+                            </a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#top">Calendar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./Alumni_Page.html">
+                                Alumni Page
+                            </a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html#contact">
+                                Contact Us
+                            </a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.apusa.org/donate/">
+                                DONATE
+                            </a
+                            >
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
+    </nav>
 
-        <div class="page-section bg-primary" id="top">
-            <div class="container-wider-longer">
-                <div class="row">
-                    
-                        <iframe style="align-items: center; padding-top: 25px;"src="https://calendar.google.com/calendar/embed?src=arpv0efrirrmml4rkp26rf21rg%40group.calendar.google.com&ctz=America%2FChicago" style=" border:solid 1px #777" width="10px" height="600" frameborder="0" scrolling="no"></iframe>
+    <body>
+        <div class="page-section" id="top"></div>
+        <div class="container">
+            <div class="calendar">
+                <!-- Add calendar -->
+                <div class="d-flex justify-content-end px-4 py-2">
+                    <a class="btn btn-primary px-4" href="https://calendar.google.com/calendar/u/0/r?cid=arpv0efrirrmml4rkp26rf21rg@group.calendar.google.com">Add Calendar</a>
+
                 </div>
+                <!-- Calendar header with navigation buttons -->
+                <div class="header bg-primary d-flex justify-content-between align-items-center p-4">
+                    <div>
+                        <h2 id="currentMonth" class="mx-auto"></h2>
+                    </div>
+                    <div class="d-flex gap-5 flex-wrap justify-content-end">
+                        
+                        <div >
+                            <button id="prevMonth" class="btn btn-primary">&lt;</button>
+                            <button id="todayBtn" class="btn btn-primary ">Today</button>
+                            <button id="nextMonth" class="btn btn-primary">&gt;</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Days of the week row -->
+                <div class="weekdays d-flex justify-content-around align-items-center p-2">
+                    <div class="weekday ">Sun</div>
+                    <div class="weekday">Mon</div>
+                    <div class="weekday">Tue</div>
+                    <div class="weekday">Wed</div>
+                    <div class="weekday">Thu</div>
+                    <div class="weekday">Fri</div>
+                    <div class="weekday">Sat</div>
+                </div>
+                <!-- Calendar days -->
+                <div class="days"></div>
             </div>
         </div>
+
+        <!-- Popup -->
+        <div id="popup" class="popup"></div>
         
-        <!-- Footer-->
-    <footer class="bg-light py-5">
-        <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022</div></div>
-    </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- SimpleLightbox plugin JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    <script src="./js/members.js"></script>
-</body>
+        <div class="page-section" id="top"></div>
+    </div>
+
+    <!-- Calendar styling-->
+    <style>
+                
+        .calendar {
+            max-width: 90%;
+            margin: auto;
+        }
+
+        .days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        font-size: .8rem;
+        }
+
+        .weekdays {
+            width: 100%; /* Make the table span full width */
+            display: table; /* Change display property to table */
+    
+        }
+
+        .day {
+            position: relative;
+            border: 1px solid #dee2e6;
+            padding: 5px 0px;
+            height: 6rem;
+            text-align: center;
+            overflow-y: hidden; /* Enable vertical scrolling */
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .event {
+            font-size: smaller;
+            /* margin: 0px 5px; */
+            width: 100%;
+            background: #fdba74;
+            padding: 4px 4px;
+            height: 1.5rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            border-radius: 2px;
+        }
+        .m{
+            background-color: #f4623a;
+            color: white;
+        }
+
+    
+        .today {
+        background-color: #bae6fd;
+        }
+
+
+        .prev-month {
+            background-color: #f3f4f6 ;
+        }
+
+        .prev-month .event{
+            visibility: hidden;
+        }
+
+
+        .next-month {
+            background-color: #f3f4f6 ; 
+        }
+
+        .next-month .event{
+            visibility: hidden;
+        }
+
+        .mTag{
+            width: 2rem;
+            height: 2rem;
+            background-color: #f4623a;
+            border-radius: 4px;
+
+
+        }
+
+        .sTag{
+            width: 2rem;
+            height: 2rem;
+            background-color: #fdba74;
+            border-radius: 4px;
+
+        }
+
+        .weekdays {
+            background-color: #fdba74;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(158, 158, 158, 0.7);
+            z-index: 999;
+        }
+
+        .popup-content {
+            background-color: #fefefe;
+            margin: 5rem auto;
+            padding: 20px;
+            border-radius: 6px;
+            width: 80%;
+            max-width: 400px;
+            position: relative;
+        
+
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+
+        }
+
+        .popup-header{
+            display: flex;
+            justify-content: end;
+            gap: 1rem;
+        }
+
+        .closePopup{
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+
+        @media (max-width: 992px) {
+            .day {
+        border: 1px solid #dee2e6;
+        padding: 5px;
+        height: 5rem;
+        text-align: center;
+        }
+        }
+
+        @media (max-width: 576px) {
+            .day {
+        border: 1px solid #dee2e6;
+        padding: 5px;
+        height: 3rem;
+        text-align: center;
+        }
+
+    
+        .event {
+            font-size: 0; 
+        }
+
+        }
+    </style>
+    </body>
+</html>
