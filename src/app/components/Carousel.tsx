@@ -47,38 +47,7 @@ const Carousel: React.FC = () => {
         })}
       </div>
     </div>
-    // <div className="relative w-full h-100vh text-center ">
-    //   <div
-    //     className="absolute  inset-x-auto w-[500px] h-[200px] bg-sky-200  transform  transform-style-preserve-3d  "
-    //     style={{
-    //       perspective: "1000px",
-    //     }}
-    //   >
-    // {images.map((image, index) => (
-    //       <span
-    //         key={index}
-    //         className="absolute inset-0  "
-    //         style={{
-    //           transform: `
-    //           translateZ(150px)
-    // rotateY(${
-    //   Math.abs(index - images.length / 2 - 1) * (360 / images.length)
-    // }deg)
 
-    //           `,
-    //         }}
-    //       >
-    //         <Image
-    //           src={image}
-    //           alt={`Slide ${index + 1}`}
-    //           layout="fill"
-    //           objectFit="cover"
-    //           className="rounded-xl "
-    //         />
-    //       </span>
-    //     ))}
-    //   </div>
-    // </div>
   );
 };
 

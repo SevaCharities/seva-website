@@ -17,6 +17,7 @@ export default function Navbar() {
   const [showScreen, setShowScreen] = useState<boolean>(false);
   const [bgColor, setBgColor] = useState("");
 
+  // name, [link, redirect]
   const navLinks: NavLink[] = [
     { name: "home", link: ["/", false] },
     { name: "officers" },
