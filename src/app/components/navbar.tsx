@@ -21,10 +21,9 @@ export default function Navbar() {
     { name: "home", link: ["/", false] },
     { name: "officers" },
     { name: "seva history" },
-    // "general meetings",
-    // "merch",
     { name: "linktree", link: ["https://linktr.ee/sevacharities", true] },
-    { name: "contact us", link: ["#contact-us", false] },
+    { name: "contact us", link: ["/#contact-us", false] },
+    { name: "donate", link: ["https://apusa.org/donate-today/", true] },
   ];
 
   useEffect(() => {
@@ -54,15 +53,17 @@ export default function Navbar() {
     <>
       <div className={`fixed top-0 z-50 inset-x-0 ${bgColor}`}>
         <div className="mx-auto max-w-screen-xl flex px-8 sm:px-16 py-4 justify-between items-center">
-          <div className=" flex items-center">
-            <Image
-              src="/seva_logo.png"
-              alt="seva logo"
-              width={42}
-              height={42}
-            />
-            <h3 className=" pl-2 text-white font-semibold">Seva Charities</h3>
-          </div>
+          <Link href="/">
+            <div className=" flex items-center hover:cursor-pointer">
+              <Image
+                src="/seva_logo.png"
+                alt="seva logo"
+                width={42}
+                height={42}
+              />
+              <h3 className=" pl-2 text-white font-semibold">Seva Charities</h3>
+            </div>
+          </Link>
           <button
             className="cursor-pointer"
             onClick={() => setShowScreen(!showScreen)}
@@ -72,7 +73,7 @@ export default function Navbar() {
         </div>
       </div>
       {showScreen && (
-        <div className="bg-orange-2 fixed inset-0 z-40 flex flex-col gap-4 justify-center items-center">
+        <div className="bg-orange-2 fixed inset-0 z-40 flex flex-col gap-2 justify-center items-center">
           {navLinks.map((link, index) => {
             return (
               <Link
@@ -82,7 +83,7 @@ export default function Navbar() {
                 onClick={() => setShowScreen(!showScreen)}
               >
                 <button
-                  className={` hover:text-green-2 ${
+                  className={` hover:text-green-2 p-2 ${
                     getRoute(link) == pathname ? "text-white" : "text-yellow-0"
                   }`}
                 >

@@ -7,7 +7,7 @@
     @apply text-6xl sm:text-7xl;
   }
   h2 {
-    @apply text-3xl sm:text-6xl;
+    @apply text-4xl sm:text-6xl;
   }
   h3 {
     @apply text-2xl sm:text-3xl;
@@ -19,5 +19,28 @@
 
   p {
     @apply text-base md:text-xl;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+@keyframes autoRun {
+  from {
+    transform: rotateX(-6deg) rotateY(0deg) rotateZ(2deg);
+  }
+  to {
+    transform: rotateX(-6deg) rotateY(360deg) rotateZ(2deg);
+  }
+}
+
+@keyframes blur {
+  from {
+    filter: blur(10px);
+  }
+  to {
+    filter: blur(0px);
   }
 }
