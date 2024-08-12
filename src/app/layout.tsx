@@ -27,6 +27,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-orange-0`}>
         <Navbar />
+
         <main className=" flex flex-col min-h-screen max-w-screen-xl mx-auto sm:px-6 xl:px-0">
           {children}
         </main>
