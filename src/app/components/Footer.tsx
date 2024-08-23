@@ -29,7 +29,7 @@ export default function Footer() {
         </h6>
         <div className="  flex justify-center ">
           <Link
-            href="https://docs.google.com/forms/d/e/1FAIpQLSeuLEMy7xR6q7MlEWf4vGkAU_GwI4tFtEe98VnLXAFXWAzuvg/viewform"
+            href="https://bit.ly/joinseva2425"
             target="_blank"
           >
             <button className="bg-green-500 hover:bg-green-400 hover:text-black text-white font-semibold py-4 px-4  border-b-4 border-green-700 hover:border-green-500 rounded-xl active:scale-95">
