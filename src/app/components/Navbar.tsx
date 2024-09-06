@@ -94,7 +94,7 @@ export default function Navbar() {
                         : "text-yellow-0"
                     }`}
                   >
-                    <h3 className=" text-sm sm:text-xl">{link.name}</h3>
+                    <h3 className=" text-lg sm:text-xl">{link.name}</h3>
                   </button>
                 </Link>
                 {index == 6 && (
