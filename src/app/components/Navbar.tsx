@@ -88,13 +88,13 @@ export default function Navbar() {
                   onClick={() => setShowScreen(!showScreen)}
                 >
                   <button
-                    className={` hover:text-green-2 p-2 ${
+                    className={` hover:text-green-2 sm:p-2 ${
                       getRoute(link) == pathname
                         ? "text-white"
                         : "text-yellow-0"
                     }`}
                   >
-                    <h3>{link.name}</h3>
+                    <h3 className=" text-sm sm:text-xl">{link.name}</h3>
                   </button>
                 </Link>
                 {index == 6 && (

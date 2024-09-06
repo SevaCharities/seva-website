@@ -41,8 +41,8 @@ type infoProps = {
 const FAQ = () => {
   const [toggle, setToggle] = useState(new Array(info.length).fill(1));
   return (
-    <div className="w-full min-h-52 rounded-lg bg-white my-12 flex flex-col justify-center items-center p-8 gap-4">
-      <h2 className="py-6">FAQ 🤔</h2>
+    <div className="w-full min-h-52 rounded-lg bg-white my-12 flex flex-col justify-center items-center p-4 sm:p-8 gap-4">
+      <h2 className="sm:py-6">FAQ 🤔</h2>
 
       <Accordion
         className=""
@@ -55,11 +55,11 @@ const FAQ = () => {
             <AccordionItem
               key={index}
               aria-label={i["question"]}
-              title={<h4 className=" text-2xl">{i["question"]}</h4>}
+              title={<h4 className="text-sm  sm:text-2xl">{i["question"]}</h4>}
               className="py-2"
             >
               <p
-                className="text-lg py-4"
+                className="text-xs sm:text-lg py-4"
                 dangerouslySetInnerHTML={{ __html: i["answer"] }}
               ></p>
             </AccordionItem>
