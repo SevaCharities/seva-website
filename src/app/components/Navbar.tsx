@@ -22,8 +22,12 @@ export default function Navbar() {
     { name: "home", link: ["/", false] },
     { name: "officers" },
     { name: "seva history" },
+    { name: "general meetings" },
+    { name: "calendar" },
+    { name: "merch" },
     { name: "linktree", link: ["https://linktr.ee/sevacharities", true] },
     { name: "contact us", link: ["/#contact-us", false] },
+    { name: "FAQ", link: ["/#FAQ", false] },
     { name: "donate", link: ["https://apusa.org/donate-today/", true] },
   ];
 
@@ -77,20 +81,26 @@ export default function Navbar() {
         <div className="bg-orange-2 fixed inset-0 z-40 flex flex-col gap-2 justify-center items-center">
           {navLinks.map((link, index) => {
             return (
-              <Link
-                key={index}
-                href={`${getRoute(link)}`}
-                target={link.link && link.link[1] ? "_blank" : ""}
-                onClick={() => setShowScreen(!showScreen)}
-              >
-                <button
-                  className={` hover:text-green-2 p-2 ${
-                    getRoute(link) == pathname ? "text-white" : "text-yellow-0"
-                  }`}
+              <div key={index} className="flex flex-col items-center">
+                <Link
+                  href={`${getRoute(link)}`}
+                  target={link.link && link.link[1] ? "_blank" : ""}
+                  onClick={() => setShowScreen(!showScreen)}
                 >
-                  <h3>{link.name}</h3>
-                </button>
-              </Link>
+                  <button
+                    className={` hover:text-green-2 p-2 ${
+                      getRoute(link) == pathname
+                        ? "text-white"
+                        : "text-yellow-0"
+                    }`}
+                  >
+                    <h3>{link.name}</h3>
+                  </button>
+                </Link>
+                {index == 6 && (
+                  <span className=" border-t border-2 border-orange-1  w-48 my-6"></span>
+                )}
+              </div>
             );
           })}
         </div>

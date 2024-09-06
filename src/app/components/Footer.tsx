@@ -1,6 +1,7 @@
 import { InstagramLogo, Envelope, Phone } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import Link from "next/link";
+import FAQ from "./FAQ";
 
 const contacts = [
   {
@@ -28,16 +29,14 @@ export default function Footer() {
           if passionate enough, can make a difference!
         </h6>
         <div className="  flex justify-center ">
-          <Link
-            href="https://bit.ly/joinseva2425"
-            target="_blank"
-          >
+          <Link href="https://bit.ly/joinseva2425" target="_blank">
             <button className="bg-green-500 hover:bg-green-400 hover:text-black text-white font-semibold py-4 px-4  border-b-4 border-green-700 hover:border-green-500 rounded-xl active:scale-95">
               <p>🫵 Become a Member</p>
             </button>
           </Link>
         </div>
       </div>
+      <FAQ />
       <div className="flex flex-wrap mt-16  md:justify-between items-center gap-4">
         <div className="text-center">
           <h2>Contact Us</h2>
