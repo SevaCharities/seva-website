@@ -20,7 +20,7 @@ const GMInfo: GMProps[] = [
 
 const Page = () => {
   return (
-    <div className="my-16 sm:my-24 flex flex-col w-full justify-center items-center">
+    <div className="mt-16 sm:mt-24 flex flex-col w-full justify-center items-center">
       <h1 className="sm:px-8 text-orange-2 font-semibold my-12 text-center ">
         General Meetings
       </h1>
