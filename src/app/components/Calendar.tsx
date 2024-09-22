@@ -3,8 +3,12 @@ import { useEffect, useState } from "react";
 import { EventItem } from "../api/route";
 import { ArrowCircleLeft, ArrowCircleRight } from "@phosphor-icons/react";
 import Image from "next/image";
+import Link from "next/link";
 
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+const ADD_CALENDAR =
+  "https://calendar.google.com/calendar/u/0?cid=YXJwdjBlZnJpcnJtbWw0cmtwMjZyZjIxcmdAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ";
 
 const Calendar = () => {
   const [events, setEvents] = useState<EventItem[]>([]);
@@ -146,7 +150,11 @@ const Calendar = () => {
             <ArrowCircleRight className="hover:text-orange-1" />
           </button>
         </div>
-        <button className="flex items-center gap-2 p-2 bg-blue-500 text-white rounded-md shadow-md text-sm">
+        <Link
+          href={ADD_CALENDAR}
+          target="_blank"
+          className="flex items-center gap-2 p-2 bg-blue-500 text-white rounded-md shadow-md text-sm"
+        >
           Google Calendar{" "}
           <Image
             className="shadow-sm shadow-blue-700"
@@ -155,7 +163,7 @@ const Calendar = () => {
             height={32}
             src="/google_calendar.png"
           />{" "}
-        </button>
+        </Link>
       </header>
 
       <div className="grid  grid-cols-7">

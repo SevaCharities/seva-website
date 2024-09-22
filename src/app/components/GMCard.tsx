@@ -1,8 +1,6 @@
-import { GMProps } from "../general-meetings/page";
+import { GMColors, GMProps } from "../general-meetings/page";
 
-const GMColors = ["", "bg-green-200"];
-
-const GMCard = ({ meeting, slides, newsletter, date, upcoming }: GMProps) => {
+const GMCard = ({ meeting, slides, date, upcoming }: GMProps) => {
   return (
     <div
       className={`flex justify-between  h-52  p-8 ${GMColors[meeting]} `}
@@ -11,22 +9,11 @@ const GMCard = ({ meeting, slides, newsletter, date, upcoming }: GMProps) => {
       <div className=" flex flex-col justify-between h-full ">
         <h1 className="text-6xl">{`GM ${meeting}`}</h1>
         <div>
-          {newsletter && (
-            <p>
-              <a
-                className=" text-blue-600 underline "
-                href="/bevo.svg"
-                target="blank"
-              >
-                newsletter
-              </a>{" "}
-            </p>
-          )}
           {slides && (
             <p>
               <a
                 className=" text-blue-600 underline"
-                href="/bevo.svg"
+                href={slides}
                 target="blank"
               >
                 slides

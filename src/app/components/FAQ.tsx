@@ -41,7 +41,7 @@ type infoProps = {
 const FAQ = () => {
   const [toggle, setToggle] = useState(new Array(info.length).fill(1));
   return (
-    <div className="w-full min-h-52 rounded-lg bg-white my-12 flex flex-col justify-center items-center p-4 sm:p-8 gap-4">
+    <div className="w-full min-h-52 rounded-lg bg-orange-0 my-12 flex flex-col justify-center items-center p-4 sm:p-8 gap-4">
       <h2 className="sm:py-6">FAQ 🤔</h2>
 
       <Accordion
