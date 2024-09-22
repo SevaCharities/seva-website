@@ -7,7 +7,6 @@ export type GMProps = {
   upcoming?: boolean;
 };
 
-export const GMColors = ["", "bg-green-200", "bg-indigo-200"];
 
 const GMInfo: GMProps[] = [
   {
