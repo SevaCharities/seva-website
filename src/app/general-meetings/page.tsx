@@ -7,14 +7,19 @@ export type GMProps = {
   upcoming?: boolean;
 };
 
-
 const GMInfo: GMProps[] = [
   {
-    meeting: 2,
+    meeting: 3,
     // slides:
-    //   "https://docs.google.com/presentation/d/1jJyesowDqbQcwByQa1eBaTjWTaCuEVVkXL2cgZRydNM/edit?usp=sharing",
-    date: ["Mon, Sep 23", "9/23/24"],
+    //   "https://docs.google.com/presentation/d/1hH7XfXMKU5LdNYHrjrwxvu7r0Yt4_qzX4wMshGB7NhQ/edit?usp=sharing",
+    date: ["Mon, Oct 7", "10/7/24"],
     upcoming: true,
+  },
+  {
+    meeting: 2,
+    slides:
+      "https://docs.google.com/presentation/d/1hH7XfXMKU5LdNYHrjrwxvu7r0Yt4_qzX4wMshGB7NhQ/edit?usp=sharing",
+    date: ["Mon, Sep 23", "9/23/24"],
   },
   {
     meeting: 1,

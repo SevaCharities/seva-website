@@ -1,6 +1,6 @@
 import { GMProps } from "../general-meetings/page";
 
-const GMColors = ["", "bg-green-200", "bg-indigo-200"];
+const GMColors = ["", "bg-green-200", "bg-indigo-200", "bg-cyan-200"];
 
 const GMCard = ({ meeting, slides, date, upcoming }: GMProps) => {
   return (
