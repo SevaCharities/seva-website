@@ -9,11 +9,23 @@ export type GMProps = {
 
 const GMInfo: GMProps[] = [
   {
-    meeting: 3,
+    meeting: 5,
     // slides:
-    //   "https://docs.google.com/presentation/d/1hH7XfXMKU5LdNYHrjrwxvu7r0Yt4_qzX4wMshGB7NhQ/edit?usp=sharing",
-    date: ["Mon, Oct 7", "10/7/24"],
+    //   "https://docs.google.com/presentation/d/1GJ7tTQXSvJxL00Ara-Or1E9g16eHHtuxxz1SqsxY3jk/edit?usp=sharing",
+    date: ["Mon, Nov 4", "10/4/24"],
     upcoming: true,
+  },
+  {
+    meeting: 4,
+    slides:
+      "https://docs.google.com/presentation/d/1GJ7tTQXSvJxL00Ara-Or1E9g16eHHtuxxz1SqsxY3jk/edit?usp=sharing",
+    date: ["Mon, Oct 21", "10/21/24"],
+  },
+  {
+    meeting: 3,
+    slides:
+      "https://docs.google.com/presentation/d/13RXneO0RG1bRF3z8n41YPdZP58qf8-ma4_nbvVEkvmo/edit?usp=sharing",
+    date: ["Mon, Oct 7", "10/7/24"],
   },
   {
     meeting: 2,
