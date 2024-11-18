@@ -78,13 +78,13 @@ const officers: OfficerProps[] = [
   {
     name: "Sneha Kamal",
     role: "Senior Advisor",
-    bio: "I'm Seva VP",
+    bio: "Hello, I am Sneha! I’m currently doing my masters at SMU and graduated from UT last year. I love to read, draw, binge housewives, and brain rot.",
   },
 
   {
     name: "Kenisha Vora",
     role: "Senior Advisor",
-    bio: "I'm Seva VP",
+    bio: "I'm a Senior Advisor",
   },
 ];
 
