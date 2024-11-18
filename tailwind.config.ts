@@ -42,7 +42,7 @@ const config: Config = {
   },
   plugins: [
     nextui(),
-    function ({ addUtilities }) {
+    function ({ addUtilities }: { addUtilities: Function }) {
       addUtilities({
         ".perspective": { perspective: "1000px" },
         ".transform-style-preserve-3d": { transformStyle: "preserve-3d" },
