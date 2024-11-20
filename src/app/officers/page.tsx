@@ -84,7 +84,7 @@ const officers: OfficerProps[] = [
   {
     name: "Kenisha Vora",
     role: "Senior Advisor",
-    bio: "I'm a Senior Advisor",
+    bio: "hi there, i’m kenisha and am currently a senior bio major! growing up as one of the few indians in the rio grande valley, i devour anything spicy and speak hindi, gujarati, and spanish as well! also, i love the outdoors and am constantly hiking, rafting, and/or eating by a scenic backdrop (which austin is perfect for!)",
   },
 ];
 
