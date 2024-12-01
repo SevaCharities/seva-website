@@ -8,6 +8,7 @@ const GMColors = [
   "bg-yellow-200",
   "bg-pink-400",
   "bg-orange-200",
+  "bg-teal-200",
 ];
 
 const GMCard = ({ meeting, slides, date, upcoming }: GMProps) => {
