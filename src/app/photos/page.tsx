@@ -50,7 +50,7 @@ export default function Photos() {
             >
               {/* Image */}
               <Image
-                src={`/gallery_events/${i + 1}.jpg`}
+                src={`/photos/${i + 1}.jpg`}
                 alt={`Event ${i + 1}`}
                 layout="fill"
                 objectFit="cover"
