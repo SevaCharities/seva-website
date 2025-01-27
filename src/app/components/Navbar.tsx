@@ -20,6 +20,7 @@ export default function Navbar() {
   // name, [link, redirect]
   const navLinks: NavLink[] = [
     { name: "home", link: ["/", false] },
+    { name: "photos" },
     { name: "officers" },
     { name: "seva history" },
     { name: "general meetings" },
