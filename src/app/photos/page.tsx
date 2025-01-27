@@ -54,6 +54,8 @@ export default function Photos() {
                 alt={`Event ${i + 1}`}
                 layout="fill"
                 objectFit="cover"
+                placeholder="blur"
+                blurDataURL="/blur.png"
               />
 
               {/* Overlay */}
