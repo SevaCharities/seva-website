@@ -39,9 +39,9 @@ const Page = () => {
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {/* {merch.map((m: Merch, index: number) => (
+        {merch.map((m: Merch, index: number) => (
           <MerchTile key={index} m={m} />
-        ))} */}
+        ))}
       </div>
     </div>
   );

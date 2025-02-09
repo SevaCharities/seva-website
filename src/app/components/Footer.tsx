@@ -37,10 +37,10 @@ export default function Footer() {
         </div>
       </div>
       <FAQ />
-      <div className="flex flex-wrap mt-16  md:justify-between items-center gap-4">
+      <div className="flex flex-wrap mt-20  md:justify-between items-center gap-4">
         <div className="text-center">
           <h2>Contact Us</h2>
-          <p className=" text-green-1">Want to collaborate with us?</p>
+          <p>Want to collaborate with us?</p>
         </div>
         <Image
           src="/seva_logo_green.svg"
