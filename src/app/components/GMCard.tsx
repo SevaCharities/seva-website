@@ -9,12 +9,16 @@ const GMColors = [
   "bg-pink-400",
   "bg-orange-200",
   "bg-teal-200",
+  "bg-lime-300",
+  "bg-red-400",
+  "bg-orange-400",
+  "bg-emerald-400",
 ];
 
 const GMCard = ({ meeting, slides, date, upcoming }: GMProps) => {
   return (
     <div
-      className={`flex justify-between bg-pink  h-52  p-8 ${GMColors[meeting]} `}
+      className={`flex justify-between bg-pink    h-52  p-8 ${GMColors[meeting]} `}
       style={{ opacity: upcoming ? 0.75 : 1 }}
     >
       <div className=" flex flex-col justify-between h-full ">
