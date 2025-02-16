@@ -34,7 +34,7 @@ const Page = () => {
           Interested in buying? Fill out this{" "}
           <a
             className=" bg-orange-2 text-white underline p-1"
-            href="https://www.example.com"
+            href="https://forms.gle/sQxvLFLCUaBvmjum6"
             target="_blank"
             rel="noopener noreferrer"
           >
