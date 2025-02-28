@@ -7,8 +7,10 @@ export default function Gallery() {
 
   const set1 = [7, 3, 1, 12, 9, 5, 14, 13];
   const set2 = [4, 11, 6, 8, 10, 2, 16, 15];
+  const set3 = [7, 3, 12, 17, 9, 5, 14, 13];
   const [selectedImages, setSelectedImages] = useState(
-    Math.random() < 0.5 ? set1 : set2
+    // Math.random() < 0.5 ? set1 : set2
+    set3
   );
 
   return (
