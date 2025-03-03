@@ -32,16 +32,6 @@ export default function Navbar() {
     { name: "donate", link: ["https://apusa.org/donate-today/", true] },
   ];
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 80, // Adjust this offset according to your navbar height
-        behavior: "smooth",
-      });
-    }
-  };
-  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 500) {
@@ -97,13 +87,6 @@ export default function Navbar() {
                   href={`${getRoute(link)}`}
                   target={link.link && link.link[1] ? "_blank" : ""}
                   onClick={() => setShowScreen(!showScreen)}
-                  setShowScreen(!showScreen);
-                    if (link.name === "FAQ") {
-                      scrollToSection("FAQ");
-                    } else if (link.name === "contact us") {
-                      scrollToSection("contact-us");
-                    }
-                  }}
                 >
                   <button
                     className={` hover:text-green-2 sm:p-2 ${
