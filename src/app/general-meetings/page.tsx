@@ -10,10 +10,10 @@ export type GMProps = {
 const GMInfo: GMProps[] = [
   {
     meeting: 10,
-    // slides:
-    //   "https://docs.google.com/presentation/d/1Jl5W-T8eBbwfeyAamLwQLeMqK8m3jyQ_ZaJjEi0tb2U/edit?usp=sharing",
+    slides:
+      "https://docs.google.com/presentation/d/1Jl5W-T8eBbwfeyAamLwQLeMqK8m3jyQ_ZaJjEi0tb2U/edit?usp=sharing",
     date: ["Mon, Feb 24", "2/24/25"],
-    upcoming: true,
+    upcoming: false,
   },
   {
     meeting: 9,
