@@ -28,7 +28,7 @@ export default function Navbar() {
     { name: "merch" },
     { name: "linktree", link: ["https://linktr.ee/sevacharities", true] },
     { name: "contact us", link: ["/#contact-us", false] },
-    { name: "FAQ", link: ["/#FAQ", false] },
+    { name: "FAQ", link: ["/#contact-us", false] },
     { name: "donate", link: ["https://apusa.org/donate-today/", true] },
   ];
 
