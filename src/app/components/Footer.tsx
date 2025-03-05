@@ -36,8 +36,8 @@ export default function Footer() {
           </Link>
         </div>
       </div>
-      <contact-us />
-      <div className="flex flex-wrap mt-20  md:justify-between items-center gap-4">
+      {/* <contact-us /> */}
+      <div id="contact-us" className="flex flex-wrap mt-20  md:justify-between items-center gap-4">
         <div className="text-center">
           <h2>Contact Us</h2>
           <p>Want to collaborate with us?</p>
