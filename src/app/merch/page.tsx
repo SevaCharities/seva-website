@@ -34,11 +34,12 @@ const Page = () => {
           Interested in buying? Fill out this{" "}
           <a
             className=" bg-orange-2 text-white underline p-1"
-            href="https://forms.gle/sQxvLFLCUaBvmjum6"
+            href="https://forms.gle/8GYRLvd8cdJs6CRu6"
             target="_blank"
             rel="noopener noreferrer"
           >
             Google Form!
+            
           </a>
         </p>
       </div>
