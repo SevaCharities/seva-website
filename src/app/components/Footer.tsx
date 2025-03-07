@@ -19,7 +19,7 @@ const contacts = [
 
 export default function Footer() {
   return (
-    <section id="contact-us" className=" bg-green-0 p-16 mt-32">
+    <section className=" bg-green-0 p-16 mt-32">
       <div className="flex flex-wrap justify-center gap-4 text-center">
         <h6>
           <span className=" bg-white text-black px-2 font-semibold">
@@ -37,7 +37,7 @@ export default function Footer() {
         </div>
       </div>
       <FAQ />
-      <div id="FAQ" className="flex flex-wrap mt-20  md:justify-between items-center gap-4">
+      <div id="contact-us" className="flex flex-wrap mt-20  md:justify-between items-center gap-4">
         <div className="text-center">
           <h2>Contact Us</h2>
           <p>Want to collaborate with us?</p>
