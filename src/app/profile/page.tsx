@@ -85,7 +85,7 @@ export default function App() {
               }}
               providers={["google"]}
               onlyThirdPartyProviders={true}
-              redirectTo="http://localhost:3000/profile"
+              redirectTo="https://seva-website-git-shiva-seva-charities-projects.vercel.app/profile"
             />
           </div>
         </div>
