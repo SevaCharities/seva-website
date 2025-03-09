@@ -85,14 +85,14 @@ export default function App() {
               }}
               providers={["google"]}
               onlyThirdPartyProviders={true}
-              redirectTo="https://seva-website-git-shiva-seva-charities-projects.vercel.app/profile"
+              redirectTo="https://sevacharities.com/profile"
             />
           </div>
         </div>
       ) : (
         <div className="my-16 sm:my-24">
           <div className=" mx-auto">
-            <ProfileForm  />
+            <ProfileForm />
             <button
               onClick={handleSignOut}
               className="mt-6 w-full py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
