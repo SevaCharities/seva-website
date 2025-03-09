@@ -1,4 +1,5 @@
 "use client";
+
 import { List } from "@phosphor-icons/react/dist/ssr";
 import { log } from "console";
 import Image from "next/image";
@@ -9,6 +10,7 @@ import { useEffect, useState } from "react";
 type NavLink = {
   name: String;
   link?: [String, boolean];
+
 };
 
 export default function Navbar() {
@@ -19,6 +21,7 @@ export default function Navbar() {
 
   // name, [link, redirect]
   const navLinks: NavLink[] = [
+    { name: "profile"},
     { name: "home", link: ["/", false] },
     { name: "photos" },
     { name: "officers" },
@@ -70,12 +73,15 @@ export default function Navbar() {
               <h3 className=" pl-2 text-white font-semibold">Seva Charities</h3>
             </div>
           </Link>
-          <button
-            className="cursor-pointer"
-            onClick={() => setShowScreen(!showScreen)}
-          >
-            <List size={32} color="white" weight="bold" />
-          </button>
+          <div className="flex items-center gap-4">
+          
+            <button
+              className="cursor-pointer "
+              onClick={() => setShowScreen(!showScreen)}
+            >
+              <List size={32} color="white" weight="bold" />
+            </button>
+          </div>
         </div>
       </div>
       {showScreen && (

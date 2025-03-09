@@ -9,15 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.12.4",
     "@nextui-org/accordion": "^2.0.38",
     "@nextui-org/system": "^2.2.5",
     "@nextui-org/theme": "^2.2.9",
     "@phosphor-icons/react": "^2.1.7",
+    "@supabase/auth-ui-react": "^0.4.7",
+    "@supabase/supabase-js": "^2.49.1",
     "framer-motion": "^11.5.4",
+    "google-spreadsheet": "^4.1.4",
+    "googleapis": "^146.0.0",
     "motion": "^11.11.17",
     "next": "14.2.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hot-toast": "^2.5.2"
   },
   "devDependencies": {
     "@types/node": "^20",
