@@ -9,48 +9,77 @@ import { Toaster, toast } from "react-hot-toast";
 
 export default function App() {
   const [session, setSession] = useState<Session | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
+  // Extract the profile creation logic into a separate function
+  const createProfileIfNeeded = async (user: any) => {
+    try {
+      const { data: existingProfile } = await supabase
+        .from("profiles")
+        .select("id")
+        .eq("id", user.id)
+        .single();
 
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_event, session) => {
-      setSession(session);
-
-      if (_event === "SIGNED_IN") {
-        toast.success("Successfully signed in!");
-        const user = session?.user;
-
-        if (user) {
-          const { data: existingProfile } = await supabase
-            .from("profiles")
-            .select("id")
-            .eq("id", user.id)
-            .single();
-
-          if (!existingProfile) {
-            const { error } = await supabase.from("profiles").insert([
-              {
-                id: user.id,
-                name: user.user_metadata?.full_name || "",
-                email: user.email,
-              },
-            ]);
-
-            if (error) {
-              toast.error("Error creating profile");
-            } else {
-              toast.success("Profile created successfully!");
-            }
-          }
+      if (!existingProfile) {
+        const { error } = await supabase.from("profiles").insert([
+          {
+            id: user.id,
+            name: user.user_metadata?.full_name || "",
+            email: user.email,
+          },
+        ]);
+        console.log("Profile created successfully!");
+        console.log(error);
+        if (error) {
+          toast.error("Error creating profile");
+        } else {
+          toast.success("Profile created successfully!");
         }
       }
-    });
+    } catch (error) {
+      console.error("Error checking/creating profile:", error);
+      toast.error("Error with profile setup");
+    }
+  };
 
-    return () => subscription.unsubscribe();
+  useEffect(() => {
+    const initializeAuth = async () => {
+      try {
+        // First, get the current session
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        setSession(session);
+
+        // If we have a session, check/create profile
+        if (session?.user) {
+          await createProfileIfNeeded(session.user);
+        }
+
+        // Set up auth state change listener
+        const {
+          data: { subscription },
+        } = supabase.auth.onAuthStateChange(async (_event, session) => {
+          setSession(session);
+
+          if (_event === "SIGNED_IN") {
+            toast.success("Successfully signed in!");
+            if (session?.user) {
+              await createProfileIfNeeded(session.user);
+            }
+          }
+        });
+
+        return () => subscription.unsubscribe();
+      } catch (error) {
+        console.error("Auth initialization error:", error);
+        toast.error("Authentication error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initializeAuth();
   }, []);
 
   const handleSignOut = async () => {
@@ -61,6 +90,14 @@ export default function App() {
       toast.success("Signed out successfully");
     }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        Loading...
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen ">
@@ -85,7 +122,12 @@ export default function App() {
               }}
               providers={["google"]}
               onlyThirdPartyProviders={true}
-              redirectTo="https://sevacharities.com/profile"
+              // redirectTo="http://localhost:3000/profile"
+              redirectTo="https://www.sevacharities.com/profile"
+              queryParams={{
+                access_type: "offline",
+                prompt: "select_account",
+              }}
             />
           </div>
         </div>
@@ -95,7 +137,7 @@ export default function App() {
             <ProfileForm />
             <button
               onClick={handleSignOut}
-              className="mt-6 w-full py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+              className="mt-6 w-full py-3 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
             >
               Sign Out
             </button>

@@ -21,6 +21,7 @@
     "googleapis": "^146.0.0",
     "motion": "^11.11.17",
     "next": "14.2.4",
+    "next-cloudinary": "^6.16.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.5.2"
