@@ -13,6 +13,7 @@ const GMColors = [
   "bg-red-400",
   "bg-orange-400",
   "bg-emerald-400",
+  "bg-blue-400"
 ];
 
 const GMCard = ({ meeting, slides, date, upcoming }: GMProps) => {
