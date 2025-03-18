@@ -11,7 +11,8 @@ export type EventsProps = {
       title: "Lakehouse",
       category: 1,
       date: ["Fri, Mar 28 - Sun, Mar 30", "3/28/24 - 3/30/24"],
-      description: "A social gathering at a lakehouse for elite Seva members!",
+      description: "A three-day adventure to a lakehouse in Austin! Some activities at this years house include: " +
+        "lots of games, beautiful park/lake nearby, swimming, and making long-lasting friends. Invite and RSVP only.",
     },
   ];
   
