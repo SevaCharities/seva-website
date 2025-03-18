@@ -29,7 +29,7 @@ const EventsCard = ({ title, category, date, description }: EventsProps) => {
           <p className="text-sm">{description}</p>
         )}
         </div>
-        <div className="text-right">
+        <div className="text-left">
           <h3>{date[0]}</h3>
           <h6>{date[1]}</h6>
         </div>
