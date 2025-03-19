@@ -129,9 +129,10 @@ export default function App() {
   }, []);
 
   // TESTING
-  // useEffect(() => {
-  //   console.log("userSession", userSession);
-  // }, [userSession]);
+  useEffect(() => {
+    console.log("user", user);
+    console.log("settings", settings);
+  }, [user,settings]);
 
   const handleSignOut = async () => {
     const { error } = await supabase.auth.signOut();
@@ -175,7 +176,8 @@ export default function App() {
               providers={["google"]}
               onlyThirdPartyProviders={true}
               // redirectTo="http://localhost:3000/profile"
-              redirectTo="https://www.sevacharities.com/profile"
+              // redirectTo="https://www.sevacharities.com/profile"
+              redirectTo="https://seva-website-git-shiva-seva-charities-projects.vercel.app/profile"
               queryParams={{
                 access_type: "offline",
                 prompt: "select_account",
