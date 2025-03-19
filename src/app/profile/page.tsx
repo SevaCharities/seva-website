@@ -174,8 +174,8 @@ export default function App() {
               }}
               providers={["google"]}
               onlyThirdPartyProviders={true}
-              redirectTo="http://localhost:3000/profile"
-              // redirectTo="https://www.sevacharities.com/profile"
+              // redirectTo="http://localhost:3000/profile"
+              redirectTo="https://www.sevacharities.com/profile"
               queryParams={{
                 access_type: "offline",
                 prompt: "select_account",
