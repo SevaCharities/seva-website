@@ -179,6 +179,7 @@ export default function App() {
               // redirectTo="https://www.sevacharities.com/profile"
               redirectTo="https://seva-website-git-shiva-seva-charities-projects.vercel.app/profile"
               queryParams={{
+                prompt: "select_account",
                 // access_type: "offline",
               }}
             />
