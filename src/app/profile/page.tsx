@@ -176,11 +176,11 @@ export default function App() {
               providers={["google"]}
               onlyThirdPartyProviders={true}
               // redirectTo="http://localhost:3000/profile"
-              // redirectTo="https://www.sevacharities.com/profile"
-              redirectTo="https://seva-website-git-shiva-seva-charities-projects.vercel.app/profile"
+              redirectTo="https://www.sevacharities.com/profile"
+              // redirectTo="https://seva-website-git-shiva-seva-charities-projects.vercel.app/profile"
               queryParams={{
                 prompt: "select_account",
-                // access_type: "offline",
+    
               }}
             />
           </div>
