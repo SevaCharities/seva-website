@@ -132,7 +132,7 @@ export default function App() {
   useEffect(() => {
     console.log("user", user);
     console.log("settings", settings);
-  }, [user,settings]);
+  }, [user, settings]);
 
   const handleSignOut = async () => {
     const { error } = await supabase.auth.signOut();
@@ -179,8 +179,7 @@ export default function App() {
               redirectTo="https://www.sevacharities.com/profile"
               // redirectTo="https://seva-website-git-shiva-seva-charities-projects.vercel.app/profile"
               queryParams={{
-                access_type: "offline",
-                prompt: "select_account",
+                // access_type: "offline",
               }}
             />
           </div>
