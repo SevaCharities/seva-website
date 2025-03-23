@@ -1,5 +1,6 @@
 "use client";
 import { CldUploadButton } from "next-cloudinary";
+import Image from "next/image";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -9,6 +10,7 @@ interface ImageUploadProps {
 
 export default function ImageUpload({ onUploadSuccess }: ImageUploadProps) {
   const [uploading, setUploading] = useState(false);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   return (
     <div>
@@ -18,6 +20,7 @@ export default function ImageUpload({ onUploadSuccess }: ImageUploadProps) {
           try {
             setUploading(true);
             await onUploadSuccess(result.info.secure_url);
+            setImageUrl(result.info.secure_url);
             toast.success("Profile picture updated!");
           } catch (error) {
             console.error("Error updating profile picture:", error);
@@ -36,18 +39,30 @@ export default function ImageUpload({ onUploadSuccess }: ImageUploadProps) {
           resourceType: "image",
           folder: "profile_pictures",
           clientAllowedFormats: ["png", "jpeg", "jpg"],
-          maxFileSize: 5242880, // 5MB
+          maxFileSize: 10485760, // 10MB
         }}
       >
         {uploading ? (
           <div className="flex items-center justify-center space-x-2">
-            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500"></div>
+            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-orange-500"></div>
             <span>Uploading...</span>
           </div>
         ) : (
-          <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
-            Upload Profile Picture
-          </button>
+          <div className="flex items-center justify-center space-x-2">
+            {imageUrl && (
+              <Image
+                src={imageUrl}
+                alt="Profile"
+                width={100}
+                height={100}
+                sizes="(max-width: 100px) 100vw, 100px" // Add sizes prop
+                className="rounded-lg object-cover"
+              />
+            )}
+            <div className="px-4 py-2  bg-orange-2 text-white rounded-lg hover:bg-orange-1 transition-colors">
+              Change Profile Picture
+            </div>
+          </div>
         )}
       </CldUploadButton>
     </div>
