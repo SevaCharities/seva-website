@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Accordion, AccordionItem } from "@nextui-org/accordion";
+import { Accordion, AccordionItem } from "@heroui/react";
 import Link from "next/link";
 
 const info: infoProps[] = [
@@ -39,32 +39,27 @@ type infoProps = {
 };
 
 const FAQ = () => {
-  const [toggle, setToggle] = useState(new Array(info.length).fill(1));
   return (
     <div className="w-full min-h-52 rounded-lg bg-orange-0 my-12 flex flex-col justify-center items-center p-4 pb-8 gap-4">
       <h2 className="sm:py-6">FAQ 🤔</h2>
 
       <Accordion
-        className=""
-        selectionMode="multiple"
-        isCompact
         variant="bordered"
+        selectionMode="multiple"
+        className="w-full max-w-3xl"
       >
-        {info.map((i, index) => {
-          return (
-            <AccordionItem
-              key={index}
-              aria-label={i["question"]}
-              title={<h4 className="text-sm  sm:text-2xl">{i["question"]}</h4>}
-              className="py-2"
-            >
-              <p
-                className="text-xs sm:text-lg py-4"
-                dangerouslySetInnerHTML={{ __html: i["answer"] }}
-              ></p>
-            </AccordionItem>
-          );
-        })}
+        {info.map((i, index) => (
+          <AccordionItem
+            key={index}
+            title={i.question}
+            className="border-b border-gray-200"
+          >
+            <div
+              className="text-xs sm:text-lg py-4"
+              dangerouslySetInnerHTML={{ __html: i.answer }}
+            />
+          </AccordionItem>
+        ))}
       </Accordion>
     </div>
   );
