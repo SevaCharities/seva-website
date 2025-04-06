@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 
-
 import { supabase } from "../lib/supabaseClient";
 import toast from "react-hot-toast";
 import Image from "next/image";
@@ -11,7 +10,7 @@ import CheckInModal from "./CheckInModal";
 import { FiSettings } from "react-icons/fi";
 import { Settings, UserInterface } from "../profile/page";
 
-export type Event = {
+export type Activity = {
   id: string;
   name: string;
 };
@@ -23,7 +22,7 @@ export default function Profile({
   user: UserInterface;
   settings: Settings;
 }) {
-  const eventRef = useRef<Event | null>(null);
+  const activityRef = useRef<Activity | null>(null);
 
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -34,7 +33,6 @@ export default function Profile({
   const [canCheckIn, setCanCheckIn] = useState(false);
 
   useEffect(() => {
-
     if (settings && user) {
       setCanCheckIn(settings?.check_in_enabled);
       checkInToday();
@@ -42,15 +40,15 @@ export default function Profile({
   }, [settings, user]);
 
   const checkInToday = async () => {
-    const event_name = `GM ${settings?.general_meeting}`;
-    const event_id = await getEventId(event_name);
-    eventRef.current = { name: event_name, id: event_id };
+    const activity_name = `GM ${settings?.general_meeting}`;
+    const activity_id = await getActivityId(activity_name);
+    activityRef.current = { name: activity_name, id: activity_id };
 
     const { data: existingCheckIn, error: checkError } = await supabase
       .from("check_ins")
       .select()
       .eq("user_id", user?.id)
-      .eq("event_id", event_id);
+      .eq("activity_id", activity_id);
 
     if (checkError) throw checkError;
 
@@ -58,15 +56,15 @@ export default function Profile({
     setAlreadyCheckedIn(existingCheckIn.length > 0);
   };
 
-  const getEventId = async (_name: string) => {
-    const { data: event, error: eventError } = await supabase
-      .from("events")
+  const getActivityId = async (_name: string) => {
+    const { data: activity, error: activityError } = await supabase
+      .from("activities")
       .select("id")
       .eq("name", _name);
 
-    if (eventError) throw eventError;
+    if (activityError) throw activityError;
 
-    return event[0].id;
+    return activity[0].id;
   };
 
   const handleCheckIn = async () => {
@@ -85,9 +83,9 @@ export default function Profile({
       setLoading(true);
       const { error } = await supabase.from("check_ins").insert({
         user_id: user?.id,
-        event_id: eventRef.current?.id,
+        activity_id: activityRef.current?.id,
         name: user?.name,
-        event_name: eventRef.current?.name,
+        activity_name: activityRef.current?.name,
         created_at: new Date().toISOString(),
         data: { image_url: imageUrl },
       });
@@ -180,6 +178,15 @@ const View = ({ user }: { user: UserInterface }) => {
     <div>
       <h2 className="text-4xl font-semibold text-gray-900 mb-1">{user.name}</h2>
       <p className="text-gray-600 text-sm">{user.email}</p>
+
+      {user.email === "sevacharities@gmail.com" && (
+        <a
+          href="/admin"
+          className="inline-block mt-4 px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors"
+        >
+          Admin Dashboard
+        </a>
+      )}
     </div>
   );
 };

@@ -15,7 +15,7 @@ export default function ImageUpload({ onUploadSuccess }: ImageUploadProps) {
   return (
     <div>
       <CldUploadButton
-        uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
+        uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_PROFILE_PICS_PRESET}
         onSuccess={async (result: any) => {
           try {
             setUploading(true);
@@ -37,8 +37,7 @@ export default function ImageUpload({ onUploadSuccess }: ImageUploadProps) {
         options={{
           maxFiles: 1,
           resourceType: "image",
-          folder: "profile_pictures",
-          clientAllowedFormats: ["png", "jpeg", "jpg"],
+          folder: process.env.NEXT_PUBLIC_CLOUDINARY_PROFILE_PICS_PRESET,
           maxFileSize: 10485760, // 10MB
         }}
       >
