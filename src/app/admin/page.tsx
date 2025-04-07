@@ -87,7 +87,7 @@ export default function AdminPage() {
         // PGRST116 is "not found" error, which is fine - we'll initialize the setting
         console.error("Error fetching settings:", settingsError);
       } else if (settingsData) {
-        setCheckInEnabled(settingsData.value === "true");
+        setCheckInEnabled(settingsData.value === true);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -318,7 +318,7 @@ export default function AdminPage() {
         // Setting exists, update it
         const { error } = await supabase
           .from("settings")
-          .update({ value: String(newStatus) })
+          .update({ value: newStatus })
           .eq("key", "check_in_enabled");
         updateError = error;
       }
