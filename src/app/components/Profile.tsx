@@ -1,38 +1,56 @@
 "use client";
-
-import { useState, useEffect, useRef } from "react";
-
+import { useState, useEffect } from "react";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { supabase } from "../lib/supabaseClient";
-import toast from "react-hot-toast";
-import Image from "next/image";
-import ImageUpload from "./ImageUpload";
-import CheckInModal from "./CheckInModal";
-import { FiSettings } from "react-icons/fi";
-import { Settings, UserInterface } from "../profile/page";
+import { Session, User, AuthChangeEvent } from "@supabase/supabase-js";
+import Profile from "../components/Profile";
+import { Toaster, toast } from "react-hot-toast";
+import Badges, { Badge } from "../components/Badges";
+import { env } from "process";
+<<<<<<< Updated upstream
 
-export type Activity = {
-  id: string;
-  name: string;
+export type Settings = {
+  check_in_enabled: boolean;
+  general_meeting: number;
+};
+=======
+>>>>>>> Stashed changes
+
+export type Settings = {
+  check_in_enabled: boolean;
+  general_meeting: number;
 };
 
-export default function Profile({
-  user,
-  settings,
-}: {
-  user: UserInterface;
-  settings: Settings;
-}) {
-  const activityRef = useRef<Activity | null>(null);
+export type UserInterface = {
+  id: string;
+  name: string;
+  email: string;
+  updated_at: string;
+  profile_picture: string;
+};
 
-  const [loading, setLoading] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
+export default function App() {
+  const [userSession, setUserSession] = useState<Session | null>(null);
+  const [user, setUser] = useState<UserInterface>();
+  const [settings, setSettings] = useState<Settings | null>(null);
 
-  const [isCheckInModalOpen, setIsCheckInModalOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const createProfileIfNeeded = async (_user: User) => {
+<<<<<<< Updated upstream
+    try {
+      const { data: existingProfile } = await supabase
+        .from("members")
+        .select("id")
+        .eq("id", _user.id)
+        .single();
 
   const [alreadyCheckedIn, setAlreadyCheckedIn] = useState(false);
   const [canCheckIn, setCanCheckIn] = useState(false);
 
   useEffect(() => {
+
     if (settings && user) {
       setCanCheckIn(settings?.check_in_enabled);
       checkInToday();
@@ -40,15 +58,15 @@ export default function Profile({
   }, [settings, user]);
 
   const checkInToday = async () => {
-    const activity_name = `GM ${settings?.general_meeting}`;
-    const activity_id = await getActivityId(activity_name);
-    activityRef.current = { name: activity_name, id: activity_id };
+    const event_name = `GM ${settings?.general_meeting}`;
+    const event_id = await getEventId(event_name);
+    eventRef.current = { name: event_name, id: event_id };
 
     const { data: existingCheckIn, error: checkError } = await supabase
       .from("check_ins")
       .select()
       .eq("user_id", user?.id)
-      .eq("activity_id", activity_id);
+      .eq("event_id", event_id);
 
     if (checkError) throw checkError;
 
@@ -56,118 +74,184 @@ export default function Profile({
     setAlreadyCheckedIn(existingCheckIn.length > 0);
   };
 
-  const getActivityId = async (_name: string) => {
-    const { data: activity, error: activityError } = await supabase
-      .from("activities")
+  const getEventId = async (_name: string) => {
+    const { data: event, error: eventError } = await supabase
+      .from("events")
       .select("id")
       .eq("name", _name);
 
-    if (activityError) throw activityError;
+    if (eventError) throw eventError;
 
-    return activity[0].id;
+    return event[0].id;
   };
 
   const handleCheckIn = async () => {
     try {
       setLoading(true);
-      setIsCheckInModalOpen(true);
-    } catch (error) {
-      toast.error("Error checking in");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const submitCheckIn = async (imageUrl: string) => {
-    try {
-      setLoading(true);
-      const { error } = await supabase.from("check_ins").insert({
-        user_id: user?.id,
-        activity_id: activityRef.current?.id,
-        name: user?.name,
-        activity_name: activityRef.current?.name,
-        created_at: new Date().toISOString(),
-        data: { image_url: imageUrl },
-      });
+      const { data, error } = await supabase
+        .from("members")
+        .select("id, name, updated_at, email, profile_picture")
+        .eq("id", _id)
+        .single();
 
       if (error) throw error;
-
-      setIsCheckInModalOpen(false);
-      toast.success("Checked in successfully!");
+      if (data) {
+        setUser({
+          id: _id,
+          name: data.name,
+          updated_at: new Date(data.updated_at).toISOString(),
+          email: data.email,
+          profile_picture: data.profile_picture || "/profile.jpg",
+        });
+      }
     } catch (error) {
-      toast.error("Error checking in");
+      toast.error("Error loading profile");
     } finally {
       setLoading(false);
-      checkInToday();
+=======
+    try {
+      const { data: existingProfile } = await supabase
+        .from("members")
+        .select("id")
+        .eq("id", _user.id)
+        .single();
+
+      if (!existingProfile) {
+        const { error } = await supabase.from("members").insert([
+          {
+            id: _user.id,
+            name: _user.user_metadata?.full_name,
+            email: _user.email,
+          },
+        ]);
+        if (error) {
+          console.error("Error creating profile", error);
+          toast.error("Error creating profile");
+        } else {
+          toast.success("Profile created successfully!");
+        }
+      }
+    } catch (error) {
+      toast.error("Error with profile setup");
+>>>>>>> Stashed changes
+    }
+  }
+
+  const getSettings = async () => {
+    const { data, error } = await supabase
+      .from("settings")
+      .select("key, value")
+      .in("key", ["check_in_enabled", "general_meeting"]);
+
+    if (!error && data) {
+      const settings = {
+        check_in_enabled:
+          data.find((s) => s.key === "check_in_enabled")?.value === true,
+        general_meeting: Number(
+          data.find((s) => s.key === "general_meeting")?.value
+        ),
+      };
+
+      setSettings(settings);
     }
   };
 
-  if (!user) return null;
+  async function getUserProfile(_id: string) {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from("members")
+        .select("id, name, updated_at, email, profile_picture")
+        .eq("id", _id)
+        .single();
+
+<<<<<<< Updated upstream
+        return () => {
+          subscription.unsubscribe();
+        };
+      } catch (error) {
+        console.error("Auth initialization error:", error);
+        toast.error("Authentication error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initializeAuth();
+  }, []);
+
+  // TESTING
+  useEffect(() => {
+    console.log("user", user);
+    console.log("settings", settings);
+
+    // Redirect admin user to admin page
+    if (user && user.email === process.env.NEXT_PUBLIC_ADMIN) {
+      window.location.href = "/admin";
+    }
+  }, [user, settings]);
+
+  const handleSignOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      toast.error("Error signing out");
+    } else {
+      toast.success("Signed out successfully");
+      window.location.reload();
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        Loading...
+      </div>
+    );
+  }
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-8">
-      <div className="flex flex-col md:flex-row gap-8">
-        <div className="w-full md:w-auto">
-          <Image
-            src={user.profile_picture}
-            alt="Profile"
-            width={300}
-            height={300}
-            sizes="(max-width: 768px) 100vw, 400px" // Add sizes prop
-            className="rounded-lg object-cover w-full md:w-[400px] h-[400px]"
-          />
+    <div className="min-h-screen ">
+      <Toaster position="top-center" />
+      {!userSession ? (
+        <div className="flex items-center justify-center min-h-screen p-4">
+          <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+              Sign in to your account
+            </h2>
+            <Auth
+              supabaseClient={supabase}
+              appearance={{
+                theme: ThemeSupa,
+                style: {
+                  button: {
+                    background: "#91fffb",
+                    borderRadius: "0.5rem",
+                    color: "#2b2b2b",
+                  },
+                },
+              }}
+              providers={["google"]}
+              onlyThirdPartyProviders={true}
+              redirectTo={process.env.NEXT_PUBLIC_REDIRECT_URL!}
+              queryParams={{
+                prompt: "select_account",
+              }}
+            />
+          </div>
         </div>
-        <div className="flex-1">
-          <div className="relative flex-1">
+      ) : (
+        <div className="my-16 sm:my-24">
+          <div className=" mx-auto">
+            <Profile user={user!} settings={settings!} />
+            <Badges user={user!} />
             <button
-              onClick={() => setIsEditing(!isEditing)}
-              className="absolute top-0 right-0 p-2 text-gray-600 hover:text-gray-900 transition-colors rounded-full hover:bg-gray-100"
-              aria-label={isEditing ? "Close settings" : "Open settings"}
+              onClick={handleSignOut}
+              className="mt-6 w-full py-3 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
             >
-              <FiSettings size={24} />
+              Sign Out
             </button>
-
-            {isEditing ? <Edit user={user} /> : <View user={user} />}
           </div>
         </div>
-      </div>
-
-      {/* check in */}
-      <div className="mt-8 border-t pt-8">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-lg font-medium text-gray-900">Check-In</h3>
-            <p className="text-sm text-gray-500">
-              {canCheckIn && !alreadyCheckedIn
-                ? `GM #${settings?.general_meeting}`
-                : alreadyCheckedIn
-                ? "You've already checked in"
-                : "Check-in is currently disabled"}
-            </p>
-          </div>
-          <button
-            onClick={handleCheckIn}
-            disabled={loading || !canCheckIn || alreadyCheckedIn}
-            className={`px-4 py-2 rounded-lg text-white transition-colors duration-200 
-              ${
-                canCheckIn && !alreadyCheckedIn
-                  ? "bg-green-500 hover:bg-green-600"
-                  : alreadyCheckedIn
-                  ? "bg-yellow-500 cursor-not-allowed"
-                  : "bg-gray-400 cursor-not-allowed"
-              }`}
-          >
-            {alreadyCheckedIn ? "You are in! 😃" : "Check In"}
-          </button>
-        </div>
-      </div>
-
-      {isCheckInModalOpen && (
-        <CheckInModal
-          onClose={() => setIsCheckInModalOpen(false)}
-          onSubmit={submitCheckIn}
-          loading={loading}
-        />
       )}
     </div>
   );
@@ -178,15 +262,6 @@ const View = ({ user }: { user: UserInterface }) => {
     <div>
       <h2 className="text-4xl font-semibold text-gray-900 mb-1">{user.name}</h2>
       <p className="text-gray-600 text-sm">{user.email}</p>
-
-      {user.email === "sevacharities@gmail.com" && (
-        <a
-          href="/admin"
-          className="inline-block mt-4 px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors"
-        >
-          Admin Dashboard
-        </a>
-      )}
     </div>
   );
 };
@@ -208,82 +283,171 @@ const Edit = ({ user }: { user: UserInterface }) => {
       toast.success("Profile updated successfully!");
     } catch (error) {
       toast.error("Error updating profile");
+=======
+      if (error) throw error;
+      if (data) {
+        setUser({
+          id: _id,
+          name: data.name,
+          updated_at: new Date(data.updated_at).toISOString(),
+          email: data.email,
+          profile_picture: data.profile_picture || "/profile.jpg",
+        });
+      }
+    } catch (error) {
+      toast.error("Error loading profile");
+>>>>>>> Stashed changes
     } finally {
       setLoading(false);
     }
   }
 
-  return (
-    <div>
-      <div className="mb-4">
-        <p className="text-lg font-medium">Edit Profile</p>
-      </div>
+  const getSettings = async () => {
+    const { data, error } = await supabase
+      .from("settings")
+      .select("key, value")
+      .in("key", ["check_in_enabled", "general_meeting"]);
 
-      <div className="flex flex-col gap-4">
-        <ImageUpload
-          onUploadSuccess={async (url) => {
-            setUserEdit((prev) => ({ ...prev, profile_picture: url }));
-          }}
-        />
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Full Name
-          </label>
-          <input
-            type="text"
-            value={userEdit.name}
-            onChange={(e) =>
-              setUserEdit((prev) => ({ ...prev, name: e.target.value }))
+<<<<<<< Updated upstream
+=======
+    if (!error && data) {
+      const settings = {
+        check_in_enabled:
+          data.find((s) => s.key === "check_in_enabled")?.value === true,
+        general_meeting: Number(
+          data.find((s) => s.key === "general_meeting")?.value
+        ),
+      };
+
+      setSettings(settings);
+    }
+  };
+
+  useEffect(() => {
+    const initializeAuth = async () => {
+      try {
+        // First, get the current session
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+
+        setUserSession(session);
+
+        // If we have a session, check/create profile
+        if (session) {
+          const user = session.user;
+          await createProfileIfNeeded(user);
+          await getUserProfile(user.id);
+          await getSettings();
+        }
+
+        // Set up auth state listener
+        const {
+          data: { subscription },
+        } = supabase.auth.onAuthStateChange(async (event, session) => {
+          if (event === "SIGNED_IN") {
+            // Redirect to profile page if we're not already there
+            if (window.location.pathname !== "/profile") {
+              window.location.href = "/profile";
             }
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-            placeholder="Enter your full name"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Email
-          </label>
-          <input
-            type="text"
-            disabled
-            value={userEdit.email}
-            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-500"
-          />
-        </div>
-        <button
-          onClick={updateProfile}
-          disabled={loading}
-          className="w-full py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {loading ? (
-            <span className="flex items-center justify-center">
-              <svg
-                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              Saving Changes...
-            </span>
-          ) : (
-            "Save Changes"
-          )}
-        </button>
+            if (session) {
+              await createProfileIfNeeded(session.user);
+              await getUserProfile(session.user.id);
+              await getSettings();
+            }
+          }
+        });
+
+        return () => {
+          subscription.unsubscribe();
+        };
+      } catch (error) {
+        console.error("Auth initialization error:", error);
+        toast.error("Authentication error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initializeAuth();
+  }, []);
+
+  // TESTING
+  useEffect(() => {
+    console.log("user", user);
+    console.log("settings", settings);
+
+    // Redirect admin user to admin page
+    if (user && user.email === process.env.NEXT_PUBLIC_ADMIN) {
+      window.location.href = "/admin";
+    }
+  }, [user, settings]);
+
+  const handleSignOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      toast.error("Error signing out");
+    } else {
+      toast.success("Signed out successfully");
+      window.location.reload();
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        Loading...
       </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen ">
+      <Toaster position="top-center" />
+      {!userSession ? (
+        <div className="flex items-center justify-center min-h-screen p-4">
+          <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+              Sign in to your account
+            </h2>
+            <Auth
+              supabaseClient={supabase}
+              appearance={{
+                theme: ThemeSupa,
+                style: {
+                  button: {
+                    background: "#91fffb",
+                    borderRadius: "0.5rem",
+                    color: "#2b2b2b",
+                  },
+                },
+              }}
+              providers={["google"]}
+              onlyThirdPartyProviders={true}
+              redirectTo={process.env.NEXT_PUBLIC_REDIRECT_URL!}
+              queryParams={{
+                prompt: "select_account",
+              }}
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="my-16 sm:my-24">
+          <div className=" mx-auto">
+            <Profile user={user!} settings={settings!} />
+            <Badges user={user!} />
+            <button
+              onClick={handleSignOut}
+              className="mt-6 w-full py-3 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+            >
+              Sign Out
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
-};
+}
+
+
+>>>>>>> Stashed changes
