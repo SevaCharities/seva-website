@@ -22,15 +22,15 @@ export default function Navbar() {
   // name, [link, redirect]
   const navLinks: NavLink[] = [
     { name: "profile"},
-    { name: "home", link: ["/", false] },
+    // { name: "home", link: ["/", false] },
     { name: "photos" },
     { name: "officers" },
     { name: "seva history" },
-    { name: "general meetings" },
+    // { name: "general meetings" },
     { name: "calendar" },
     { name: "merch" },
     { name: "linktree", link: ["https://linktr.ee/sevacharities", true] },
-    { name: "contact us", link: ["/#contact-us", false] },
+    // { name: "contact us", link: ["/#contact-us", false] },
     { name: "FAQ", link: ["/FAQ", false] },
     { name: "donate", link: ["https://apusa.org/donate-today/", true] },
   ];
