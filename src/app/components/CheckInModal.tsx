@@ -37,9 +37,15 @@ export default function CheckInModal({
           ) : (
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
               <CldUploadButton
-                uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
+                uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_GENERAL_PRESET}
                 onSuccess={handleUpload}
-                options={{ sources: ["local"] }}
+                options={{
+                  maxFiles: 1,
+                  resourceType: "image",
+                  folder: "profile_pictures",
+
+                  maxFileSize: 10485760, // 10MB
+                }}
                 className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
               >
                 Upload Photo

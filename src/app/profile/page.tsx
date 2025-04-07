@@ -6,6 +6,8 @@ import { supabase } from "../lib/supabaseClient";
 import { Session, User, AuthChangeEvent } from "@supabase/supabase-js";
 import Profile from "../components/Profile";
 import { Toaster, toast } from "react-hot-toast";
+import Badges, { Badge } from "../components/Badges";
+import { env } from "process";
 
 export type Settings = {
   check_in_enabled: boolean;
@@ -117,6 +119,27 @@ export default function App() {
           await getUserProfile(user.id);
           await getSettings();
         }
+
+        // Set up auth state listener
+        const {
+          data: { subscription },
+        } = supabase.auth.onAuthStateChange(async (event, session) => {
+          if (event === "SIGNED_IN") {
+            // Redirect to profile page if we're not already there
+            if (window.location.pathname !== "/profile") {
+              window.location.href = "/profile";
+            }
+            if (session) {
+              await createProfileIfNeeded(session.user);
+              await getUserProfile(session.user.id);
+              await getSettings();
+            }
+          }
+        });
+
+        return () => {
+          subscription.unsubscribe();
+        };
       } catch (error) {
         console.error("Auth initialization error:", error);
         toast.error("Authentication error");
@@ -132,6 +155,11 @@ export default function App() {
   useEffect(() => {
     console.log("user", user);
     console.log("settings", settings);
+
+    // Redirect admin user to admin page
+    if (user && user.email === process.env.NEXT_PUBLIC_ADMIN) {
+      window.location.href = "/admin";
+    }
   }, [user, settings]);
 
   const handleSignOut = async () => {
@@ -175,12 +203,9 @@ export default function App() {
               }}
               providers={["google"]}
               onlyThirdPartyProviders={true}
-              // redirectTo="http://localhost:3000/profile"
-              redirectTo="https://www.sevacharities.com/profile"
-              // redirectTo="https://seva-website-git-shiva-seva-charities-projects.vercel.app/profile"
+              redirectTo={process.env.NEXT_PUBLIC_REDIRECT_URL!}
               queryParams={{
                 prompt: "select_account",
-    
               }}
             />
           </div>
@@ -189,6 +214,7 @@ export default function App() {
         <div className="my-16 sm:my-24">
           <div className=" mx-auto">
             <Profile user={user!} settings={settings!} />
+            <Badges user={user!} />
             <button
               onClick={handleSignOut}
               className="mt-6 w-full py-3 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
