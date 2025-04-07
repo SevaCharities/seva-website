@@ -40,7 +40,7 @@ type infoProps = {
 
 const FAQ = () => {
   return (
-    <div className="w-full min-h-52 rounded-lg bg-orange-0 my-12 flex flex-col justify-center items-center p-4 pb-8 gap-4">
+    <div id="FAQ" className="w-full min-h-52 rounded-lg bg-orange-0 my-12 flex flex-col justify-center items-center p-4 pb-8 gap-4">
       <h2 className="sm:py-6">FAQ 🤔</h2>
 
       <Accordion
