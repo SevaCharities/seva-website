@@ -17,7 +17,7 @@
     "@nextui-org/theme": "^2.2.9",
     "@phosphor-icons/react": "^2.1.7",
     "@supabase/auth-ui-react": "^0.4.7",
-    "@supabase/supabase-js": "^2.49.1",
+    "@supabase/supabase-js": "^2.49.4",
     "framer-motion": "^11.5.4",
     "google-spreadsheet": "^4.1.4",
     "googleapis": "^146.0.0",
