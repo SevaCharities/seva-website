@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { useState } from "react";
 import { Merch } from "../merch/page";
 import Image from "next/image";
