@@ -1,3 +1,4 @@
+import { BadgeInfo } from "@/app/admin/page";
 import { supabase } from "@/app/lib/supabaseClient";
 import { NextResponse } from "next/server";
 
@@ -6,10 +7,10 @@ export async function GET(
   { params }: { params: { memberId: string } }
 ) {
   try {
-    // Step 1: Get the member's badge_ids array
+    // Step 1: Get the member's badge_info array
     const { data: memberData, error: memberError } = await supabase
       .from("members")
-      .select("badge_ids")
+      .select("badge_info")
       .eq("id", params.memberId)
       .single();
 
@@ -19,15 +20,19 @@ export async function GET(
     }
 
     // If the member has no badges
-    if (!memberData.badge_ids || memberData.badge_ids.length === 0) {
+    if (!memberData.badge_info || memberData.badge_info.length === 0) {
       return NextResponse.json({ badges: [] });
     }
+
+    const badgeIds = memberData.badge_info.map(
+      (badge: BadgeInfo) => badge.badge_id
+    );
 
     // Step 2: Get the badge details using the IN operator
     const { data: badges, error: badgesError } = await supabase
       .from("badges")
-      .select("id, name, image, emoji, description")
-      .in("id", memberData.badge_ids);
+      .select("id, name, image, emoji, description, rarity")
+      .in("id", badgeIds);
 
     if (badgesError) {
       console.error("Error fetching badges:", badgesError);
@@ -36,12 +41,22 @@ export async function GET(
         { status: 500 }
       );
     }
+    const badgesWithStatus = badges.map((badge) => ({
+      ...badge,
+      opened:
+        memberData.badge_info.find((b: BadgeInfo) => b.badge_id === badge.id)
+          ?.opened || false,
+    }));
 
-    // Optional: Sort badges to match the order in badge_ids
-    const sortedBadges = badges.sort((a, b) => {
-      return (
-        memberData.badge_ids.indexOf(a.id) - memberData.badge_ids.indexOf(b.id)
+    // Optional: Sort badges to match the order in badge_info
+    const sortedBadges = badgesWithStatus.sort((a, b) => {
+      const aIndex = memberData.badge_info.findIndex(
+        (badge: BadgeInfo) => badge.badge_id === a.id
       );
+      const bIndex = memberData.badge_info.findIndex(
+        (badge: BadgeInfo) => badge.badge_id === b.id
+      );
+      return aIndex - bIndex;
     });
 
     return NextResponse.json({ badges: sortedBadges });

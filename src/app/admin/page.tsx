@@ -8,6 +8,11 @@ import { Badge } from "../components/Badges";
 import { Toaster, toast } from "react-hot-toast";
 import Image from "next/image";
 
+export type BadgeInfo = {
+  badge_id: number;
+  opened: boolean;
+};
+
 export default function AdminPage() {
   const [loading, setLoading] = useState(true);
   const [assignLoading, setAssignLoading] = useState(false);
@@ -214,7 +219,7 @@ export default function AdminPage() {
           // Get current badge_ids
           const { data: memberData, error: memberError } = await supabase
             .from("members")
-            .select("badge_ids")
+            .select("badge_info")
             .eq("id", memberId)
             .single();
 
@@ -224,19 +229,25 @@ export default function AdminPage() {
           }
 
           // Create updated badge array
-          const currentBadges = memberData.badge_ids || [];
+          const currentBadges = memberData.badge_info || [];
+          const currentBadgeIds = currentBadges.map(
+            (badge: BadgeInfo) => badge.badge_id
+          );
 
-          if (currentBadges.includes(badgeId)) {
+          if (currentBadgeIds.includes(badgeId)) {
             alreadyAssignedCount++;
             continue;
           }
 
-          const updatedBadges = [...currentBadges, badgeId];
+          const updatedBadges = [
+            ...currentBadges,
+            { badge_id: badgeId, opened: false },
+          ];
 
           // Update the member
           const { error: updateError } = await supabase
             .from("members")
-            .update({ badge_ids: updatedBadges })
+            .update({ badge_info: updatedBadges })
             .eq("id", memberId);
 
           if (updateError) {
@@ -696,7 +707,7 @@ export default function AdminPage() {
                   htmlFor={`member-${member.id}`}
                   className="ml-2 block text-sm text-gray-900 cursor-pointer"
                 >
-                  {member.name}
+                  {member.name}({member.email})
                 </label>
               </div>
             ))}
