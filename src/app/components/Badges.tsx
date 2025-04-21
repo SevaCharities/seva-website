@@ -163,7 +163,10 @@ export default function Badges({ user }: { user: UserInterface }) {
         Badges
       </h3>
 
-      <div className="flex flex-wrap gap-4 bg-yellow-100 p-4">
+      <div
+        className="flex flex-wrap justify-center
+       gap-4 bg-yellow-100 p-4"
+      >
         {badges.length === 0 ? (
           <p className="text-gray-600 italic p-4">No badges earned yet</p>
         ) : (
@@ -377,7 +380,7 @@ function BadgeModal({
         className="bg-white backdrop-blur-xl rounded-xl max-w-md w-full overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative border-b border-purple-400">
+        <div className="relative border-b border-gray-200">
           <div className="p-4 text-center flex flex-col justify-center items-center">
             <motion.h3
               className="text-2xl font-semibold "
@@ -390,7 +393,7 @@ function BadgeModal({
 
         <div className="p-6 flex justify-center">
           <motion.div
-            className="relative w-72 h-72"
+            className="relative w-72 h-72 md:w-96 md:h-96"
             layoutId="badge-image"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -592,7 +595,7 @@ export function BadgeReveal({ badge, onComplete, onClose }: BadgeRevealProps) {
                 animate={{ scale: 1, rotate: 360 }}
                 transition={{ type: "spring", duration: 0.5 }}
               >
-                <div className="relative w-64 h-64 mx-auto mb-6">
+                <div className="relative w-64 h-64 md:w-96 md:h-96 mx-auto mb-6">
                   <Image
                     src={badge.image}
                     alt={badge.name}
