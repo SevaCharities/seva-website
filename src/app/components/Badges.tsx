@@ -167,8 +167,7 @@ export default function Badges({ user }: { user: UserInterface }) {
         className="flex flex-wrap justify-center
        gap-4 bg-yellow-100 p-4"
       >
-        🤫🙅‍♂️
-        {/* {badges.length === 0 ? (
+        {badges.length === 0 ? (
           <p className="text-gray-600 italic p-4">No badges earned yet</p>
         ) : (
           badges.map((badge) => (
@@ -180,7 +179,7 @@ export default function Badges({ user }: { user: UserInterface }) {
               <BadgeCard badge={badge} />
             </div>
           ))
-        )} */}
+        )}
       </div>
 
       {/* Badge Reveal Modal */}
