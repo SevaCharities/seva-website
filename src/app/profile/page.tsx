@@ -156,10 +156,10 @@ export default function App() {
     console.log("user", user);
     console.log("settings", settings);
 
-    // Redirect admin user to admin page
-    if (user && user.email === process.env.NEXT_PUBLIC_ADMIN) {
-      window.location.href = "/admin";
-    }
+    // // Redirect admin user to admin page
+    // if (user && user.email === process.env.NEXT_PUBLIC_ADMIN) {
+    //   window.location.href = "/admin";
+    // }
   }, [user, settings]);
 
   const handleSignOut = async () => {
