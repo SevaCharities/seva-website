@@ -48,18 +48,60 @@ export async function GET(
           ?.opened || false,
     }));
 
-    // Optional: Sort badges to match the order in badge_info
-    const sortedBadges = badgesWithStatus.sort((a, b) => {
-      const aIndex = memberData.badge_info.findIndex(
-        (badge: BadgeInfo) => badge.badge_id === a.id
-      );
-      const bIndex = memberData.badge_info.findIndex(
-        (badge: BadgeInfo) => badge.badge_id === b.id
-      );
-      return aIndex - bIndex;
-    });
+    // Sort badges by ID
+    const sortedBadges = badgesWithStatus.sort((a, b) => a.id - b.id);
 
     return NextResponse.json({ badges: sortedBadges });
+  } catch (error) {
+    console.error("Unexpected error:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function POST(
+  request: Request,
+  { params }: { params: { memberId: string } }
+) {
+  try {
+    const { badge_id } = await request.json();
+
+    // Get current badge_info
+    const { data: memberData, error: memberError } = await supabase
+      .from("members")
+      .select("badge_info")
+      .eq("id", params.memberId)
+      .single();
+
+    if (memberError) {
+      console.error("Error fetching member:", memberError);
+      return NextResponse.json({ error: "Member not found" }, { status: 404 });
+    }
+
+    // Update the opened status for the specific badge
+    const updatedBadgeInfo = memberData.badge_info.map((badge: BadgeInfo) =>
+      badge.badge_id === badge_id ? { ...badge, opened: true } : badge
+    );
+
+    console.log(updatedBadgeInfo);
+
+    // Update the member's badge_info
+    const { error: updateError } = await supabase
+      .from("members")
+      .update({ badge_info: updatedBadgeInfo })
+      .eq("id", params.memberId);
+
+    if (updateError) {
+      console.error("Error updating badge status:", updateError);
+      return NextResponse.json(
+        { error: "Failed to update badge status" },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ success: true, badge_info: updatedBadgeInfo });
   } catch (error) {
     console.error("Unexpected error:", error);
     return NextResponse.json(

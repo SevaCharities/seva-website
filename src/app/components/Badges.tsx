@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useTime, useTransform } from "framer-motion";
 import { UserInterface } from "../profile/page";
 import confetti from "canvas-confetti";
 
@@ -65,6 +65,25 @@ const badgeEmojis = [
   "💪",
   "💖",
   "🤓",
+  "👀",
+  "👍",
+  "👏",
+  "💩",
+  "👌",
+  "👊",
+  "🤖",
+  "🫦",
+  "🙈",
+  "🦄",
+  "🍀",
+  "🥑",
+  "🍆",
+  "🍑",
+  "🍒",
+  "⚽️",
+  "🍇",
+  "🏏",
+  "🍌",
 ];
 const colors = [
   "#FF6B6B",
@@ -79,21 +98,21 @@ const colors = [
 ];
 
 // Move rarityThemes outside of components so it can be shared
-const rarityThemes = {
+export const rarityThemes = {
   epic: {
-    bg: "from-purple-800/95 ",
-    accent: "purple-200",
-    glow: "0 0 100px rgba(147, 51, 234, 0.3)",
+    bg: "from-purple-900/80 to-indigo-800",
+    accent: "from-purple-500 to-fuchsia-500",
+    accent2: "oklch(66.7% 0.295 322.15)",
   },
   rare: {
-    bg: "from-orange-600/95 ",
-    accent: "blue-500",
-    glow: "0 0 100px rgba(59, 130, 246, 0.3)",
+    bg: "from-orange-500/80 to-red-400",
+    accent: "from-blue-500 to-cyan-500",
+    accent2: "oklch(76.9% 0.188 70.08)",
   },
   legendary: {
-    bg: "from-blue-400/95 ",
-    accent: "blue-500",
-    glow: "0 0 100px rgba(234, 179, 8, 0.3)",
+    bg: "from-sky-300/80 to-blue-500",
+    accent: "from-amber-500 to-yellow-500",
+    accent2: "oklch(78.9% 0.154 211.53)",
   },
 };
 
@@ -167,16 +186,13 @@ export default function Badges({ user }: { user: UserInterface }) {
           onComplete={async () => {
             // Update the badge status in the database
             try {
-              const response = await fetch(
-                `/api/member-badges/${user.id}/open`,
-                {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({ badgeId: selectedBadge.id }),
-                }
-              );
+              const response = await fetch(`/api/member-badges/${user.id}`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ badge_id: selectedBadge.id }),
+              });
 
               if (!response.ok)
                 throw new Error("Failed to update badge status");
@@ -217,6 +233,8 @@ export default function Badges({ user }: { user: UserInterface }) {
 }
 
 function BadgeCard({ badge }: { badge: BadgeWithStatus }) {
+  const theme = rarityThemes[badge.rarity as keyof typeof rarityThemes];
+
   return (
     <div
       className={`
@@ -236,75 +254,45 @@ function BadgeCard({ badge }: { badge: BadgeWithStatus }) {
         <div className="absolute inset-0 flex items-center justify-center text-8xl">
           {badge.opened ? badge.emoji : ""}
         </div>
+        {badge.opened && (
+          <div
+            className={`absolute inset-0 rounded-md mix-blend-overlay  bg-gradient-to-br ${
+              rarityThemes[badge.rarity as keyof typeof rarityThemes].bg
+            }`}
+          />
+        )}
       </div>
     </div>
   );
 }
 
-function RarityTag({ rarity }: { rarity: string }) {
-  const rarityStyles = {
-    epic: {
-      bg: "bg-gradient-to-r from-purple-600 to-fuchsia-600",
-      border: "border-purple-400",
-      glow: "0 0 20px rgba(147, 51, 234, 0.6)",
-      shadow: "0 2px 10px rgba(147, 51, 234, 0.4)",
-      shine:
-        "before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent",
-    },
-    rare: {
-      bg: "bg-gradient-to-r from-orange-600 to-orange-600",
-      border: "border-orange-400",
-      glow: "0 0 20px rgba(59, 130, 246, 0.6)",
-      shadow: "0 2px 10px rgba(59, 130, 246, 0.4)",
-      shine:
-        "before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent",
-    },
-    legendary: {
-      bg: "bg-gradient-to-r from-blue-500 to-blue-500",
-      border: "border-yellow-400",
-      glow: "0 0 20px rgba(234, 179, 8, 0.6)",
-      shadow: "0 2px 10px rgba(234, 179, 8, 0.4)",
-      shine:
-        "before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent",
-    },
-  };
+export function RarityTag({ rarity, size }: { rarity: string; size?: string }) {
+  const theme = rarityThemes[rarity as keyof typeof rarityThemes];
 
-  const style = rarityStyles[rarity as keyof typeof rarityStyles];
-
+  const time = useTime();
+  const rotate = useTransform(time, [0, 3000], [0, 360], { clamp: false });
+  const rotatingBg = useTransform(rotate, (r) => {
+    return `conic-gradient(from ${r}deg, ${theme.accent2},#fff, ${theme.accent2})`;
+  });
   return (
-    <div
-      className={`
-        relative
-        inline-block
-        px-4 py-1.5
-        ${style.bg}
-        border-2 ${style.border}
-        rounded-full
-        font-bold
-        text-white
-        text-sm
-        uppercase
-        tracking-wider
-        transform
-        hover:scale-105
-        transition-transform
-        duration-200
-        ${style.shine}
-        before:absolute
-        before:inset-0
-        before:w-full
-        before:h-full
-        before:animate-shine
-        before:duration-1000
-        overflow-hidden
-        mt-2
-      `}
-      style={{
-        boxShadow: `${style.glow}, ${style.shadow}`,
-        textShadow: "0 1px 3px rgba(0, 0, 0, 0.3)",
-      }}
-    >
-      {rarity}
+    <div className="relative w-fit">
+      <motion.div
+        className={`relative z-10 text-xs text-white bg-gradient-to-r  ${
+          theme.bg
+        }  ${
+          size === "xs" ? "px-2 py-1" : "px-6 py-1.5 uppercase tracking-wider"
+        } rounded-full font-bold text-center uppercase`}
+      >
+        {rarity}
+      </motion.div>
+      {size !== "xs" && (
+        <motion.div
+          className="absolute -inset-1 rounded-full"
+          style={{
+            background: rotatingBg,
+          }}
+        ></motion.div>
+      )}
     </div>
   );
 }
@@ -317,6 +305,59 @@ function BadgeModal({
   onClose: () => void;
 }) {
   const theme = rarityThemes[badge.rarity as keyof typeof rarityThemes];
+  const [tap, setTap] = useState(false);
+  const animationFrameId = useRef<number>();
+
+  const triggerSnow = (theme: any) => {
+    let skew = 1;
+
+    const randomInRange = (min: number, max: number) => {
+      return Math.random() * (max - min) + min;
+    };
+
+    (function frame() {
+      skew = Math.max(0.8, skew - 0.001);
+
+      confetti({
+        particleCount: 2,
+        startVelocity: 0,
+        ticks: 300,
+        origin: {
+          x: Math.random(),
+          y: Math.random() * skew - 0.2,
+        },
+        colors: ["#ffffff", "#f5d889"],
+        shapes: ["circle"],
+        gravity: randomInRange(0.4, 0.6),
+        scalar: randomInRange(0.5, 1),
+        drift: randomInRange(-0.4, 0.4),
+      });
+
+      animationFrameId.current = requestAnimationFrame(frame);
+    })();
+  };
+
+  const triggerConfetti = () => {
+    confetti({
+      particleCount: 100,
+      spread: 100,
+      origin: { y: 0.6 },
+    });
+  };
+
+  useEffect(() => {
+    if (badge.rarity === "legendary") {
+      triggerSnow(theme);
+    } else {
+      triggerConfetti();
+    }
+
+    return () => {
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
+    };
+  }, []);
 
   return (
     <motion.div
@@ -328,39 +369,37 @@ function BadgeModal({
       layoutId="modal"
       transition={{
         type: "spring",
-        bounce: 0.2,
-        duration: 0.6,
+        bounce: 0.5,
+        duration: 1,
       }}
     >
       <div
-        className="bg-white/10 backdrop-blur-xl rounded-xl max-w-md w-full mx-4 overflow-hidden"
-        style={{
-          boxShadow: theme.glow,
-        }}
+        className="bg-white backdrop-blur-xl rounded-xl max-w-md w-full overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative border-b border-white/10">
-          <button
-            onClick={onClose}
-            className="absolute right-3 top-3 text-white/70 hover:text-white transition-colors"
-          >
-            ✕
-          </button>
-          <div className="p-4 text-center">
+        <div className="relative border-b border-purple-400">
+          <div className="p-4 text-center flex flex-col justify-center items-center">
             <motion.h3
-              className="text-2xl font-semibold text-white"
+              className="text-2xl font-semibold "
               layoutId="badge-name"
             >
               {badge.name}
             </motion.h3>
-            <motion.div layoutId="badge-rarity">
-              <RarityTag rarity={badge.rarity} />
-            </motion.div>
           </div>
         </div>
 
         <div className="p-6 flex justify-center">
-          <motion.div className="relative w-72 h-72" layoutId="badge-image">
+          <motion.div
+            className="relative w-72 h-72"
+            layoutId="badge-image"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            whileTap={{ scale: 0.8 }}
+            onClick={() => {
+              setTap(!tap);
+              triggerConfetti();
+            }}
+          >
             <Image
               src={badge.image}
               alt={badge.name}
@@ -372,20 +411,19 @@ function BadgeModal({
               className="absolute inset-0 flex items-center justify-center text-6xl"
               layoutId="badge-emoji"
             >
-              {badge.emoji}
+              {tap ? badge.emoji : ""}
             </motion.div>
           </motion.div>
         </div>
 
         <motion.div
-          className="px-6 pb-8"
+          className="px-6 pb-8 flex flex-col items-center gap-4 relative"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <p className="text-white/90 text-lg text-center">
-            {badge.description}
-          </p>
+          <p className="text-lg text-center">{badge.description}</p>
+          <RarityTag rarity={badge.rarity} />
         </motion.div>
       </div>
     </motion.div>
@@ -530,7 +568,11 @@ export function BadgeReveal({ badge, onComplete, onClose }: BadgeRevealProps) {
             }}
             transition={{ duration: 1 }}
           >
-            <div className="w-48 h-48 mx-auto bg-orange-100 rounded-xl flex items-center justify-center">
+            <div
+              className={`w-48 h-48 mx-auto bg-gradient-to-br ${
+                rarityThemes[badge.rarity as keyof typeof rarityThemes].bg
+              } backdrop-blur-sm  rounded-xl flex items-center justify-center`}
+            >
               <span className="text-6xl">✨</span>
             </div>
           </motion.div>

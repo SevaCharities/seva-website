@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { useRouter } from "next/navigation";
 import { User } from "@supabase/supabase-js";
-import { Badge } from "../components/Badges";
+import { Badge, RarityTag, rarityThemes } from "../components/Badges";
 import { Toaster, toast } from "react-hot-toast";
 import Image from "next/image";
 
@@ -33,6 +33,7 @@ export default function AdminPage() {
     emoji: "",
     image: "/test.png", // Default image
     description: "",
+    rarity: "rare", // Default rarity
   });
   const router = useRouter();
 
@@ -68,7 +69,7 @@ export default function AdminPage() {
       // Fetch members
       const { data: membersData, error: membersError } = await supabase
         .from("members")
-        .select("id, name, email, badge_ids");
+        .select("id, name, email, badge_info");
 
       if (membersError) throw membersError;
       setMembers(membersData || []);
@@ -76,7 +77,7 @@ export default function AdminPage() {
       // Fetch badges
       const { data: badgesData, error: badgesError } = await supabase
         .from("badges")
-        .select("id, name, image, emoji, description");
+        .select("id, name, image, emoji, description, rarity");
 
       if (badgesError) throw badgesError;
       setBadges(badgesData || []);
@@ -177,6 +178,7 @@ export default function AdminPage() {
             emoji: newBadge.emoji,
             image: newBadge.image,
             description: newBadge.description,
+            rarity: newBadge.rarity,
           },
         ])
         .select();
@@ -190,6 +192,7 @@ export default function AdminPage() {
         emoji: "",
         image: "/blur.png",
         description: "",
+        rarity: "rare",
       });
       await fetchData(); // Refresh badges list
     } catch (error) {
@@ -239,10 +242,11 @@ export default function AdminPage() {
             continue;
           }
 
+          // Add new badge and sort by badge_id
           const updatedBadges = [
             ...currentBadges,
             { badge_id: badgeId, opened: false },
-          ];
+          ].sort((a, b) => a.badge_id - b.badge_id);
 
           // Update the member
           const { error: updateError } = await supabase
@@ -470,6 +474,23 @@ export default function AdminPage() {
 
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-1">
+                Rarity
+              </label>
+              <select
+                value={newBadge.rarity}
+                onChange={(e) =>
+                  setNewBadge({ ...newBadge, rarity: e.target.value })
+                }
+                className="w-full p-2 border rounded-md"
+              >
+                <option value="rare">Rare</option>
+                <option value="epic">Epic</option>
+                <option value="legendary">Legendary</option>
+              </select>
+            </div>
+
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
                 Image
               </label>
               <div className="flex flex-col space-y-2">
@@ -568,9 +589,10 @@ export default function AdminPage() {
             <p className="text-lg font-semibold mb-1">
               {newBadge.name || "Badge Name"}
             </p>
-            <p className="text-sm text-gray-600 text-center">
+            <p className="text-sm text-gray-600 text-center pb-4">
               {newBadge.description || "Badge description will appear here"}
             </p>
+            <RarityTag rarity={newBadge.rarity || "rare"} />
           </div>
         </div>
 
@@ -611,6 +633,13 @@ export default function AdminPage() {
                       <div className="absolute inset-0 flex items-center justify-center text-3xl">
                         {badge.emoji}
                       </div>
+                      <div
+                        className={`absolute inset-0 rounded-md mix-blend-overlay  bg-gradient-to-br ${
+                          rarityThemes[
+                            badge.rarity as keyof typeof rarityThemes
+                          ].bg
+                        }`}
+                      />
                     </div>
                     <div>
                       <h3 className="text-lg font-medium">{badge.name}</h3>
@@ -773,7 +802,10 @@ export default function AdminPage() {
                 // Get the actual badge objects this member has
                 const memberBadges = badges.filter(
                   (badge) =>
-                    member.badge_ids && member.badge_ids.includes(badge.id)
+                    member.badge_info &&
+                    member.badge_info.some(
+                      (badgeInfo: BadgeInfo) => badgeInfo.badge_id === badge.id
+                    )
                 );
 
                 return (
