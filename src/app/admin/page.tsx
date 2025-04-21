@@ -23,6 +23,10 @@ export default function AdminPage() {
 
   const [user, setUser] = useState<User | null>(null);
   const [members, setMembers] = useState<any[]>([]);
+  const [checkIns, setCheckIns] = useState<any[]>([]);
+  const [checkInsLoading, setCheckInsLoading] = useState(false);
+  const [selectedActivity, setSelectedActivity] = useState<string>("");
+  const [activities, setActivities] = useState<any[]>([]);
 
   const [badges, setBadges] = useState<Badge[]>([]);
   const [selectedMembers, setSelectedMembers] = useState<string[]>([]);
@@ -42,6 +46,23 @@ export default function AdminPage() {
     member.name.toLowerCase().includes(memberSearchTerm.toLowerCase())
   );
 
+  async function fetchActivities() {
+    try {
+      const response = await fetch("/api/activities");
+      const data = await response.json();
+      setActivities(data.activities || []);
+
+      // Set the first activity as selected if none is selected
+      if (data.activities?.length > 0 && !selectedActivity) {
+        setSelectedActivity(data.activities[0].name);
+        fetchCheckIns(data.activities[0].name);
+      }
+    } catch (error) {
+      console.error("Error fetching activities:", error);
+      toast.error("Failed to fetch activities");
+    }
+  }
+
   useEffect(() => {
     async function checkAuth() {
       const { data, error } = await supabase.auth.getUser();
@@ -58,10 +79,29 @@ export default function AdminPage() {
 
       setUser(data.user);
       await fetchData();
+      await fetchActivities();
     }
 
     checkAuth();
   }, [router]);
+
+  async function fetchCheckIns(activityName: string) {
+    if (activityName === "") return;
+    console.log("Fetching check-ins for activity:", activityName);
+    setCheckInsLoading(true);
+    try {
+      const checkInsResponse = await fetch(
+        `/api/check-ins?activity_name=${activityName}`
+      );
+      const checkInsData = await checkInsResponse.json();
+      setCheckIns(checkInsData.checkIns || []);
+    } catch (error) {
+      console.error("Error fetching check-ins:", error);
+      toast.error("Failed to fetch check-ins");
+    } finally {
+      setCheckInsLoading(false);
+    }
+  }
 
   async function fetchData() {
     setLoading(true);
@@ -81,6 +121,9 @@ export default function AdminPage() {
 
       if (badgesError) throw badgesError;
       setBadges(badgesData || []);
+
+      // Initial check-ins fetch
+      await fetchCheckIns(selectedActivity);
 
       // Fetch check-in status
       const { data: settingsData, error: settingsError } = await supabase
@@ -435,6 +478,94 @@ export default function AdminPage() {
         </div>
       </div>
 
+      {/* Check-ins Section */}
+      <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-semibold">GM Check-ins</h2>
+
+          <div className="flex items-center gap-4">
+            <select
+              value={selectedActivity}
+              onChange={(e) => {
+                setSelectedActivity(e.target.value);
+                fetchCheckIns(e.target.value);
+              }}
+              className="px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">Select GM Session</option>
+              {activities.map((activity) => (
+                <option key={activity.id} value={activity.name}>
+                  {activity.name}
+                </option>
+              ))}
+            </select>
+
+            {checkInsLoading && (
+              <div className="flex items-center text-sm text-gray-500">
+                <svg
+                  className="animate-spin h-4 w-4 mr-2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                Loading...
+              </div>
+            )}
+          </div>
+        </div>
+
+        {!selectedActivity ? (
+          <p className="text-gray-500 italic">
+            Please select a GM session to view check-ins.
+          </p>
+        ) : checkIns.length === 0 ? (
+          <p className="text-gray-500 italic">
+            No check-ins recorded for {selectedActivity}.
+          </p>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Member
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Check-in Time
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200 text-xs">
+                {checkIns.map((checkIn: any) => (
+                  <tr key={checkIn.id}>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {checkIn.name}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
+                      {new Date(checkIn.created_at).toLocaleString()}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
       {/* Create Badge Section */}
       <div className="bg-white rounded-lg shadow-md p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4">Create New Badge</h2>
@@ -782,7 +913,7 @@ export default function AdminPage() {
       </div>
 
       {/* Member List Section */}
-      <div className="bg-white rounded-lg shadow-md p-6">
+      <div className="bg-white rounded-lg shadow-md p-6 mb-8">
         <h2 className="text-lg font-semibold mb-4">Member List</h2>
 
         <div className="overflow-x-auto text-sm">
