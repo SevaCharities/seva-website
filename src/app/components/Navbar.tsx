@@ -27,6 +27,7 @@ export default function Navbar() {
     { name: "officers" },
     { name: "seva history" },
     { name: "general meetings" },
+    { name: "upcoming events"},
     { name: "calendar" },
     { name: "merch" },
     { name: "linktree", link: ["https://linktr.ee/sevacharities", true] },
