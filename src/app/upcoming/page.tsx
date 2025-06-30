@@ -40,7 +40,7 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
     title: "Blanket Phil 🧺",
     category: 3,
-    date: ["Mon, Apr 17", "6 - 8 P.M.", "TBD (ON CAMPUS)"],
+    date: ["Mon, Apr 17", "6 - 8 P.M.", "UTC 1.130"],
     description: "We're going to be collabing with HOSA to make blankets for animal shelters in Austin!Come out for a chill and fun time with some new people!",
     link: ["https://docs.google.com/forms/d/e/1FAIpQLSdeoux6uDYj0MBXn2PDFPtH5KJIAcsx6Xwy6uoLFsIxMc1kBw/viewform?usp=header", true],
   },
@@ -56,7 +56,6 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
 const Page = () => {
   return (
     <>
-    
       <div className="..."
         style={{
             perspective: "1000px",
