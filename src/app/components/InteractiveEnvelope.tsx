@@ -1,7 +1,7 @@
 'use client';
 import Link from "next/link";
 import { useState } from "react";
-import { UpcomingEventsProps } from "../upcoming-events/page";
+import { UpcomingEventsProps } from "../upcoming/page";
 
 const UpcomingEventsColors = [
   "",
