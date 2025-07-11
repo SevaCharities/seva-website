@@ -21,29 +21,34 @@ const GMColors = [
 const GMCard = ({ meeting, slides, date, upcoming }: GMProps) => {
   return (
     <div
-      className={`flex justify-between bg-pink    h-52  p-8 ${GMColors[meeting]} `}
-      style={{ opacity: upcoming ? 0.75 : 1 }}
+      className={`flex-shrink-0 w-80 sm:w[22rem] rounded-xl shadow-lg p-6 ${GMColors[meeting]}`}
+      style={{
+        opacity: upcoming ? 0.75 : 1,
+        height: "60vh",
+        maxHeight: "720px", 
+      }}
     >
-      <div className=" flex flex-col justify-between h-full ">
-        <h1 className="text-6xl">{`GM ${meeting}`}</h1>
+      <div className="flex flex-col justify-between h-full">
         <div>
+          <h1 className="text-5xl font-bold mb-6">{`GM ${meeting}`}</h1>
           {slides && (
             <p>
               <a
-                className=" text-blue-600 underline"
+                className="text-blue-700 underline"
                 href={slides}
-                target="blank"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                slides
+                Slides
               </a>
             </p>
           )}
-        </div>{" "}
-      </div>
-      <div className="text-right">
-        <h3>{date[0]}</h3>
-        <h6>{date[1]}</h6>
-        <p>{upcoming && "upcoming"}</p>
+        </div>
+        <div className="text-right mt-8">
+          <h3 className="text-lg font-bold mb-3">{date[0]}</h3>
+          <h6 className="text-sm text-gray-700 font-bold mb-3">{date[1]}</h6>
+          {upcoming && <p className="text-sm font-semibold text-red-600">Upcoming</p>}
+        </div>
       </div>
     </div>
   );
