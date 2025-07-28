@@ -29,6 +29,7 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
     category: 1,
     date: ["Mon, Apr 21", "6:30 P.M.", "UTC 4.102"],
     description: "The last GM of the month! Pull up! We will reveal a new badge!",
+    link: ["https://docs.google.com/presentation/d/1f8-M9bnhtmKREmYArgZXBVpaKn8uWmq2ZI7NOgzayyo/edit?usp=sharing", true],
   },
   {
     title: "Senior Send-Off 👋🏾",
@@ -41,7 +42,7 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
     title: "Blanket Phil 🧺",
     category: 3,
     date: ["Mon, Apr 17", "6 - 8 P.M.", "UTC 1.130"],
-    description: "We're going to be collabing with HOSA to make blankets for animal shelters in Austin!Come out for a chill and fun time with some new people!",
+    description: "We're going to be collabing with HOSA to make blankets for animal shelters in Austin! Come out for a chill and fun time with some new people!",
     link: ["https://docs.google.com/forms/d/e/1FAIpQLSdeoux6uDYj0MBXn2PDFPtH5KJIAcsx6Xwy6uoLFsIxMc1kBw/viewform?usp=header", true],
   },
   {
@@ -65,7 +66,7 @@ const Page = () => {
 >
 </div>
       <div className="flex flex-col h-screen">
-        <header className="bg-orange-500 text-white p-4 flex justify-between items-center">
+        <header className="bg-orange-500 text-white p-1 flex justify-between items-center">
           <div className="flex items-center">
             <img src="/api/placeholder/40/40" alt="Seva logo" className="mr-2 rounded-full" />
             <h1 className="text-2xl font-bold">Seva Charities</h1>
@@ -73,8 +74,8 @@ const Page = () => {
           <button className="text-2xl">≡</button>
         </header>
         
-        <div className="px-6 py-4 bg-gradient-to-r from-orange-300 to-yellow-200 shadow-md">
-          <h2 className="text-3xl font-bold text-orange-800 flex items-center">
+        <div className="px-6 py-4 bg-orange-500 shadow-md flex justify-center">
+          <h2 className="text-3xl font-bold text-white flex items-center">
             <span className="mr-2">✨</span>
             Coming Up!
             <span className="ml-2">🐘</span>
