@@ -48,11 +48,11 @@ const GMInfo: GMProps[] = [
         </h1>
         <div className="w-full overflow-x-auto px-4 scroll-snap-x snap-mandatory">
           <div className="flex space-x-6 w-max pb-4">
-            {GMInfo.map((gm) => (
+          {GMInfo.map((gm) => (
               <div key={gm.meeting} className="snap-start">
                 <GMCard {...gm} />
               </div>
-            ))}
+          ))}
           </div>
         </div>
       </div>
