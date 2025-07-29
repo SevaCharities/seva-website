@@ -93,4 +93,3 @@ const GMCard = ({ meeting, slides, date, upcoming }: GMProps) => {
 };
 
 export default GMCard;
-
