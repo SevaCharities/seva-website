@@ -83,20 +83,9 @@ const InteractiveEnvelope = ({ title, category, date, description, link }: Upcom
           style={{ opacity: description && isOpen ? 0.85 : (isOpen ? 1 : 0) }}
         >
           <div className="flex flex-col space-y-3">
-            <h1 className="text-3xl font-semibold leading-snug">
-              {link ? (
-                <Link
-                  href={link[0] as string}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline text-blue-700 hover:text-blue-900"
-                >
-                  {title}
-                </Link>
-              ) : (
-                title
-              )}
-            </h1>
+          <h1 className="text-3xl font-semibold leading-snug">
+            {title}
+          </h1>
             <p className="text-lg italic">{categoryName}</p>
             {description && (
               <p className="text-lg leading-relaxed">
@@ -110,6 +99,19 @@ const InteractiveEnvelope = ({ title, category, date, description, link }: Upcom
             {date[2] && <p>{date[2]}</p>}
           </div>
           
+          {link && link[1] && (
+            <a
+              href={link[0]}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="mt-4 text-xl inline-block bg-orange-500 text-white text-center font-semibold px-4 py-2 
+              rounded-full hover:bg-orange-600 transition absolute left-1/2 -translate-x-1/2 bottom-32"
+            >
+              RSVP Now 
+            </a>
+          )}
+
           <button 
             className="absolute bottom-4 right-4 bg-white/60 hover:bg-white px-3 py-1 rounded-full text-sm font-medium"
             onClick={(e) => {

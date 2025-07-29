@@ -84,7 +84,7 @@ export default function Home() {
           height={100}
         />
 
-        <p className=" text-green-1 text-sm sm:text-lg text-center py-2">
+        <p className=" text-black-1 text-xl sm:text-2xl text-center py-2">
           Learn more by visiting{" "}
           <a
             className="hover:cursor-pointer text-orange-2 font-semibold"
