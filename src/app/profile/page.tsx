@@ -9,6 +9,7 @@ import { Toaster, toast } from "react-hot-toast";
 import Badges, { Badge } from "../components/Badges";
 import { env } from "process";
 
+
 export type Settings = {
   check_in_enabled: boolean;
   general_meeting: number;
@@ -203,7 +204,7 @@ export default function App() {
               }}
               providers={["google"]}
               onlyThirdPartyProviders={true}
-              redirectTo={process.env.NEXT_PUBLIC_REDIRECT_URL!}
+              redirectTo={`${window.location.origin}/profile`}
               queryParams={{
                 prompt: "select_account",
               }}

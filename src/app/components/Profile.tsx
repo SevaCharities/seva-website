@@ -9,6 +9,7 @@ import ImageUpload from "./ImageUpload";
 import CheckInModal from "./CheckInModal";
 import { FiSettings } from "react-icons/fi";
 import { Settings, UserInterface } from "../profile/page";
+import  EventsSignUp  from "./EventsSignUp";
 
 export type Activity = {
   id: string;
@@ -169,6 +170,11 @@ export default function Profile({
           loading={loading}
         />
       )}
+      {/* Event Sign-Up Section */}
+      <div className="mt-12 border-t pt-8">
+        <h3 className="text-lg font-medium text-gray-900 mb-2">My Events</h3>
+        <EventsSignUp userId={user.id} />
+      </div>
     </div>
   );
 }
