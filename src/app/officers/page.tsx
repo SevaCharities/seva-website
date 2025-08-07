@@ -2,89 +2,84 @@ import Card, { OfficerProps } from "../components/Card";
 
 const officers: OfficerProps[] = [
   {
-    name: "Diya Ballal",
+    name: "Parthiv Varanasi",
     role: "President",
-    bio: "Hey everyone! I'm Diya and I'm a third year neuroscience major minoring in social and behavioral sciences!! I have been in Seva for three years now and it has truly been one of the most meaningful experiences of my college journey. I am so thankful for not only the inspiring people and memories I have made along the way but also our impact on the global community. In my free time, I enjoy concerts, traveling, photography and exploring new matcha spots around Austin :)",
+    bio: "Hey! I'm Parthiv and I'm a junior double majoring in Mathematics and Economics and this is my third year in Seva. I love rock climbing, tennis, and pretty much anything outdoors (except camping). I listen to pretty much every genre of music and enjoy finding new artists so always feel free to put me on. My favorite thing about Seva is the incredible people I've met and of course the meaningful mission we work towards.",
   },
-
-  {
-    name: "Anvita Bhatt",
-    role: "VP Events and Philanthropy",
-    bio: "Hey I'm Anvita, a junior majoring in neuroscience, and this is my third year in Seva! Some of my hobbies include art, dance, and listening to music. The thing I love the most about being in Seva is being able to meet new friends and make amazing memories with them!",
-  },
-  {
-    name: "Sarvesh Raghuraman",
-    role: "VP of Engagement and Communications",
-    bio: "Hey I'm Sarvesh, the Vice President for Engagement and Comms/Content. I'm a Senior in Computer Science and Math but I don't really like the coding part... I enjoy being active and especially doing outdoorsy stuff so I'm always down to go swimming, hiking etc. I also enjoy volunteering and giving back to the community a lot - which is why I joined the org :)",
-  },
-
   {
     name: "Nadine Alphonse",
-    role: "Philanthropy",
-    bio: "Hi I'm Nadine! I'm a sophomore ECE major and this is my second year in Seva. I love listening to music, watching soccer, and going on walks with my friends! My favorite part of Seva is being with so many amazing people and doing fun volunteer work!",
-  },
-  {
-    name: "Soorya Nitianandaradj",
-    role: "Philanthropy",
-    bio: "I'm Soorya Nitianandaradj, a junior Finance major and one of the Phil officers. I have an interest in cooking that keeps my meals predictable. Fun fact: I'm allergic to cacti.",
-  },
-  {
-    name: "Yamini Shekhar",
-    role: "Events",
-    bio: "Hi!! I'm Yamini, I am a sophomore early childhood education major and this is my second year in seva!! I love watching tv, listening to music, cooking, and playing football and volleyball. My favorite thing about being in Seva is being apart of this amazing community and all of the fun volunteering work we do! :)",
-  },
-  {
-    name: "Krish Devnani",
-    role: "Events",
-    bio: "Hey I’m Krish! I’m a senior studying Informatics and I’m one of the Events officers. During my free time, I love playing badminton, soccer, and volleyball. My favorite thing about Seva is being part of a tight-knit community while also being able to contribute to a meaningful cause.",
+    role: "VP Events and Philanthropy",
+    bio: "Hi I'm Nadine! I'm a junior ECE major and this is my third year in Seva. I love listening to music, watching soccer, and going on walks with my friends! My favorite part of Seva is being with so many amazing people and doing fun volunteer work!",
   },
   {
     name: "Saahiti Chadalavada",
-    role: "Engagement",
-    bio: "Heyy! I'm Saahiti and I am a sophomore finance student as well as one of the engagement officers. This is my second year in SEVA and my favorite part about SEVA is building relationships while making an impact on the community. Some of my hobbies are watching sports and eating good food, so let me know some good recs!",
+    role: "VP of Engagement and Communications",
+    bio: "Heyy! I'm Saahiti and I am a junior finance student as well as one of the engagement officers. This is my third year in Seva and my favorite part about Seva is building relationships while making an impact on the community. Some of my hobbies are watching sports and eating good food, so let me know some good recs!",
   },
   {
-    name: "Arushi Arora",
-    role: "Engagement",
-    bio: "I’m a third year Psychology major on the pre med track! I love Taco Bell and chipotle and in my free time I’m hanging out with my friends or cooking!",
+    name: "Ajitesh Valluru",
+    role: "Philanthropy",
+    bio: "I'm Ajitesh, and I'm a junior double majoring in Biology and Public Health, with a minor in Business. I like to play sports, hang out with friends, drink boba, and love eating food (slide the austin recs pls). My favorite thing about Seva has to be all the close friends that I've made in this past year, and hope to make more this upcoming year!",
   },
   {
-    name: "Shiva Balathandayuthapani",
+    name: "Shreya Varma",
+    role: "Philanthropy",
+    bio: "Hi! I’m Shreya, a junior Computer Science major with a minor in Statistics & Data Science. When I’m not glued to my laptop, you’ll find me hiking, paddle boarding, sewing, or hanging out with my dog, Mushu. My favorite thing about Seva is that it gives me a way to give back while connecting with a community that feels like family <3",
+  },
+  {
+    name: "Pranav Rao",
+    role: "Events",
+    bio: "Hey I'm Pranav! I am a junior Statistics and Data Science major, and this is my second year in Seva. During my free time, I love playing all types of sports, and I am a big OKC Thunder and tennis fan. I also love listening to music, driving, and doing pretty much anything outdoors. My favorite part of Seva is being able to contribute to a meaningful cause with an amazing group of people.",
+  },
+  {
+    name: "Rahul Raja",
+    role: "Events",
+    bio: "Hey, I'm Rahul! I'm a senior Biomedical Engineering major + Data Science minor, and this is my second year in Seva. I love playing volleyball, football and tennis (or pretty much any intramural sport) as well as electric guitar. In another life, I'd be a taxi driver just because of how much I love to drive and talk to new people. My favorite thing about Seva is finding a family that shares my interests in service and my culture.",
+  },
+  {
+    name: "Mahesh Challapalli",
+    role: "Engagement",
+    bio: "Hey guys! I’m Mahesh a Junior majoring in Neuroscience and this is my second year in Seva! I love running, going on hikes, and playing sports so feel free to hit me up if you want to do something! My favorite thing about Seva is the connections I have made through this org and hope to have many more people join this family!",
+  },
+  {
+    name: "Rahul Nandyala",
+    role: "Engagement",
+    bio: "Hey there! I'm Rahul and I'm a senior studying Economics and Business. This is my second year in Seva. I love water sports, playing guitar, spicy food, and Instagram reels. My favorite thing about Seva is how welcoming everyone is to new members. There’s zero superiority complex, and I was able to get to know everyone in the org in less than a month.",
+  },
+  {
+    name: "Niken Patel",
     role: "Tech",
-    bio: "Hey I'm Shiva! I'm a junior Computer Science major. I love watching NBA and soccer in my free time. I've met so many amazing friends at Seva and made fun memories!",
+    bio: "Hey I'm Niken! I'm a sophomore double majoring in Computer Science and Math + Econ minor and this is my second year in Seva. I play basketball (big Nuggets fan) and tennis in my free time. I also enjoy matcha, coffee, and good music during my free time (would love some recs). I joined Seva because it is so welcoming toward all its members out of pure dedication to serve others.",
   },
   {
-    name: "Saharsh Tummalapelly",
+    name: "Brianna Surti",
     role: "Finance",
-    bio: "I'm Saharsh, a third-year finance major, and it's my second year in Seva. I love staying active by playing volleyball, and I'm a big fan of the Portland Trail Blazers, Real Madrid, and Texas football. When I'm not busy with school, I enjoy listening to music and catching up on good shows.",
+    bio: "Hi!! I’m Brianna, a sophomore majoring in Finance and minoring in MIS, and I’ve been in Seva for two years! I love playing volleyball, baking, listening to music, and traveling (road trip or 9-hour flight, I’m there). My favorite thing about Seva is the genuine people you meet and how what we do truly makes a difference.",
   },
   {
-    name: "Parthiv Varanasi",
+    name: "Jay Kannam",
     role: "Membership",
-    bio: "Hey! I'm Parthiv and I'm a sophomore double majoring in Mathematics and Economics and this is my second year in Seva. I love rock climbing, tennis, and pretty much anything outdoors (except camping). I listen to pretty much every genre of music and enjoy finding new artists so always feel free to put me on. My favorite thing about Seva is the incredible people I've met and of course the meaningful mission we work towards.",
-  },
-
-  {
-    name: "Sage Kaur",
-    role: "Content Design",
-    bio: "hi! i'm sage and this is my second year in seva charities. i am a second year environmental science major on the geology track. i enjoy listening to music, hanging out with friends, and watching gilmore girls!",
-  },
-
-  {
-    name: "Tarini Vanaparthy",
-    role: "Communications",
-    bio: "Hey! I'm Tarini, a sophomore finance major and the comms officer! This is my second year in SEVA. I love long walks outside, books, and classic movies. You can probably always find me talking to someone or trying to find something new to do. My favorite thing about SEVA is the community and the work we do in the area.",
+    bio: "Hi! I'm Jay and I'm a senior majoring in Electrical and Computer Engineering and this is my second year in Seva. I enjoy baking and being outdoors. My favorite thing about Seva has been the community and the all the people I have met through this org.",
   },
   {
-    name: "Sneha Kamal",
+    name: "Nirjha Patel",
+    role: "Communications and Content Design",
+    bio: "Hi I'm Nirjha! I'm a sophomore majoring in Human Biology with a Pre-Health Certificate, and this will be my second year in Seva. I enjoy painting, listening to music, and beach days with my friends. My favorite part about Seva is how it combines meeting amazing new people and working towards a meaningful cause.",
+  },
+  {
+    name: "Diya Ballal",
     role: "Senior Advisor",
-    bio: "Hello, I am Sneha! I’m currently doing my masters at SMU and graduated from UT last year. I love to read, draw, binge housewives, and brain rot.",
+    bio: "Hey everyone! I'm Diya and I'm a senior neuroscience major minoring in social and behavioral sciences!! I have been in Seva for four years now and it has truly been one of the most meaningful experiences of my college journey. I am so thankful for not only the inspiring people and memories I have made along the way but also our impact on the global community. In my free time, I enjoy concerts, traveling, photography and exploring new matcha spots around Austin :)",
   },
-
   {
-    name: "Kenisha Vora",
+    name: "Anvita Bhatt",
     role: "Senior Advisor",
-    bio: "hi there, i’m kenisha and am currently a senior bio major! growing up as one of the few indians in the rio grande valley, i devour anything spicy and speak hindi, gujarati, and spanish as well! also, i love the outdoors and am constantly hiking, rafting, and/or eating by a scenic backdrop (which austin is perfect for!)",
+    bio: "Hey I'm Anvita, a senior majoring in neuroscience, and this is my fourth year in Seva! Some of my hobbies include art, dance, and listening to music. The thing I love the most about being in Seva is being able to meet new friends and make amazing memories with them!",
+  },
+  {
+    name: "Sarvesh Raghuraman",
+    role: "Senior Advisor",
+    bio: "Hey I'm Sarvesh, and I'm pursuing a PHD in ECE. I enjoy being active and especially doing outdoorsy stuff so I'm always down to go swimming, hiking etc. I also enjoy volunteering and giving back to the community a lot - which is why I joined the org :)",
   },
 ];
 
