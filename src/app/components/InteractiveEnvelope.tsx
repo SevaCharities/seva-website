@@ -10,6 +10,8 @@ const UpcomingEventsColors = [
   "bg-red-200",
   "bg-yellow-200",
   "bg-indigo-400",
+  "bg-sky-700",
+  "bg-rose-400",
 ];
 
 const categories = [

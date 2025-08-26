@@ -1,20 +1,6 @@
 import InteractiveEnvelope from "../components/InteractiveEnvelope";
 import Link from "next/link";
 
-const globalStyles = `
-  .perspective-1000 {
-    perspective: 1000px;
-  }
-  
-  .transform-style-preserve-3d {
-    transform-style: preserve-3d;
-  }
-  
-  .backface-hidden {
-    backface-visibility: hidden;
-  }
-`;
-
 export type UpcomingEventsProps = {
   title: string;
   category: number;
@@ -25,74 +11,78 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "GM 14 🫱🏻‍🫲🏿",
+    title: "Speedway Tabling 🫱🏻‍🫲🏿",
     category: 1,
-    date: ["Mon, Apr 21", "6:30 P.M.", "UTC 4.102"],
-    description: "The last GM of the month! Pull up! We will reveal a new badge!",
-    link: ["https://docs.google.com/presentation/d/1f8-M9bnhtmKREmYArgZXBVpaKn8uWmq2ZI7NOgzayyo/edit?usp=sharing", true],
+    date: ["Tues, Aug 26 - Fri, Aug 29", "8 A.M. - 5 P.M.", "Speedway"],
+    description: "Join us for tabling on Speedway!",
   },
   {
-    title: "Senior Send-Off 👋🏾",
+    title: "Info Session #1 👋🏾",
     category: 2,
-    date: ["Mon, Apr 26", "5:30 - 7:30 P.M."],
-    description: "Celebrate our Seva seniors 🥲🥹 We would LOVE for all of y'all to come out to Senior Sendoff to spend time with the seniors, hear speeches from them 🎤, take cute photos📸, and eat some good food 🥪",
-    link: ["https://forms.gle/5pyJeqd7RWK7UHWu9", true],
+    date: ["Tues, Sep 2", "TBA", "TBA"],
+    description: "Join us for an info session! Come chat with us and learn more about what Seva has to offer!",
   },
   {
-    title: "Blanket Phil 🧺",
+    title: "Party on the Plaza Tabling 🕺",
     category: 3,
-    date: ["Mon, Apr 17", "6 - 8 P.M.", "UTC 1.130"],
-    description: "We're going to be collabing with HOSA to make blankets for animal shelters in Austin! Come out for a chill and fun time with some new people!",
-    link: ["https://docs.google.com/forms/d/e/1FAIpQLSdeoux6uDYj0MBXn2PDFPtH5KJIAcsx6Xwy6uoLFsIxMc1kBw/viewform?usp=header", true],
+    date: ["Wed, Sep 3", "TBA", "Gregory Gym Plaza"],
+    description: "Join us for tabling on the Gregory Gym Plaza and Speedway!",
   },
   {
-    title: "Mango Lassi Tabling 🥭",
+    title: "Recruitment Social 😄",
     category: 4,
-    date: ["Mon, Apr 14 - Tues, Apr 15", "10 A.M. - 4 P.M.", "Speedway"],
-    description: "We will be selling Mango Lassi on Monday and Tuesday next week! Help us volunteer and sell da juice 🥭 on Speedway",
-    link: ["https://docs.google.com/spreadsheets/d/1KDsgEEdC8q12xZ9QPdCtfzY8fHDoIePfz-aEMboMM-0/edit?gid=0#gid=0", true],
+    date: ["Thurs, Sep 4", "TBA", "TBA"],
+    description: "A social to get to know members at Seva and also have some fun!",
+  },
+  {
+    title: "GM 1 (Info Session #2) 👤",
+    category: 5,
+    date: ["Mon, Sep 8", "TBA", "TBA"],
+    description: "The first general meeting of the year! Meet our officers and make some new friends. This is also an info session and a time to get to ask any questions you have about Seva!",
+  },
+  {
+    title: "Pizza Press Profit Share 🍕",
+    category: 6,
+    date: ["Mon, Sep 8", "TBA", "TBA"],
+    description: "Profit share at Pizza Press! Help raise some money for Seva while also eating some delicious pizza! This is right after GM so feel free to attend GM as well and we can all head there together!",
+  },
+  {
+    title: "Recruitment Phil",
+    category: 7,
+    date: ["Wed, Sep 10", "TBA", "TBA"],
+    description: "This is what Seva is all about! Come serve with us at Seva by attending a philanthropy event and learn more about how Seva serves the community around Austin and impacts the world 🌎",
   },
 ];
 
 const Page = () => {
   return (
-    <>
-      <div className="..."
-        style={{
-            perspective: "1000px",
-            transformStyle: "preserve-3d",
-            backfaceVisibility: "hidden"
-        }}
->
-</div>
-      <div className="flex flex-col h-screen">
-        <header className="bg-orange-500 text-white p-1 flex justify-between items-center">
-          <div className="flex items-center">
-            <img src="/api/placeholder/40/40" alt="Seva logo" className="mr-2 rounded-full" />
-            <h1 className="text-2xl font-bold">Seva Charities</h1>
-          </div>
-          <button className="text-2xl">≡</button>
-        </header>
-        
-        <div className="px-6 py-4 bg-orange-500 shadow-md flex justify-center">
-          <h2 className="text-3xl font-bold text-white flex items-center">
-            <span className="mr-2">✨</span>
-            Coming Up!
-            <span className="ml-2">🐘</span>
-          </h2>
+    <div className="flex flex-col h-screen">
+      <header className="bg-orange-500 text-white p-1 flex justify-between items-center">
+        <div className="flex items-center">
+          <img src="/api/placeholder/40/40" alt="Seva logo" className="mr-2 rounded-full" />
+          <h1 className="text-2xl font-bold">Seva Charities</h1>
         </div>
+        <button className="text-2xl">≡</button>
+      </header>
+      
+      <div className="px-6 py-4 bg-orange-500 shadow-md flex justify-center items-center min-h-[64px]">
+        <h2 className="text-3xl font-bold text-white flex items-center leading-snug">
+          <span className="mr-2">✨</span>
+          Coming Up!
+          <span className="ml-2">🐘</span>
+        </h2>
+      </div>
 
-        <div className="flex-1 overflow-x-auto overflow-y-hidden">
-          <div className="flex h-full">
-            {UpcomingEventsInfo.map((event, i) => (
-              <div key={event.title + i} className="w-80 md:w-96 h-full flex-shrink-0 p-4">
-                <InteractiveEnvelope {...event} />
-              </div>
-            ))}
-          </div>
+      <div className="flex-1 overflow-x-auto overflow-y-hidden">
+        <div className="flex h-full">
+          {UpcomingEventsInfo.map((event, i) => (
+            <div key={event.title + i} className="w-80 md:w-96 h-full flex-shrink-0 p-4">
+              <InteractiveEnvelope {...event} />
+            </div>
+          ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

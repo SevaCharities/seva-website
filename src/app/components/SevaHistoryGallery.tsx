@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function SevaHistoryGallery() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const srcSet = [
+    "/history/seva8.JPG",
     "/history/seva7.jpg",
     "/history/seva6.jpg",
     "/history/seva5.jpg",
@@ -19,7 +20,7 @@ export default function SevaHistoryGallery() {
   }
 
   function getSevaYear(): string {
-    return (2023 - selectedIndex).toString();
+    return (2025 - selectedIndex).toString();
   }
 
   return (
@@ -47,10 +48,10 @@ export default function SevaHistoryGallery() {
       </div>
       <div className="relative w-[350px] h-[250px] sm:w-[500px] sm:h-[300px] md:w-[700px] md:h-[500px]">
         <div>
-          <h1 className="absolute z-10 inset-x-0 top-[-64px] text-center font-bold">
+          <h1 className="absolute z-10 inset-x-0 top-[-150px] text-center font-bold">
             {getSevaVersion()}
           </h1>
-          <h1 className="absolute z-10 inset-x-0 top-0 text-center font-bold text-white">
+          <h1 className="absolute z-10 inset-x-0 top-[-90px] text-center font-bold text-black">
             {getSevaYear()}
           </h1>
         </div>
