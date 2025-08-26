@@ -34,7 +34,7 @@ export default function Home() {
         <h3 className=" max-w-5xl text-center px-8 sm:px-16">
           👋 We are{" "}
           <span className=" text-orange-2 font-semibold">Seva Charities</span>,
-          a student-run organization at UT Austin dedicated to fudraising for
+          a student-run organization at UT Austin dedicated to fundraising for
           children worldwide and making a positive impact locally in Austin.
         </h3>
         <Image

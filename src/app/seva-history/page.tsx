@@ -24,7 +24,9 @@ const SevaHistory = () => {
             Seva Charities.
           </p>
         </div>
+        <div className="pt-16">
         <SevaHistoryGallery />
+        </div>
       </div>
       <div className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-green-0 to-transparent z-[-1]"></div>
     </div>

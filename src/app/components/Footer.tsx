@@ -42,7 +42,7 @@ export default function Footer() {
         </h6>
           <Link href="/upcoming">
             <button className="bg-green-500 hover:bg-green-400 hover:text-black text-white font-semibold py-4 px-4  border-b-4 border-green-700 hover:border-green-500 rounded-xl active:scale-95">
-              <p>Get Involved – Events & More 👈</p>
+              <p id="faq">Get Involved – Events & More 👈</p>
             </button>
           </Link>
         </div>
