@@ -66,17 +66,12 @@ export default function AdminPage() {
   useEffect(() => {
     async function checkAuth() {
       const { data, error } = await supabase.auth.getUser();
-
-      if (
-        error ||
-        !data.user ||
-        data.user.email !== process.env.NEXT_PUBLIC_ADMIN
-      ) {
+      if (error || !data.user || data.user.email !== process.env.NEXT_PUBLIC_ADMIN) {
         toast.error("Unauthorized access");
         router.push("/profile");
         return;
       }
-
+      
       setUser(data.user);
       await fetchData();
       await fetchActivities();
@@ -109,7 +104,7 @@ export default function AdminPage() {
       // Fetch members
       const { data: membersData, error: membersError } = await supabase
         .from("members")
-        .select("id, name, email, badge_info");
+        .select("id, name, email, badge_info, is_member");
 
       if (membersError) throw membersError;
       setMembers(membersData || []);
@@ -968,6 +963,68 @@ export default function AdminPage() {
             </tbody>
           </table>
         </div>
+      </div>
+      {/* Manage Member Status */}
+      <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+        <h2 className="text-xl font-semibold mb-4">Manage Member Status</h2>
+
+        {members.length === 0 ? (
+          <p className="text-gray-500 italic">No members found.</p>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                    Name
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                    Email
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                    Member Status
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200 text-sm">
+                {members.map((member) => (
+                  <tr key={member.id}>
+                    <td className="px-6 py-4">{member.name}</td>
+                    <td className="px-6 py-4">{member.email}</td>
+                    <td className="px-6 py-4">
+                      <button
+                        onClick={async () => {
+                          const { error } = await supabase
+                            .from("members")
+                            .update({ is_member: !member.is_member })
+                            .eq("id", member.id);
+
+                          if (!error) {
+                            toast.success(
+                              `${member.name} is now ${
+                                !member.is_member ? "a Member ✅" : "not a Member ❌"
+                              }`
+                            );
+                            fetchData(); // refresh list
+                          } else {
+                            toast.error("Failed to update member status");
+                          }
+                        }}
+                        className={`px-3 py-1 rounded ${
+                          member.is_member
+                            ? "bg-green-100 text-green-800"
+                            : "bg-red-100 text-red-800"
+                        }`}
+                      >
+                        {member.is_member ? "Member" : "Not Member"}
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );
