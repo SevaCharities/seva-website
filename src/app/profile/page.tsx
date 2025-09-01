@@ -7,7 +7,7 @@ import { Session, User, AuthChangeEvent } from "@supabase/supabase-js";
 import Profile from "../components/Profile";
 import { Toaster, toast } from "react-hot-toast";
 import Badges, { Badge } from "../components/Badges";
-import { env } from "process";
+import MemberStatus from "../components/MemberStatus";
 
 export type Settings = {
   check_in_enabled: boolean;
@@ -22,11 +22,21 @@ export type UserInterface = {
   profile_picture: string;
 };
 
+// Helper function to get the correct redirect URL based on environment
+const getRedirectURL = () => {
+  // Check if we're in development
+  if (process.env.NODE_ENV === 'development') {
+    return 'http://localhost:3000/profile';
+  }
+  
+  // Use the environment variable for production/preview
+  return process.env.NEXT_PUBLIC_REDIRECT_URL || 'http://localhost:3000/profile';
+};
+
 export default function App() {
   const [userSession, setUserSession] = useState<Session | null>(null);
   const [user, setUser] = useState<UserInterface>();
   const [settings, setSettings] = useState<Settings | null>(null);
-
   const [loading, setLoading] = useState(true);
 
   const createProfileIfNeeded = async (_user: User) => {
@@ -43,6 +53,7 @@ export default function App() {
             id: _user.id,
             name: _user.user_metadata?.full_name,
             email: _user.email,
+            is_member: false, // Default to non-member
           },
         ]);
         if (error) {
@@ -124,16 +135,31 @@ export default function App() {
         const {
           data: { subscription },
         } = supabase.auth.onAuthStateChange(async (event, session) => {
-          if (event === "SIGNED_IN") {
-            // Redirect to profile page if we're not already there
-            if (window.location.pathname !== "/profile") {
-              window.location.href = "/profile";
+          console.log('Auth event:', event);
+          
+          if (event === "SIGNED_IN" && session) {
+            console.log('User signed in, setting up profile...');
+            setUserSession(session);
+            
+            // Only redirect if we're not already on the profile page
+            const currentPath = window.location.pathname;
+            if (currentPath !== "/profile") {
+              console.log('Redirecting to profile page...');
+              // Small delay to ensure state is set
+              setTimeout(() => {
+                window.location.href = "/profile";
+              }, 100);
             }
-            if (session) {
-              await createProfileIfNeeded(session.user);
-              await getUserProfile(session.user.id);
-              await getSettings();
-            }
+            
+            await createProfileIfNeeded(session.user);
+            await getUserProfile(session.user.id);
+            await getSettings();
+          }
+          
+          if (event === "SIGNED_OUT") {
+            setUserSession(null);
+            setUser(undefined);
+            setSettings(null);
           }
         });
 
@@ -155,6 +181,7 @@ export default function App() {
   useEffect(() => {
     console.log("user", user);
     console.log("settings", settings);
+    console.log("current redirect URL:", getRedirectURL());
 
     // // Redirect admin user to admin page
     // if (user && user.email === process.env.NEXT_PUBLIC_ADMIN) {
@@ -168,20 +195,21 @@ export default function App() {
       toast.error("Error signing out");
     } else {
       toast.success("Signed out successfully");
-      window.location.reload();
+      // Redirect to home page after sign out
+      window.location.href = "/";
     }
   };
 
   if (loading) {
     return (
       <div className="min-h-screen flex justify-center items-center">
-        Loading...
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen">
       <Toaster position="top-center" />
       {!userSession ? (
         <div className="flex items-center justify-center min-h-screen p-4">
@@ -203,7 +231,7 @@ export default function App() {
               }}
               providers={["google"]}
               onlyThirdPartyProviders={true}
-              redirectTo={process.env.NEXT_PUBLIC_REDIRECT_URL!}
+              redirectTo={getRedirectURL()}
               queryParams={{
                 prompt: "select_account",
               }}
@@ -212,15 +240,25 @@ export default function App() {
         </div>
       ) : (
         <div className="my-16 sm:my-24">
-          <div className=" mx-auto">
-            <Profile user={user!} settings={settings!} />
-            <Badges user={user!} />
-            <button
-              onClick={handleSignOut}
-              className="mt-6 w-full py-3 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-            >
-              Sign Out
-            </button>
+          <div className="mx-auto max-w-6xl px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+              {/* Main content */}
+              <div className="lg:col-span-3">
+                <Profile user={user!} settings={settings!} />
+                <Badges user={user!} />
+                <button
+                  onClick={handleSignOut}
+                  className="mt-6 w-full py-3 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 rounded-lg"
+                >
+                  Sign Out
+                </button>
+              </div>
+
+              {/* Sidebar with member status */}
+              <div className="lg:col-span-1">
+                {user && <MemberStatus userId={user.id} />}
+              </div>
+            </div>
           </div>
         </div>
       )}

@@ -14,7 +14,7 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
     title: "Info Session #1 👋🏾",
     category: 1,
     date: ["Tues, Sep 2", "6:30 P.M.", "TBA"],
-    description: "Join us for an info session! Come chat with us and learn more about what Seva has to offer!",
+    description: "Join us for an info session! Come chat with us and learn more about what Seva has to offer! We will be having Taco Bell at the event!",
   },
   {
     title: "Party on the Plaza Tabling 🕺",
@@ -26,12 +26,12 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
     title: "Recruitment Social 😄",
     category: 3,
     date: ["Thurs, Sep 4", "TBA", "TBA"],
-    description: "A social to get to know members at Seva and also have some fun!",
+    description: "A social to get to know members at Seva and also win gift cards playing carnival games 🎡🎪🎠!",
   },
   {
     title: "GM 1 (Info Session #2) 👤",
     category: 4,
-    date: ["Mon, Sep 8", "6:30", "UTC 1.102"],
+    date: ["Mon, Sep 8", "6:30 P.M. - 7:30 P.M.", "UTC 1.102"],
     description: "The first general meeting of the year! Meet our officers and make some new friends. This is also an info session and a time to get to ask any questions you have about Seva!",
   },
   {
@@ -50,7 +50,7 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
     title: "Recruitment Party",
     category: 7,
     date: ["Fri, Sep 12", "TBA", "TBA"],
-    description: "This is what Seva is all about! Come serve with us at Seva by attending a philanthropy event and learn more about how Seva serves the community around Austin and impacts the world 🌎",
+    description: "Our first party of the year! Come join us for a night of fun!",
   },
 ];
 
