@@ -1,16 +1,3 @@
-## Niken To-Do: Feb 25th:
-
-* Understand codebase
-    * Techstack: Typescript using React library and Next.JS framework, hosted on Vercel
-    * GPT any questions you have, ask me as well 
-* Fix FAQ bug
-    * When you click FAQ on navigation menu, just takes me to homepage not to FAQ
-* Update GM page
-    * GM#10 slides: https://docs.google.com/presentation/d/1qZ3UvwahjH4d6cwrlEGbUXGk6urwKK8VQy4pYwJRIzA/edit?usp=sharing
-    * Add it to the GM Recap page
-    * Good exercise to understand what's happening with components, where things are, etc...
-
-
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
