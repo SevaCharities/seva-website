@@ -10,22 +10,14 @@ const UpcomingEventsColors = [
   "bg-red-200",
   "bg-yellow-200",
   "bg-indigo-400",
-  "bg-sky-700",
+  "bg-sky-300",
   "bg-rose-400",
-];
-
-const categories = [
-  "",
-  "GM",
-  "Social",
-  "Phil",
-  "Tabling",
+  "bg-gradient-to-r from-yellow-300 via-pink-400 via-purple-300 to-blue-500"
 ];
 
 const InteractiveEnvelope = ({ title, category, date, description, link }: UpcomingEventsProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isFlipping, setIsFlipping] = useState(false);
-  const categoryName = categories[category];
   
   const handleEnvelopeClick = () => {
     if (!isFlipping) {
@@ -88,7 +80,6 @@ const InteractiveEnvelope = ({ title, category, date, description, link }: Upcom
           <h1 className="text-3xl font-semibold leading-snug">
             {title}
           </h1>
-            <p className="text-lg italic">{categoryName}</p>
             {description && (
               <p className="text-lg leading-relaxed">
                 {description}

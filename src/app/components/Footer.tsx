@@ -31,7 +31,7 @@ export default function Footer() {
           if passionate enough, can make a difference!
         </h6>
         <div className="  flex flex-col items-center space-y-6 ">
-          <Link href="https://bit.ly/joinseva2425" target="_blank">
+          <Link href="https://docs.google.com/forms/d/e/1FAIpQLSeBCrT9Hq87pmHwejdbGOn8QK-Gm6cUa_mbn1P1vOlCEBh03Q/viewform?usp=dialog" target="_blank">
             <button className="bg-green-500 hover:bg-green-400 hover:text-black text-white font-semibold py-4 px-4  border-b-4 border-green-700 hover:border-green-500 rounded-xl active:scale-95">
               <p>🫵 Become a Member</p>
             </button>

@@ -11,46 +11,54 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "Speedway Tabling 🫱🏻‍🫲🏿",
-    category: 1,
-    date: ["Tues, Aug 26 - Fri, Aug 29", "8 A.M. - 5 P.M.", "Speedway"],
-    description: "Join us for tabling on Speedway!",
-  },
-  {
-    title: "Info Session #1 👋🏾",
-    category: 2,
-    date: ["Tues, Sep 2", "TBA", "TBA"],
-    description: "Join us for an info session! Come chat with us and learn more about what Seva has to offer!",
-  },
-  {
-    title: "Party on the Plaza Tabling 🕺",
-    category: 3,
-    date: ["Wed, Sep 3", "TBA", "Gregory Gym Plaza"],
-    description: "Join us for tabling on the Gregory Gym Plaza and Speedway!",
-  },
-  {
-    title: "Recruitment Social 😄",
-    category: 4,
-    date: ["Thurs, Sep 4", "TBA", "TBA"],
-    description: "A social to get to know members at Seva and also have some fun!",
-  },
-  {
     title: "GM 1 (Info Session #2) 👤",
-    category: 5,
-    date: ["Mon, Sep 8", "TBA", "TBA"],
+    category: 1,
+    date: ["Mon, Sep 8", "UTC 1.102", "6:30 P.M. - 8 P.M."],
     description: "The first general meeting of the year! Meet our officers and make some new friends. This is also an info session and a time to get to ask any questions you have about Seva!",
   },
   {
     title: "Pizza Press Profit Share 🍕",
-    category: 6,
-    date: ["Mon, Sep 8", "TBA", "TBA"],
+    category: 2,
+    date: ["Mon, Sep 8", "Pizza Press", "6 P.M. - 8 P.M."],
     description: "Profit share at Pizza Press! Help raise some money for Seva while also eating some delicious pizza! This is right after GM so feel free to attend GM as well and we can all head there together!",
   },
   {
-    title: "Recruitment Phil",
+    title: "Recruitment Phil (Drip Flip) 👚",
+    category: 3,
+    date: ["Wed, Sep 10", "Location: TBA", "Time: TBA"],
+    description: "This is what Seva is all about! Come serve with us at Seva and bring old clothes to donate or even trade with others for better clothes!",
+  },
+  {
+    title: "Recruitment Party 🎉",
+    category: 4,
+    date: ["Fri, Sep 12", "Location: TBA", "10:30 P.M."],
+    description: "Get hype for SEVA's first party of the year!! Free for members and $8 for non-members.",
+    link: ["https://docs.google.com/forms/d/e/1FAIpQLSe20D_I1coIRF5U0S0rkMjRcu04W2gU2Bxp1fD719dvYRGdUw/viewform?usp=header", true],
+  },
+  {
+    title: "GM 2 (In-Meeting Phil) 👤",
+    category: 5,
+    date: ["Mon, Sep 15", "UTC 1.102", "6:30 P.M. - 8 P.M."],
+    description: "The second general meeting of the year! We will have an in-house phil so definitely come and try to get some extra points and serve our community!",
+  },
+  {
+    title: "Guess or Else.. ❔",
+    category: 6,
+    date: ["Fri, Sep 19", "WCP Ballroom", "5 P.M. - 8 P.M."],
+    description: "Make friends and join in on a fun evening of games and prizes! Seva Charities presents Guess or Else, an exciting game show containing elements of songs, movies and celebrities. Students may form teams of 5 members and participate in this fun challenge with many twists and turns! Show off your knowledge for the possibility of winning various gifts and prizes from places like Austin Bouldering Project, Pizza Press, Shake Shack, Amy's and more!",
+    link: ["https://docs.google.com/forms/d/e/1FAIpQLSc6YgVjne7DkMqpvw3cHS1dT4HBVbWjJSXIEBubbDjxD5m_jA/viewform?usp=header", true],
+  },
+  {
+    title: "Cherry Creek Phil 🌎",
     category: 7,
-    date: ["Wed, Sep 10", "TBA", "TBA"],
+    date: ["Sat, Sep 20", "Cherry Creek", "Time: TBA"],
     description: "This is what Seva is all about! Come serve with us at Seva by attending a philanthropy event and learn more about how Seva serves the community around Austin and impacts the world 🌎",
+  },
+  {
+    title: "Saanj 💃🏽",
+    category: 8,
+    date: ["Date: TBA", "Location: TBA", "Time: TBA"],
+    description: "Get ready for Saanj! Our biggest event of the year with a cultural tone of Indian food and dance performances from dance teams around UT 🤘🏽!",
   },
 ];
 

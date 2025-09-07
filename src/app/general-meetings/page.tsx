@@ -14,6 +14,12 @@ const GMInfo: GMProps[] = [
     //   "https://docs.google.com/presentation/d/1f8-M9bnhtmKREmYArgZXBVpaKn8uWmq2ZI7NOgzayyo/edit?usp=sharing",
     date: ["Mon, Sep 8", "9/8/25"],
   },
+  {
+    meeting: 2,
+    // slides:
+    //   "https://docs.google.com/presentation/d/1f8-M9bnhtmKREmYArgZXBVpaKn8uWmq2ZI7NOgzayyo/edit?usp=sharing",
+    date: ["Mon, Sep 15", "9/15/25"],
+  },
   ];
   
   const Page = () => {
