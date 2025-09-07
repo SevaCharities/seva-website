@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     }
 
     const { error } = await supabase
-      .from('members')   // 👈 fixed
+      .from('members')
       .update({ is_member })
       .eq('id', userId);
 

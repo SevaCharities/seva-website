@@ -25,8 +25,8 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
     title: "Recruitment Phil (Drip Flip) 👚",
     category: 3,
-    date: ["Wed, Sep 10", "Location: TBA", "Time: TBA"],
-    description: "This is what Seva is all about! Come serve with us at Seva and bring old clothes to donate or even trade with others for better clothes!",
+    date: ["Wed, Sep 10", "Location: West Mall", "Time: 4 P.M. - 7 P.M."],
+    description: "This is what Seva is all about! Come serve with us at Seva and bring your clean, gently used clothes to donate or even trade with others for better clothes!",
   },
   {
     title: "Recruitment Party 🎉",
@@ -45,7 +45,7 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
     title: "Guess or Else.. ❔",
     category: 6,
     date: ["Fri, Sep 19", "WCP Ballroom", "5 P.M. - 8 P.M."],
-    description: "Make friends and join in on a fun evening of games and prizes! Seva Charities presents Guess or Else, an exciting game show containing elements of songs, movies and celebrities. Students may form teams of 5 members and participate in this fun challenge with many twists and turns! Show off your knowledge for the possibility of winning various gifts and prizes from places like Austin Bouldering Project, Pizza Press, Shake Shack, Amy's and more!",
+    description: "Seva Charities presents Guess or Else, an exciting game show containing elements of songs, movies and celebrities. Students may form teams of 5 members and participate in this fun challenge with many twists and turns! Gifts and prizes range from places like Austin Bouldering Project, Pizza Press, Shake Shack, Amy's and more!",
     link: ["https://docs.google.com/forms/d/e/1FAIpQLSc6YgVjne7DkMqpvw3cHS1dT4HBVbWjJSXIEBubbDjxD5m_jA/viewform?usp=header", true],
   },
   {
