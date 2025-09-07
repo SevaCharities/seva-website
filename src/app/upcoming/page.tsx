@@ -73,8 +73,8 @@ const Page = () => {
         <button className="text-2xl">≡</button>
       </header>
       
-      <div className="px-6 py-4 bg-orange-500 shadow-md flex justify-center items-center min-h-[64px]">
-        <h2 className="text-3xl font-bold text-white flex items-center leading-snug">
+      <div className="px-6 py-6 bg-orange-500 shadow-md flex justify-center items-center min-h-[88px]">
+        <h2 className="text-3xl font-bold text-white flex items-center leading-relaxed mt-10">
           <span className="mr-2">✨</span>
           Coming Up!
           <span className="ml-2">🐘</span>
