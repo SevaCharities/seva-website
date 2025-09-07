@@ -86,7 +86,7 @@ export default function Footer(): JSX.Element {
           </a>
 
           <p className="max-w-2xl">
-            Not a member yet? That's okay — our events are open to all, but
+          Not a member yet? That&apos;s okay — our events are open to all, but
             members get early access, exclusive perks, and a bigger say.
           </p>
 
