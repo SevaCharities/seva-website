@@ -11,48 +11,36 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "GM 1 (Info Session #2) 👤",
+    title: "GM #2 (In-Meeting Phil) 👤",
     category: 1,
-    date: ["Mon, Sep 8", "UTC 1.102", "6:30 P.M. - 8 P.M."],
-    description: "The first general meeting of the year! Meet our officers and make some new friends. This is also an info session and a time to get to ask any questions you have about Seva!",
-  },
-  {
-    title: "Pizza Press Profit Share 🍕",
-    category: 2,
-    date: ["Mon, Sep 8", "Pizza Press", "6 P.M. - 8 P.M."],
-    description: "Profit share at Pizza Press! Help raise some money for Seva while also eating some delicious pizza! This is right after GM so feel free to attend GM as well and we can all head there together!",
-  },
-  {
-    title: "Recruitment Phil (Drip Flip) 👚",
-    category: 3,
-    date: ["Wed, Sep 10", "Location: West Mall", "Time: 4 P.M. - 7 P.M."],
-    description: "This is what Seva is all about! Come serve with us at Seva and bring your clean, gently used clothes to donate or even trade with others for better clothes!",
-  },
-  {
-    title: "Recruitment Party 🎉",
-    category: 4,
-    date: ["Fri, Sep 12", "Location: TBA", "10:30 P.M."],
-    description: "Get hype for SEVA's first party of the year!! Free for members and $8 for non-members.",
-    link: ["https://docs.google.com/forms/d/e/1FAIpQLSe20D_I1coIRF5U0S0rkMjRcu04W2gU2Bxp1fD719dvYRGdUw/viewform?usp=header", true],
-  },
-  {
-    title: "GM 2 (In-Meeting Phil) 👤",
-    category: 5,
     date: ["Mon, Sep 15", "UTC 1.102", "6:30 P.M. - 8 P.M."],
     description: "The second general meeting of the year! We will have an in-house phil so definitely come and try to get some extra points and serve our community!",
   },
   {
     title: "Guess or Else.. ❔",
-    category: 6,
+    category: 2,
     date: ["Fri, Sep 19", "WCP Ballroom", "5 P.M. - 8 P.M."],
     description: "Seva Charities presents Guess or Else, an exciting game show containing elements of songs, movies and celebrities. Students may form teams of 5 members and participate in this fun challenge with many twists and turns! Gifts and prizes range from places like Austin Bouldering Project, Pizza Press, Shake Shack, Amy's and more!",
     link: ["https://docs.google.com/forms/d/e/1FAIpQLSc6YgVjne7DkMqpvw3cHS1dT4HBVbWjJSXIEBubbDjxD5m_jA/viewform?usp=header", true],
   },
   {
     title: "Cherry Creek Phil 🌎",
-    category: 7,
-    date: ["Sat, Sep 20", "Cherry Creek", "Time: TBA"],
+    category: 3,
+    date: ["Sat, Sep 20", "5618 Bayton Loop, Austin, Texas", "Time: 9 A.M. - 11 A.M."],
     description: "This is what Seva is all about! Come serve with us at Seva by attending a philanthropy event and learn more about how Seva serves the community around Austin and impacts the world 🌎",
+    link: ["https://docs.google.com/spreadsheets/d/1fAH06bdJ3dm9gUUqhXGluWZ_Lcoor_qSJNR4MZYCLtY/edit?usp=sharing", true],
+  },
+  {
+    title: "GM #3 (Circle Reveal) ⚪",
+    category: 4,
+    date: ["Mon, Sep 29", "UTC 1.102", "6:30 P.M. - 8 P.M."],
+    description: "Our third general meeting of the year, where we will reveal our Circles for the year! Show up to get access to our fun, small groups within Seva!",
+  },
+  {
+    title: "Cabo Bob's Profit Share 🌯",
+    category: 5,
+    date: ["Wed, Oct 1", "Cabo Bob's Burritos, 2828 Rio Grande St, Austin, TX 78705, USA", "5 P.M. - 9 P.M."],
+    description: "Profit share at Cabo Bob's! Help raise some money for Seva while also eating some of the best food in town!",
   },
   {
     title: "Saanj 💃🏽",
