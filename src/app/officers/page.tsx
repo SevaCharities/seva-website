@@ -1,4 +1,4 @@
-import Card, { OfficerProps } from "../components/Card";
+import Card, { OfficerProps } from "../components/OfficerCard";
 
 const officers: OfficerProps[] = [
   {

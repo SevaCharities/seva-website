@@ -11,36 +11,23 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "GM #2 (In-Meeting Phil) 👤",
+    title: "Paint and Sip Night!🍷🎨",
     category: 1,
-    date: ["Mon, Sep 15", "UTC 1.102", "6:30 P.M. - 8 P.M."],
-    description: "The second general meeting of the year! We will have an in-house phil so definitely come and try to get some extra points and serve our community!",
-  },
-  {
-    title: "Guess or Else.. ❔",
-    category: 2,
-    date: ["Fri, Sep 19", "WCP Ballroom", "5 P.M. - 8 P.M."],
-    description: "Seva Charities presents Guess or Else, an exciting game show containing elements of songs, movies and celebrities. Students may form teams of 5 members and participate in this fun challenge with many twists and turns! Gifts and prizes range from places like Austin Bouldering Project, Pizza Press, Shake Shack, Amy's and more!",
-    link: ["https://docs.google.com/forms/d/e/1FAIpQLSc6YgVjne7DkMqpvw3cHS1dT4HBVbWjJSXIEBubbDjxD5m_jA/viewform?usp=header", true],
-  },
-  {
-    title: "Cherry Creek Phil 🌎",
-    category: 3,
-    date: ["Sat, Sep 20", "5618 Bayton Loop, Austin, Texas", "Time: 9 A.M. - 11 A.M."],
-    description: "This is what Seva is all about! Come serve with us at Seva by attending a philanthropy event and learn more about how Seva serves the community around Austin and impacts the world 🌎",
-    link: ["https://docs.google.com/spreadsheets/d/1fAH06bdJ3dm9gUUqhXGluWZ_Lcoor_qSJNR4MZYCLtY/edit?usp=sharing", true],
-  },
-  {
-    title: "GM #3 (Circle Reveal) ⚪",
-    category: 4,
-    date: ["Mon, Sep 29", "UTC 1.102", "6:30 P.M. - 8 P.M."],
-    description: "Our third general meeting of the year, where we will reveal our Circles for the year! Show up to get access to our fun, small groups within Seva!",
+    date: ["Sat, Sep 30", "Location: TBA", "Time: TBA"],
+    description: "Our next social is coming up on September 30th and this time… it’s a Paint and Sip Night! 🍷🎨 Let your creative side show and enjoy some of our famous mocktails made by our very own mixologist Rahul! This is a member only event so please pay your dues if you would like to attend! 💵 All supplies and drinks will be provided so just show up and have fun!✨"
   },
   {
     title: "Cabo Bob's Profit Share 🌯",
-    category: 5,
+    category: 2,
     date: ["Wed, Oct 1", "Cabo Bob's Burritos, 2828 Rio Grande St, Austin, TX 78705, USA", "5 P.M. - 9 P.M."],
     description: "Profit share at Cabo Bob's! Help raise some money for Seva while also eating some of the best food in town!",
+  },
+  {
+    title: "GM #3 (Circle Reveal) ⚪",
+    category: 3,
+    date: ["Mon, Oct 6", "UTC 1.102", "6:30 P.M. - 8 P.M."],
+    description: "Our third general meeting of the year, where we will reveal our Circles for the year! Show up to get access to our fun, small groups within Seva (if you haven't filled the form out, do so ASAP to get placed into a circle)! Also, we will be having an in-GM phil once again!",
+    link: ["https://docs.google.com/forms/d/e/1FAIpQLSfhORYCYgLOM6Ys3mVHNdQiMUG1OCaaXWcq7pEYr_nm7dmNgw/viewform?usp=header", true],
   },
   {
     title: "Saanj 💃🏽",

@@ -23,7 +23,7 @@ const contacts: Contact[] = [
     name: "@sevacharities",
     link: "https://www.instagram.com/sevacharities/",
   },
-  { icon: <Phone size={24} />, name: "+1 (234) 567 8910" },
+  { icon: <Phone size={24} />, name: "+1 (469) 358 6268" },
 ];
 
 const benefitCategories = [

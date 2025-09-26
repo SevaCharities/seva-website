@@ -101,7 +101,7 @@ const InteractiveEnvelope = ({ title, category, date, description, link }: Upcom
               className="mt-4 text-xl inline-block bg-orange-500 text-white text-center font-semibold px-4 py-2 
               rounded-full hover:bg-orange-600 transition absolute left-1/2 -translate-x-1/2 bottom-12"
             >
-              RSVP Now 
+              Link 
             </a>
           )}
 
