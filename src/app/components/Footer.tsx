@@ -41,7 +41,7 @@ const benefitCategories = [
       "Exclusive socials & mixers",
       "Circles (Small groups competing and having fun year-round)",
       "Free member-only parties",
-      "Intramural sports teams"
+      "Free intramural sports teams"
     ]
   },
   {
@@ -89,10 +89,24 @@ export default function Footer(): JSX.Element {
           Not a member yet? That&apos;s okay — our events are open to all, but
             members get early access, exclusive perks, and a bigger say.
           </p>
-
           <Link href="/upcoming" className="inline-block">
             <span className="inline-block bg-green-500 hover:bg-green-400 text-white font-semibold py-3 px-6 rounded-xl border-b-4 border-green-700 hover:border-green-500 transition-transform active:scale-95">
               Get Involved – Events & More 👈
+            </span>
+          </Link>
+
+          <p className="max-w-2xl">
+          If you are a member, sign in on the Profile page below and access our premium, 
+          exclusive Alumni database to connect with our former Seva members!
+          </p>
+          <Link href="/profile" className="inline-block">
+            <span className="inline-block bg-green-500 hover:bg-green-400 text-white font-semibold py-3 px-6 rounded-xl border-b-4 border-green-700 hover:border-green-500 transition-transform active:scale-95">
+              Sign In – Profile 🪪
+            </span>
+          </Link>
+          <Link href="/alumni" className="inline-block">
+            <span className="inline-block bg-green-500 hover:bg-green-400 text-white font-semibold py-3 px-6 rounded-xl border-b-4 border-green-700 hover:border-green-500 transition-transform active:scale-95">
+              Access our Alumni Database 🎓
             </span>
           </Link>
         </div>
