@@ -138,19 +138,6 @@ export default function App() {
           console.log('Auth event:', event);
           
           if (event === "SIGNED_IN" && session) {
-            console.log('User signed in, setting up profile...');
-            setUserSession(session);
-            
-            // Only redirect if we're not already on the profile page
-            const currentPath = window.location.pathname;
-            if (currentPath !== "/profile") {
-              console.log('Redirecting to profile page...');
-              // Small delay to ensure state is set
-              setTimeout(() => {
-                window.location.href = "/profile";
-              }, 100);
-            }
-            
             await createProfileIfNeeded(session.user);
             await getUserProfile(session.user.id);
             await getSettings();

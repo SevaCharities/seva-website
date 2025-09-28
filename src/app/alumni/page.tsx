@@ -183,9 +183,9 @@ export default function Alumni() {
                                     <div className="bg-orange-500 text-white px-4 py-2 rounded-full font-semibold text-lg shadow-md">
                                         Class of {year}
                                     </div>
-                                    <div className="text-sm text-gray-500 ml-4">
+                                    {/* <div className="text-sm text-gray-500 ml-4">
                                         ({yearAlumni.length} alumni)
-                                    </div>
+                                    </div> */}
                                 </div>
                                 
                                 <div className="mb-6">

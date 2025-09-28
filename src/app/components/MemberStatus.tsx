@@ -83,12 +83,20 @@ export default function MemberStatus({ userId }: MemberStatusProps) {
     return (
       <div className="bg-white rounded-lg shadow-sm border p-4">
         <div className="flex items-center space-x-3">
-          <div className="p-2 rounded-full bg-gray-100 text-gray-600">
+          <div className="p-1 rounded-full bg-gray-100 text-gray-600">
             <User className="w-5 h-5" />
           </div>
           <div>
             <h3 className="font-medium text-gray-900">Not a Member</h3>
             <p className="text-sm text-gray-500">Standard user access</p>
+            <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeBCrT9Hq87pmHwejdbGOn8QK-Gm6cUa_mbn1P1vOlCEBh03Q/viewform?usp=dialog"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-3 bg-green-500 hover:bg-green-400 text-white font-semibold py-4 px-3 rounded-xl border-b-4 border-green-700 hover:border-green-500 transition-transform active:scale-95"
+          >
+            Membership Form 📜
+            </a>
           </div>
         </div>
       </div>

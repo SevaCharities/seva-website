@@ -13,7 +13,7 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
     title: "Paint and Sip Night!🍷🎨",
     category: 1,
-    date: ["Sat, Sep 30", "Location: TBA", "Time: TBA"],
+    date: ["Sat, Sep 30", "Location: TBA", "Time: 6 P.M. - 8 P.M."],
     description: "Our next social is coming up on September 30th and this time… it’s a Paint and Sip Night! 🍷🎨 Let your creative side show and enjoy some of our famous mocktails made by our very own mixologist Rahul! This is a member only event so please pay your dues if you would like to attend! 💵 All supplies and drinks will be provided so just show up and have fun!✨"
   },
   {
