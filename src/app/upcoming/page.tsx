@@ -13,7 +13,7 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
     title: "Paint and Sip Night!🍷🎨",
     category: 1,
-    date: ["Sat, Sep 30", "Location: TBA", "Time: 6 P.M. - 8 P.M."],
+    date: ["Tue, Sep 30", "Location: TBA", "Time: 6 P.M. - 8 P.M."],
     description: "Our next social is coming up on September 30th and this time… it’s a Paint and Sip Night! 🍷🎨 Let your creative side show and enjoy some of our famous mocktails made by our very own mixologist Rahul! This is a member only event so please pay your dues if you would like to attend! 💵 All supplies and drinks will be provided so just show up and have fun!✨"
   },
   {
@@ -28,6 +28,12 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
     date: ["Mon, Oct 6", "UTC 1.102", "6:30 P.M. - 8 P.M."],
     description: "Our third general meeting of the year, where we will reveal our Circles for the year! Show up to get access to our fun, small groups within Seva (if you haven't filled the form out, do so ASAP to get placed into a circle)! Also, we will be having an in-GM phil once again!",
     link: ["https://docs.google.com/forms/d/e/1FAIpQLSfhORYCYgLOM6Ys3mVHNdQiMUG1OCaaXWcq7pEYr_nm7dmNgw/viewform?usp=header", true],
+  },
+  {
+    title: "Circle Competion 1 (Jeopardy) 🎲",
+    category: 4,
+    date: ["Thu, Oct 9", "Location: TBA", "7 P.M. - 9 P.M."],
+    description: "Our first circle competion of the semester! If you're part of our circles, show up and compete in a Jeopardy-style game to win points for your circle!",
   },
   {
     title: "Saanj 💃🏽",

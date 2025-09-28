@@ -55,7 +55,7 @@ export default function Navbar() {
 
   const navLinksBase: NavLink[] = [
     { name: "profile" },
-    { name: "photos" },
+    { name: "gallery" },
     { name: "officers" },
     { name: "seva history" },
     { name: "general meetings" },

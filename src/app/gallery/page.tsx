@@ -76,7 +76,7 @@ const semesters = [
     title: "Fall 2024",
     folderName: "fall2024",
     photoCount: 46,
-    startIndex: 1, // Photos 1-46
+    startIndex: 1,
     captions: [
       "Seva Olympics",
       "Trail Conservancy Phil", 
@@ -113,7 +113,7 @@ const semesters = [
   }
 ];
 
-export default function Photos() {
+export default function Gallery() {
   return (
     <div className="my-16 sm:my-24">
       {/* Main Header */}
