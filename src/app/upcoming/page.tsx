@@ -11,35 +11,48 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "Paint and Sip Night!🍷🎨",
-    category: 1,
-    date: ["Tue, Sep 30", "Location: TBA", "Time: 6 P.M. - 8 P.M."],
-    description: "Our next social is coming up on September 30th and this time… it’s a Paint and Sip Night! 🍷🎨 Let your creative side show and enjoy some of our famous mocktails made by our very own mixologist Rahul! This is a member only event so please pay your dues if you would like to attend! 💵 All supplies and drinks will be provided so just show up and have fun!✨"
-  },
-  {
-    title: "Cabo Bob's Profit Share 🌯",
-    category: 2,
-    date: ["Wed, Oct 1", "Cabo Bob's Burritos, 2828 Rio Grande St, Austin, TX 78705, USA", "5 P.M. - 9 P.M."],
-    description: "Profit share at Cabo Bob's! Help raise some money for Seva while also eating some of the best food in town!",
-  },
-  {
     title: "GM #3 (Circle Reveal) ⚪",
-    category: 3,
+    category: 1,
     date: ["Mon, Oct 6", "UTC 1.102", "6:30 P.M. - 8 P.M."],
     description: "Our third general meeting of the year, where we will reveal our Circles for the year! Show up to get access to our fun, small groups within Seva (if you haven't filled the form out, do so ASAP to get placed into a circle)! Also, we will be having an in-GM phil once again!",
     link: ["https://docs.google.com/forms/d/e/1FAIpQLSfhORYCYgLOM6Ys3mVHNdQiMUG1OCaaXWcq7pEYr_nm7dmNgw/viewform?usp=header", true],
   },
   {
     title: "Circle Competion 1 (Jeopardy) 🎲",
-    category: 4,
-    date: ["Thu, Oct 9", "Location: TBA", "7 P.M. - 9 P.M."],
+    category: 2,
+    date: ["Thu, Oct 9", "Standard Lounge", "7 P.M. - 9 P.M."],
     description: "Our first circle competion of the semester! If you're part of our circles, show up and compete in a Jeopardy-style game to win points for your circle!",
+  },
+  {
+    title: "Pickleball Social 🎾",
+    category: 3,
+    date: ["Wed, Oct 15", "Location: TBA", "Time: TBA"],
+    description: "Come play some pickleball and compete with your fellow Seva members!",
+  },
+  {
+    title: "LoCo Trash Bash Kayak Cleanup 🌿  🌊",
+    category: 4,
+    date: ["Sat, Oct 18", "HWY 183/Montopolis Bridge", "7AM - 11AM"],
+    description: "Join us on Saturday, Oct 18 for a morning on the water! We’ll meet at 7 AM at the HWY 183/Montopolis Bridge and float/clean our way down to the Texas River School. Come help keep the Colorado River sparkling — even a few hours makes a difference 💙✨",
+  },
+  {
+    title: "GM #4",
+    category: 5,
+    date: ["Mon, Oct 20", "UTC 1.102", "6:30 P.M. - 8 P.M."],
+    description: "Come join us for the last GM before Saanj!",
   },
   {
     title: "Saanj 💃🏽",
     category: 8,
-    date: ["Date: TBA", "Location: TBA", "Time: TBA"],
+    date: ["Fri, Oct 24", "WCP Ballroom", "4:30 P.M. - 9 P.M."],
     description: "Get ready for Saanj! Our biggest event of the year with a cultural tone of Indian food and dance performances from dance teams around UT 🤘🏽!",
+    link: ["https://forms.gle/vFJ4KjtmJAkgbirL8", true],
+  },
+  {
+    title: "Raath 🎉",
+    category: 9,
+    date: ["Date: Oct 24", "Location: TBA", "10 P.M. - 2 A.M."],
+    description: "The Saanj afterparty (free if you went to Saanj)! Buy your tickets as soon as possible and come to Raath ready to have fun and celebrate the biggest night for Seva of the year!",
   },
 ];
 

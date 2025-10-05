@@ -12,7 +12,8 @@ const UpcomingEventsColors = [
   "bg-indigo-400",
   "bg-sky-300",
   "bg-rose-400",
-  "bg-gradient-to-r from-yellow-300 via-pink-400 via-purple-300 to-blue-500"
+  "bg-gradient-to-r from-yellow-300 via-pink-400 via-purple-300 to-blue-500",
+  "bg-gradient-to-r from-pink-500 via-yellow-400 via-green-400 via-blue-500 to-purple-600"
 ];
 
 const InteractiveEnvelope = ({ title, category, date, description, link }: UpcomingEventsProps) => {
