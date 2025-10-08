@@ -12,13 +12,19 @@ const GMInfo: GMProps[] = [
     meeting: 1,
     slides:
       "https://drive.google.com/file/d/1soNjKDeO8axkHtg5p5jEFrYP81kSpBl-/view?usp=sharing",
-    date: ["Mon, Sep 8", "9/8/25", "6:30 P.M."],
+    date: ["Mon, Sep 8", "9/8/25", "6:30 P.M. - 8 P.M."],
   },
   {
     meeting: 2,
     slides:
-    "https://drive.google.com/file/d/1MU6vDeEof5HkuPJcGRlRNIDgfi04PukG/view?usp=sharing",
-    date: ["Mon, Sep 15", "9/15/25", "6:30 P.M."],
+      "https://drive.google.com/file/d/1MU6vDeEof5HkuPJcGRlRNIDgfi04PukG/view?usp=sharing",
+    date: ["Mon, Sep 15", "9/15/25", "6:30 P.M. - 8 P.M."],
+  },
+  {
+    meeting: 3,
+    slides:
+      "https://drive.google.com/file/d/1mmO5IIllhsYd4gSfdHbNuEB5rPa1JYa8/view?usp=sharing",
+    date: ["Mon, Sep 15", "10/6/25", "6:30 P.M. - 8 P.M."],
   },
   ];
   

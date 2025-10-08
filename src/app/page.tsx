@@ -3,10 +3,12 @@ import Navbar from "./components/Navbar";
 import { CaretDoubleDown } from "@phosphor-icons/react/dist/ssr";
 import Footer from "./components/Footer";
 import Gallery from "./components/Gallery";
+import SaanjPopup from "./components/SaanjPopup"
 
 export default function Home() {
   return (
     <div>
+      <SaanjPopup />
       <section
         id="splash"
         className="relative shadow-md  bg-cover bg-center h-[650px] sm:h-[800px]  rounded-b-3xl flex flex-col  items-center text-center  py-32"
