@@ -11,26 +11,20 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "Circle Competion 1 (Jeopardy) 🎲",
-    category: 1,
-    date: ["Thu, Oct 9", "Standard Lounge", "7 P.M. - 9 P.M."],
-    description: "Our first circle competion of the semester! If you're part of our circles, show up and compete in a Jeopardy-style game to win points for your circle!",
-  },
-  {
     title: "Pickleball Social 🎾",
-    category: 2,
-    date: ["Wed, Oct 15", "Cavern Clark Courts", "6 P.M. - 8 P.M."],
-    description: "Come play some pickleball and compete with your fellow Seva members! A carpool form will be sent out if we switch to Whittaker Courts",
+    category: 1,
+    date: ["Thurs, Oct 16", "Whittaker Courts", "6 P.M. - 8 P.M."],
+    description: "Come play some pickleball and compete with your fellow Seva members! A carpool form will be sent out because we switched to Whittaker Courts",
   },
   {
     title: "LoCo Trash Bash Kayak Cleanup 🌿  🌊",
-    category: 3,
+    category: 2,
     date: ["Sat, Oct 18", "HWY 183/Montopolis Bridge", "7 A.M - 11 A.M"],
     description: "Join us on Saturday, Oct 18 for a morning on the water! We’ll meet at 7 AM at the HWY 183/Montopolis Bridge and float/clean our way down to the Texas River School. Come help keep the Colorado River sparkling — even a few hours makes a difference 💙✨",
   },
   {
     title: "GM #4",
-    category: 4,
+    category: 3,
     date: ["Mon, Oct 20", "UTC 1.102", "6:30 P.M. - 8 P.M."],
     description: "Come join us for the last GM before Saanj!",
   },
@@ -44,8 +38,9 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
     title: "Raath 🎉",
     category: 9,
-    date: ["Date: Oct 24", "Location: TBA", "10 P.M. - 2 A.M."],
+    date: ["Fri, Oct 24", "Location: TBA", "10 P.M. - 2 A.M."],
     description: "The Saanj afterparty (free if you went to Saanj)! Buy your tickets as soon as possible and come to Raath ready to have fun and celebrate the biggest night for Seva of the year!",
+    link: ["https://forms.gle/uia5BFwdenASn6vw8", true],
   },
 ];
 
