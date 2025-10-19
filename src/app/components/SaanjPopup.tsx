@@ -68,7 +68,7 @@ const SaanjPopup = () => {
             <div 
                 className={`
                     relative bg-gradient-to-br from-orange-500 via-pink-500 to-purple-600 
-                    rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto 
+                    rounded-3xl max-w-6xl w-full max-h-[95vh] overflow-y-auto 
                     shadow-2xl transition-all duration-300
                     ${isAnimatingOut ? 'scale-95 opacity-0' : 'scale-100 opacity-100'}
                 `}
@@ -126,7 +126,7 @@ const SaanjPopup = () => {
                     </div>
                     
                     {/* CTA Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
                         <a 
                             href="https://forms.gle/vFJ4KjtmJAkgbirL8"
                             target="_blank"
@@ -143,6 +143,22 @@ const SaanjPopup = () => {
                         >
                             Maybe Later
                         </button>
+                    </div>
+
+                    {/* Video Player Section */}
+                    <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border-2 border-white/30">
+                        <h4 className="text-white font-semibold text-lg sm:text-xl mb-3 text-center">
+                            Watch Our Hype Video! 🎬
+                        </h4>
+                        <video
+                            controls
+                            className="w-full rounded-xl shadow-lg"
+                            preload="metadata"
+                        >
+                            <source src="/videos/Timeline1.mov" type="video/quicktime" />
+                            <source src="/videos/Timeline1.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 </div>
             </div>

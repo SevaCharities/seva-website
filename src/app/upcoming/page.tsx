@@ -11,20 +11,8 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "Pickleball Social 🎾",
-    category: 1,
-    date: ["Thurs, Oct 16", "Whittaker Courts", "6 P.M. - 8 P.M."],
-    description: "Come play some pickleball and compete with your fellow Seva members! A carpool form will be sent out because we switched to Whittaker Courts",
-  },
-  {
-    title: "LoCo Trash Bash Kayak Cleanup 🌿  🌊",
-    category: 2,
-    date: ["Sat, Oct 18", "HWY 183/Montopolis Bridge", "7 A.M - 11 A.M"],
-    description: "Join us on Saturday, Oct 18 for a morning on the water! We’ll meet at 7 AM at the HWY 183/Montopolis Bridge and float/clean our way down to the Texas River School. Come help keep the Colorado River sparkling — even a few hours makes a difference 💙✨",
-  },
-  {
     title: "GM #4",
-    category: 3,
+    category: 1,
     date: ["Mon, Oct 20", "UTC 1.102", "6:30 P.M. - 8 P.M."],
     description: "Come join us for the last GM before Saanj!",
   },
