@@ -8,7 +8,6 @@ import SaanjPopup from "./components/SaanjPopup"
 export default function Home() {
   return (
     <div>
-      <SaanjPopup />
       <section
         id="splash"
         className="relative shadow-md  bg-cover bg-center h-[650px] sm:h-[800px]  rounded-b-3xl flex flex-col  items-center text-center  py-32"

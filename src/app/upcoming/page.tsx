@@ -11,24 +11,18 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "GM #4",
+    title: "Cuddle for a Cause 🐻",
     category: 1,
-    date: ["Mon, Oct 20", "UTC 1.102", "6:30 P.M. - 8 P.M."],
-    description: "Come join us for the last GM before Saanj!",
+    date: ["Tues, Oct 28", "Lark Lounge", "6:30 P.M. - 8:30 P.M."],
+    description: "Seva’s first on-campus philanthropy of the semester is here! Join us as we team up with TexasTHON to spread love and comfort in the sweetest way — by making stuffed animals 🐻💖. All creations will be donated to the Austin Children’s Shelter.",
+    link: ["https://docs.google.com/forms/d/e/1FAIpQLSeRXzVuCfVYdIHhTYAbKhpY4Sl9xIGROrYnRf1VXfNMVjLEvg/viewform", true],
   },
   {
-    title: "Saanj 💃🏽",
-    category: 8,
-    date: ["Fri, Oct 24", "WCP Ballroom", "5 P.M. - 8 P.M."],
-    description: "Get ready for Saanj! Our biggest event of the year with a cultural tone of Indian food and dance performances from dance teams around UT 🤘🏽!",
-    link: ["https://forms.gle/vFJ4KjtmJAkgbirL8", true],
-  },
-  {
-    title: "Raath 🎉",
-    category: 9,
-    date: ["Fri, Oct 24", "Location: TBA", "10 P.M. - 2 A.M."],
-    description: "The Saanj afterparty (free if you went to Saanj)! Buy your tickets as soon as possible and come to Raath ready to have fun and celebrate the biggest night for Seva of the year!",
-    link: ["https://forms.gle/uia5BFwdenASn6vw8", true],
+    title: "The Great Pumpkin Carving Social 🎃",
+    category: 2,
+    date: ["Wed, Oct 29", "South Mall Lawn", "6 P.M. - 8 P.M."],
+    description: "Its the Great Pumpkin...carve!🎃 Join us for the perfect fall activity to kick off Halloweekend🎊",
+    link: ["https://docs.google.com/forms/d/e/1FAIpQLScJORsk5qqnKcL7fHQw0Kmkevk3JsMPHh_bA-pj3PDsAGa6Mw/viewform", true],
   },
 ];
 
