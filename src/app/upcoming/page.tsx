@@ -11,18 +11,28 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "Cuddle for a Cause 🐻",
+    title: "GM 5 🐝",
     category: 1,
-    date: ["Tues, Oct 28", "Lark Lounge", "6:30 P.M. - 8:30 P.M."],
-    description: "Seva’s first on-campus philanthropy of the semester is here! Join us as we team up with TexasTHON to spread love and comfort in the sweetest way — by making stuffed animals 🐻💖. All creations will be donated to the Austin Children’s Shelter.",
-    link: ["https://docs.google.com/forms/d/e/1FAIpQLSeRXzVuCfVYdIHhTYAbKhpY4Sl9xIGROrYnRf1VXfNMVjLEvg/viewform", true],
+    date: ["Mon, Nov 3", "UTC 1.102", "6:30 P.M. - 8:00 P.M."],
+    description: "Another Seva GM! Come join us for our 6th general meeting of the year!",
   },
   {
-    title: "The Great Pumpkin Carving Social 🎃",
+    title: "The Collective Phil 🫶",
     category: 2,
-    date: ["Wed, Oct 29", "South Mall Lawn", "6 P.M. - 8 P.M."],
-    description: "Its the Great Pumpkin...carve!🎃 Join us for the perfect fall activity to kick off Halloweekend🎊",
-    link: ["https://docs.google.com/forms/d/e/1FAIpQLScJORsk5qqnKcL7fHQw0Kmkevk3JsMPHh_bA-pj3PDsAGa6Mw/viewform", true],
+    date: ["Sat, Nov 8", "Location: TBD", "Time: TBD"],
+    description: "Come join us for the Collective Phil! Details will be sent out during GM and in the GroupMe.",
+  },
+  {
+    title: "Dodgeball Circle Competition 🤽",
+    category: 3,
+    date: ["Wed, Nov 12", "Location: TBD", "6:30 P.M. - 8:30 P.M."],
+    description: "Join us for the 2nd Circle Competition. This time, we will be playing dodgeball against each circle! Show up with a jersey to collect 5 more additional points for your circle!",
+  },
+  {
+    title: "Camping 🏕️",
+    category: 4,
+    date: ["Fri, Nov 14 - Sat, Nov 15", "Location: TBD", "Time: TBD"],
+    description: "Get ready for Seva camping! We'll go camping for the weekend and enjoy some nature and s'mores",
   },
 ];
 

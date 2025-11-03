@@ -29,13 +29,7 @@ export const MerchTile = ({ m }: { m: Merch }) => {
             isFront ? "opacity-0 scale-95" : "opacity-100 scale-100"
           }`}
         />
-        {m.image.length > 1 && (
-          <div className={`absolute bottom-4 right-4 bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-medium text-white transition-opacity duration-300 ${
-            isFront ? "opacity-100" : "opacity-0"
-          }`}>
-            ✨ Hover me
-          </div>
-        )}
+
       </div>
       
       <div className="flex flex-col p-7 flex-grow space-y-4">
