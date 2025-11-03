@@ -89,6 +89,15 @@ export default function Officers() {
       <h1 className="px-8 text-orange-2 font-semibold my-12 text-center ">
         Meet The Officers
       </h1>
+      <div className="w-full max-w-4xl px-8 mb-16">
+        <div className="relative w-full aspect-[16/9] bg-gray-200 rounded-lg overflow-hidden">
+          <img 
+            src="/group_photo.jpg" 
+            alt="Seva Officers Group Photo"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
       <div className="px-8 lg:px-16  flex flex-wrap gap-4 justify-center">
         {officers.map((officer, index) => (
           <Card key={index} info={officer} />
