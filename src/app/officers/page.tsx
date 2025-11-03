@@ -92,7 +92,7 @@ export default function Officers() {
       <div className="w-full max-w-4xl px-8 mb-16">
         <div className="relative w-full aspect-[16/9] bg-gray-200 rounded-lg overflow-hidden">
           <img 
-            src="/group_photo.jpg" 
+            src="/group_photo.JPG" 
             alt="Seva Officers Group Photo"
             className="w-full h-full object-cover"
           />
