@@ -32,7 +32,7 @@ const officers: OfficerProps[] = [
     bio: "Hey I'm Pranav! I am a junior Statistics and Data Science major, and this is my second year in Seva. During my free time, I love playing all types of sports, and I am a big OKC Thunder and tennis fan. I also love listening to music, driving, and doing pretty much anything outdoors. My favorite part of Seva is being able to contribute to a meaningful cause with an amazing group of people.",
   },
   {
-    name: "Rahul Raja",
+    name: "Rahul Raja Durai Murugan",
     role: "Events",
     bio: "Hey, I'm Rahul! I'm a senior Biomedical Engineering major + Data Science minor, and this is my second year in Seva. I love playing volleyball, football and tennis (or pretty much any intramural sport) as well as electric guitar. In another life, I'd be a taxi driver just because of how much I love to drive and talk to new people. My favorite thing about Seva is finding a family that shares my interests in service and my culture.",
   },

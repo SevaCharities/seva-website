@@ -11,28 +11,36 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "GM 5 🐝",
+    title: "Pancake Night with Thon",
     category: 1,
-    date: ["Mon, Nov 3", "UTC 1.102", "6:30 P.M. - 8:00 P.M."],
-    description: "Another Seva GM! Come join us for our 6th general meeting of the year!",
+    date: ["Thu, Nov 6", "2400 Leon St.", "7 P.M. - 2 A.M."],
+    description: "Come join Seva and Thon for fundraising to support childhood cancer research. Pike appreciates the long-standing Pancake Night partnership and looks forward to hosting again. The February 2024 Pancake Night at the Pike House raised $8,600 for the patients and families at Dell Children’s Medical Center, so we have a goal to exceed!",
   },
   {
     title: "The Collective Phil 🫶",
     category: 2,
-    date: ["Sat, Nov 8", "Location: TBD", "Time: TBD"],
-    description: "Come join us for the Collective Phil! Details will be sent out during GM and in the GroupMe.",
+    date: ["Sat, Nov 8", "5801 Ainez Dr.", "9 A.M. - 2 P.M."],
+    description: "Join us to help with beautification projects like 🌳 mulching the front landscape and trees, 🌼 building and planting a garden bed, 🎨 painting a beautiful mural, 🚶‍♀️ cleaning up the center trail, 🪵 adding fresh woodchips to the playground, and 🏐 tidying up the sand volleyball court!",
+    link: ["https://docs.google.com/forms/d/e/1FAIpQLSd9bZU6W8yfw2BziGIbjDfPd0CO5LhmeBsx96fBwQINudgxQA/viewform?usp=dialog", true],
   },
   {
     title: "Dodgeball Circle Competition 🤽",
     category: 3,
-    date: ["Wed, Nov 12", "Location: TBD", "6:30 P.M. - 8:30 P.M."],
-    description: "Join us for the 2nd Circle Competition. This time, we will be playing dodgeball against each circle! Show up with a jersey to collect 5 more additional points for your circle!",
+    date: ["Wed, Nov 12", "Bellmont Dodgeball Courts", "6:30 P.M. - 8:30 P.M."],
+    description: "Join us for the 2nd Circle Competition. This time, we will be playing dodgeball against each circle! Have a team chant to collect 5 more additional points for your circle!",
   },
   {
     title: "Camping 🏕️",
     category: 4,
-    date: ["Fri, Nov 14 - Sat, Nov 15", "Location: TBD", "Time: TBD"],
-    description: "Get ready for Seva camping! We'll go camping for the weekend and enjoy some nature and s'mores",
+    date: ["Fri, Nov 14 - Sat, Nov 15", "Colorado Bend State Park", "Time: TBD"],
+    description: "Get ready for Seva camping! We'll go camping for the weekend and enjoy nature, games, and s'mores!",
+  },
+  {
+    title: "Chai Tabling",
+    category: 2,
+    date: ["Mon, Nov 17 - Thu, Nov 20", "Speedway", "10 A.M. - 4 P.M."],
+    description: "Sign up for chai tabling! Enjoy some hot chai and help serve on Speedway!",
+    link: ["https://docs.google.com/spreadsheets/d/10o0gUBjUIG63hPGec5VfBLiouhg3-LYqDz4Xzxvbmxc/edit?usp=sharing", true],
   },
 ];
 
