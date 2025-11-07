@@ -11,36 +11,55 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "Pancake Night with Thon",
-    category: 1,
-    date: ["Thu, Nov 6", "2400 Leon St.", "7 P.M. - 2 A.M."],
-    description: "Come join Seva and Thon for fundraising to support childhood cancer research. Pike appreciates the long-standing Pancake Night partnership and looks forward to hosting again. The February 2024 Pancake Night at the Pike House raised $8,600 for the patients and families at Dell Children’s Medical Center, so we have a goal to exceed!",
-  },
-  {
     title: "The Collective Phil 🫶",
-    category: 2,
-    date: ["Sat, Nov 8", "5801 Ainez Dr.", "9 A.M. - 2 P.M."],
+    category: 1,
+    date: ["Sat, Nov 8", "First Independent Baptist Church", "12 P.M. - 2 P.M."],
     description: "Join us to help with beautification projects like 🌳 mulching the front landscape and trees, 🌼 building and planting a garden bed, 🎨 painting a beautiful mural, 🚶‍♀️ cleaning up the center trail, 🪵 adding fresh woodchips to the playground, and 🏐 tidying up the sand volleyball court!",
     link: ["https://docs.google.com/forms/d/e/1FAIpQLSd9bZU6W8yfw2BziGIbjDfPd0CO5LhmeBsx96fBwQINudgxQA/viewform?usp=dialog", true],
   },
   {
     title: "Dodgeball Circle Competition 🤽",
-    category: 3,
+    category: 2,
     date: ["Wed, Nov 12", "Bellmont Dodgeball Courts", "6:30 P.M. - 8:30 P.M."],
     description: "Join us for the 2nd Circle Competition. This time, we will be playing dodgeball against each circle! Have a team chant to collect 5 more additional points for your circle!",
   },
   {
     title: "Camping 🏕️",
-    category: 4,
-    date: ["Fri, Nov 14 - Sat, Nov 15", "Colorado Bend State Park", "Time: TBD"],
-    description: "Get ready for Seva camping! We'll go camping for the weekend and enjoy nature, games, and s'mores!",
+    category: 3,
+    date: ["Fri, Nov 14 - Sat, Nov 15", "Colorado Bend State Park", "Fri, 2 P.M. - Sat, 1 P.M."],
+    description: "Get ready for Seva camping! We'll go camping for the weekend and enjoy nature, games, and s'mores! Check the form below for more details!",
+    link: ["https://docs.google.com/forms/d/1M7pS1kSq20MU_rz6SHs3cciF5tAv1eQ4nZ1rCjmDIzI/viewform?edit_requested=true", true],
   },
   {
     title: "Chai Tabling",
-    category: 2,
+    category: 4,
     date: ["Mon, Nov 17 - Thu, Nov 20", "Speedway", "10 A.M. - 4 P.M."],
     description: "Sign up for chai tabling! Enjoy some hot chai and help serve on Speedway!",
     link: ["https://docs.google.com/spreadsheets/d/10o0gUBjUIG63hPGec5VfBLiouhg3-LYqDz4Xzxvbmxc/edit?usp=sharing", true],
+  },
+  {
+    title: "GM 6",
+    category: 5,
+    date: ["Mon, Nov 17", "UTC 1.102", "6:30 P.M. - 8 P.M."],
+    description: "Join us for the 6th general meeting of the year!",
+  },
+  {
+    title: "Panda Express Profit Share",
+    category: 6,
+    date: ["Mon, Nov 17", "Panda Express at the Union", "All Day!"],
+    description: "Come help raise money for Seva and Panda Express by attending our profit share at the Union! We will also be heading there after GM, so pull up with us after GM! ",
+  },
+  {
+    title: "GM 7",
+    category: 7,
+    date: ["Mon, Dec 1", "UTC 1.102", "6:30 P.M. - 8 P.M."],
+    description: "Join us for the 7th general meeting of the year!",
+  },
+  {
+    title: "Boat Formal",
+    category: 8,
+    date: ["Tues, Dec 9", "Location: TBD", "Time: TBD"],
+    description: "Join us for our annual Seva boat formal! More details will be revealed soon.",
   },
 ];
 
