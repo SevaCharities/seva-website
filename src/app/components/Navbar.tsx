@@ -55,13 +55,13 @@ export default function Navbar() {
 
   const navLinksBase: NavLink[] = [
     { name: "profile" },
-    { name: "gallery" },
+    { name: "merch" },
     { name: "officers" },
-    { name: "seva history" },
     { name: "general meetings" },
     { name: "upcoming" },
+    { name: "gallery" },
+    { name: "seva history" },
     { name: "calendar" },
-    { name: "merch" },
     { name: "linktree", link: ["https://linktr.ee/sevacharities", true] },
     { name: "FAQ", link: ["/#faq", false] },
     { name: "donate", link: ["https://apusa.org/donate-today/", true] },
@@ -70,8 +70,8 @@ export default function Navbar() {
   // build final nav links: insert alumni only if isMember === true
   const navLinks: NavLink[] = [...navLinksBase];
   if (isMember === true) {
-    // insert after 'seva history' (index 3) -> put at index 4
-    navLinks.splice(4, 0, { name: "alumni" });
+    // Put at index 3
+    navLinks.splice(3, 0, { name: "alumni" });
   }
 
   useEffect(() => {
