@@ -11,42 +11,36 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "Dodgeball Circle Competition 🤽",
-    category: 1,
-    date: ["Wed, Nov 12", "Bellmont Dodgeball Courts", "6:30 P.M. - 8:30 P.M."],
-    description: "Join us for the 2nd Circle Competition. This time, we will be playing dodgeball against each circle! Have a team chant to collect 5 more additional points for your circle!",
-  },
-  {
-    title: "Camping 🏕️",
-    category: 2,
-    date: ["Fri, Nov 14 - Sat, Nov 15", "Colorado Bend State Park", "Fri, 2 P.M. - Sat, 1 P.M."],
-    description: "Get ready for Seva camping! We'll go camping for the weekend and enjoy nature, games, and s'mores! Check the form below for more details!",
-    link: ["https://docs.google.com/forms/d/1M7pS1kSq20MU_rz6SHs3cciF5tAv1eQ4nZ1rCjmDIzI/viewform?edit_requested=true", true],
-  },
-  {
     title: "Chai Tabling ☕",
-    category: 3,
+    category: 1,
     date: ["Mon, Nov 17 - Thu, Nov 20", "Speedway", "10 A.M. - 4 P.M."],
     description: "Sign up for chai tabling! Enjoy some hot chai and help serve on Speedway!",
     link: ["https://docs.google.com/spreadsheets/d/10o0gUBjUIG63hPGec5VfBLiouhg3-LYqDz4Xzxvbmxc/edit?usp=sharing", true],
   },
   {
-    title: "GM 6 🤝",
-    category: 4,
+    title: "GM 6 / Potluck 🤝",
+    category: 2,
     date: ["Mon, Nov 17", "UTC 1.102", "6:30 P.M. - 8 P.M."],
-    description: "Join us for the 6th general meeting of the year!",
+    description: "Join us for our GM and Thanksgiving Potluck! Bring anything y'all want and have a good time eating good food!",
+    link: ["https://docs.google.com/spreadsheets/d/13coaUFY1_5m3a3XvR_oxH0HGzYoCwFW9r0cJ1gtr0k4/edit?usp=sharing", true],
   },
   {
     title: "Panda Express Profit Share 🐼",
-    category: 5,
+    category: 3,
     date: ["Mon, Nov 17", "Panda Express at the Union", "All Day!"],
     description: "Come help raise money for Seva and Panda Express by attending our profit share at the Union! We will also be heading there after GM, so pull up with us after GM! ",
   },
   {
     title: "GM 7 🤝",
-    category: 6,
+    category: 4,
     date: ["Mon, Dec 1", "UTC 1.102", "6:30 P.M. - 8 P.M."],
     description: "Join us for the 7th general meeting of the year!",
+  },
+  {
+    title: "Gift Wrapping with Salvation Army 🎁",
+    category: 5,
+    date: ["Sat, Dec 6", "Location: TBD", "9 A.M. - 12 P.M."],
+    description: "We will be gift wrapping with the Salvation Army, details TBD.",
   },
   {
     title: "Boat Formal 🛥️",

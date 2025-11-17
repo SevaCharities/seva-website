@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
+import Notifications from "./Notifications";
 
 type NavLink = {
   name: string;
@@ -109,6 +110,7 @@ export default function Navbar() {
             </div>
           </Link>
           <div className="flex items-center gap-4">
+            {/* <Notifications /> */}
             <button className="cursor-pointer " onClick={() => setShowScreen(!showScreen)}>
               <List size={32} color="white" weight="bold" />
             </button>
