@@ -44,16 +44,17 @@ export default function App() {
       const { data: existingProfile } = await supabase
         .from("members")
         .select("id")
-        .eq("id", _user.id)
+        .eq("user_id", _user.id)  // <-- Changed from .eq("id", _user.id)
         .single();
-
+  
       if (!existingProfile) {
         const { error } = await supabase.from("members").insert([
           {
-            id: _user.id,
+            // Don't set id here - let Supabase auto-generate it
+            user_id: _user.id,  // <-- ADD THIS: link to auth user
             name: _user.user_metadata?.full_name,
             email: _user.email,
-            is_member: false, // Default to non-member
+            is_member: false,
           },
         ]);
         if (error) {
@@ -68,19 +69,19 @@ export default function App() {
     }
   };
 
-  async function getUserProfile(_id: string) {
+  async function getUserProfile(_userId: string) {  // Renamed param for clarity
     try {
       setLoading(true);
       const { data, error } = await supabase
         .from("members")
-        .select("id, name, updated_at, email, profile_picture")
-        .eq("id", _id)
+        .select("id, name, updated_at, email, profile_picture, user_id")  // Add user_id
+        .eq("user_id", _userId)  // <-- Changed from .eq("id", _userId)
         .single();
-
+  
       if (error) throw error;
       if (data) {
         setUser({
-          id: _id,
+          id: data.id,  // This is the member table ID
           name: data.name,
           updated_at: new Date(data.updated_at).toISOString(),
           email: data.email,

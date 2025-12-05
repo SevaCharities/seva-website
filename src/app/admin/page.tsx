@@ -46,6 +46,19 @@ export default function AdminPage() {
     member.name.toLowerCase().includes(memberSearchTerm.toLowerCase())
   );
 
+  // Notification state variables.
+  const [notificationTitle, setNotificationTitle] = useState<string>("");
+  const [notificationMessage, setNotificationMessage] = useState<string>("");
+  const [notificationLink, setNotificationLink] = useState<string>("");
+  const [selectedNotificationMembers, setSelectedNotificationMembers] = useState<string[]>([]);
+  const [sendingNotification, setSendingNotification] = useState(false);
+  const [notificationSearchTerm, setNotificationSearchTerm] = useState<string>("");
+
+  // Filter members for notification.
+  const filteredNotificationMembers = members.filter((member) =>
+    member.name.toLowerCase().includes(notificationSearchTerm.toLowerCase())
+  );
+
   async function fetchActivities() {
     try {
       const response = await fetch("/api/activities");
@@ -104,7 +117,7 @@ export default function AdminPage() {
       // Fetch members
       const { data: membersData, error: membersError } = await supabase
         .from("members")
-        .select("id, name, email, badge_info, is_member");
+        .select("id, name, email, user_id, badge_info, is_member");
 
       if (membersError) throw membersError;
       setMembers(membersData || []);
@@ -387,6 +400,99 @@ export default function AdminPage() {
       toast.error("Failed to update check-in status");
     } finally {
       setToggleLoading(false);
+    }
+  }
+
+  // Send notifications function.
+  async function sendNotification() {
+    if (selectedNotificationMembers.length == 0) {
+      toast.error("Please select at least one member");
+      return;
+    }
+    if (notificationTitle.length == 0 || notificationMessage.length == 0) {
+      toast.error("Please fill in title and message");
+      return;
+    }
+    setSendingNotification(true);
+    try {
+      let successCount = 0;
+      let errorCount = 0;
+
+      // Loop through each selected member.
+      for (const memberId of selectedNotificationMembers) {
+        try {
+          // Find the member in the already-loaded members array
+          const member = members.find(m => m.id === memberId);
+          
+          if (!member) {
+            errorCount++;
+            continue;
+          }
+
+          // Get the user id for this member from Supabase (no need to go into
+          // Notifications.tsx as we can get from database and Notifications.tsx will
+          // fetch the notifications from Supabase after we send it from here and will
+          // show up in the bell dropdown).
+
+          // Get member's user_id from members table
+          const { data: memberData, error: memberError } = await supabase
+            .from("members")
+            .select("user_id")
+            .eq("id", memberId)
+            .single();
+
+          if (memberError || !memberData || !memberData.user_id) {
+            console.error("Could not find user_id for member:", member.name);
+            errorCount++;
+            continue;
+          }
+
+          // Insert notification for this user
+          const { error: insertError } = await supabase
+            .from("notifications")
+            .insert({
+              user_id: memberData.user_id,  // <-- Changed from userData.id
+              title: notificationTitle,
+              message: notificationMessage,
+              link: notificationLink || null,
+              read: false,
+              timestamp: new Date().toISOString()
+            });
+                      
+          if (insertError) {
+            console.error("Insert error:", insertError);
+            errorCount++;
+          } else {
+            successCount++;
+          }
+        } catch (err) {
+          console.error("Error processing member:", err);
+          errorCount++;
+        }
+      }
+
+      // Show results
+      if (successCount > 0) {
+        toast.success(`Notification sent to ${successCount} member${successCount > 1 ? 's' : ''}`);
+      }
+      if (errorCount > 0) {
+        toast.error(`Failed to send to ${errorCount} member${errorCount > 1 ? 's' : ''}`)
+      }
+
+      // Reset form on success
+      if (successCount > 0) {
+        setNotificationTitle("");
+        setNotificationMessage("");
+        setNotificationLink("");
+        setSelectedNotificationMembers([]);
+        setNotificationSearchTerm("");
+      }
+
+    } catch (error) {
+      console.error("Error sending notification", error);
+      toast.error("Failed to send notification");
+    } finally {
+      setSendingNotification(false);
     }
   }
 
@@ -904,6 +1010,176 @@ export default function AdminPage() {
           className="w-full py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition-colors disabled:bg-orange-300 disabled:cursor-not-allowed"
         >
           {assignLoading ? "Assigning..." : "Assign Badge to Selected Members"}
+        </button>
+      </div>
+
+      {/* Send Notification Section */}
+      <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+        <h2 className="text-xl font-semibold mb-4">Send Notification to Members</h2>
+
+        {/* Member Search */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Search Members
+          </label>
+          <div className="relative">
+            <input
+              type="text"
+              value={notificationSearchTerm}
+              onChange={(e) => setNotificationSearchTerm(e.target.value)}
+              className="w-full p-2 pl-3 pr-10 border rounded-md"
+              placeholder="Search by name or email"
+            />
+            {notificationSearchTerm && (
+              <button
+                onClick={() => setNotificationSearchTerm("")}
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                aria-label="Clear search"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+          {notificationSearchTerm && (
+            <p className="text-xs text-gray-500 mt-1">
+              Showing {filteredNotificationMembers.length} of {members.length} members
+            </p>
+          )}
+        </div>
+
+        {/* Member Selection */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Select Members
+          </label>
+          
+          <div className="flex gap-2 mb-2">
+            <button
+              onClick={() => setSelectedNotificationMembers(filteredNotificationMembers.map(m => m.id))}
+              className="text-xs py-1 px-2 bg-blue-100 text-blue-700 rounded hover:bg-blue-200"
+            >
+              Select All Filtered
+            </button>
+            
+            <button
+              onClick={() => setSelectedNotificationMembers([])}
+              className="text-xs py-1 px-2 bg-gray-100 text-gray-700 rounded hover:bg-gray-200"
+            >
+              Clear
+            </button>
+          </div>
+
+          <div className="max-h-64 overflow-y-auto border rounded-md p-2">
+            {filteredNotificationMembers.map((member) => (
+              <div key={member.id} className="flex items-center py-1 hover:bg-gray-50">
+                <input
+                  type="checkbox"
+                  id={`notif-member-${member.id}`}
+                  checked={selectedNotificationMembers.includes(member.id)}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      setSelectedNotificationMembers([...selectedNotificationMembers, member.id]);
+                    } else {
+                      setSelectedNotificationMembers(
+                        selectedNotificationMembers.filter(id => id !== member.id)
+                      );
+                    }
+                  }}
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 rounded"
+                />
+                <label htmlFor={`notif-member-${member.id}`} className="ml-2 block text-sm text-gray-900 cursor-pointer">
+                  {member.name} ({member.email})
+                </label>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-sm text-gray-500 mt-1">
+            {selectedNotificationMembers.length} member{selectedNotificationMembers.length !== 1 ? "s" : ""} selected
+            {notificationSearchTerm && filteredNotificationMembers.length !== members.length && (
+              <span>
+                {" "}
+                (filtering {filteredNotificationMembers.length} of {members.length} members)
+              </span>
+            )}
+          </p>
+        </div>
+
+        {/* Notification Form */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Title *
+          </label>
+          <input
+            type="text"
+            value={notificationTitle}
+            onChange={(e) => setNotificationTitle(e.target.value)}
+            className="w-full p-2 border rounded-md"
+            placeholder="e.g. Upcoming Event Reminder"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Message *
+          </label>
+          <textarea
+            value={notificationMessage}
+            onChange={(e) => setNotificationMessage(e.target.value)}
+            className="w-full p-2 border rounded-md"
+            placeholder="Enter your notification message here..."
+            rows={4}
+          />
+        </div>
+
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Link (optional)
+          </label>
+          <input
+            type="text"
+            value={notificationLink}
+            onChange={(e) => setNotificationLink(e.target.value)}
+            className="w-full p-2 border rounded-md"
+            placeholder="https://sevacharities.com/events"
+          />
+        </div>
+
+        {/* Preview Section */}
+        {(notificationTitle || notificationMessage) && (
+          <div className="mb-6 p-4 bg-gray-50 rounded-lg border">
+            <h4 className="text-sm font-medium mb-3 text-gray-700">
+              Preview (How it will appear in notifications)
+            </h4>
+            <div className="bg-white p-3 rounded-md shadow-sm border border-gray-200">
+              <h6 className="font-medium text-gray-900 text-sm">
+                {notificationTitle || "Notification Title"}
+              </h6>
+              <p className="text-xs text-gray-600 mt-0.5">
+                {notificationMessage || "Notification message will appear here"}
+              </p>
+              {notificationLink && (
+                <p className="text-xs text-blue-500 mt-1 flex items-center gap-1">
+                  🔗 Link attached
+                </p>
+              )}
+              <p className="text-[10px] text-gray-400 mt-1">
+                Just now
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Send Button */}
+        <button
+          onClick={sendNotification}
+          disabled={sendingNotification}
+          className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors disabled:bg-blue-300 disabled:cursor-not-allowed"
+        >
+          {sendingNotification 
+            ? "Sending..." 
+            : `Send Notification to ${selectedNotificationMembers.length} Member${selectedNotificationMembers.length !== 1 ? "s" : ""}`
+          }
         </button>
       </div>
 

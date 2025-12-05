@@ -19,7 +19,7 @@ export default function Notifications() {
     const [isOpen, setIsOpen] = useState(false);
     const [notifications, setNotifications] = useState<NotificationsProps[]>([]);
     const [unreadCount, setUnreadCount] = useState(0);
-    const [isMember, setIsMember] = useState(false);
+    const [isMember, setIsMember] = useState<boolean | null>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     // ON MOUNT: Fetch user member status (similar to Navbar pattern)
@@ -72,6 +72,8 @@ export default function Notifications() {
                 } = await supabase.auth.getSession();
 
                 const userId = session?.user?.id;
+                console.log("🔍 YOUR USER ID:", userId); // <-- ADD THIS
+
                 if (!userId) {
                     return;
                 }
@@ -157,8 +159,8 @@ export default function Notifications() {
     };
 
     // Add this early return
-    if (!isMember) {
-        return null; // Don't render anything if not a member
+    if (isMember === null || !isMember) {
+        return null; // Don't render anything if not a member.
     }
 
     return (

@@ -110,7 +110,7 @@ export default function Navbar() {
             </div>
           </Link>
           <div className="flex items-center gap-4">
-            {/* <Notifications /> */}
+            <Notifications />
             <button className="cursor-pointer " onClick={() => setShowScreen(!showScreen)}>
               <List size={32} color="white" weight="bold" />
             </button>

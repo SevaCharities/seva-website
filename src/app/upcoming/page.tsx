@@ -11,42 +11,17 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "Chai Tabling ☕",
+    title: "Christmas Warehouse Phil 🎁",
     category: 1,
-    date: ["Mon, Nov 17 - Thu, Nov 20", "Speedway", "10 A.M. - 4 P.M."],
-    description: "Sign up for chai tabling! Enjoy some hot chai and help serve on Speedway!",
-    link: ["https://docs.google.com/spreadsheets/d/10o0gUBjUIG63hPGec5VfBLiouhg3-LYqDz4Xzxvbmxc/edit?usp=sharing", true],
-  },
-  {
-    title: "GM 6 / Potluck 🤝",
-    category: 2,
-    date: ["Mon, Nov 17", "UTC 1.102", "6:30 P.M. - 8 P.M."],
-    description: "Join us for our GM and Thanksgiving Potluck! Bring anything y'all want and have a good time eating good food!",
-    link: ["https://docs.google.com/spreadsheets/d/13coaUFY1_5m3a3XvR_oxH0HGzYoCwFW9r0cJ1gtr0k4/edit?usp=sharing", true],
-  },
-  {
-    title: "Panda Express Profit Share 🐼",
-    category: 3,
-    date: ["Mon, Nov 17", "Panda Express at the Union", "All Day!"],
-    description: "Come help raise money for Seva and Panda Express by attending our profit share at the Union! We will also be heading there after GM, so pull up with us after GM! ",
-  },
-  {
-    title: "GM 7 🤝",
-    category: 4,
-    date: ["Mon, Dec 1", "UTC 1.102", "6:30 P.M. - 8 P.M."],
-    description: "Join us for the 7th general meeting of the year!",
-  },
-  {
-    title: "Gift Wrapping with Salvation Army 🎁",
-    category: 5,
-    date: ["Sat, Dec 6", "Location: TBD", "9 A.M. - 12 P.M."],
-    description: "We will be gift wrapping with the Salvation Army, details TBD.",
+    date: ["Sat, Dec 6", "Christmas Cheer Warehouse, 6510 S. Congress Ave", "9 A.M. - 12 P.M."],
+    description: "We’ll be volunteering with the Salvation Army to get their Angel Tree Christmas Warehouse ready for families in need. Tasks include unpacking and organizing toys, sorting clothing, decorating the warehouse, setting up shelves, and helping fulfill children’s holiday wishes.",
+    link: ["https://docs.google.com/forms/d/e/1FAIpQLScPB6SFjTv8gwKfO3Z6m5H60zV37_yz5r6EAD4sfaZ0e0gXGQ/viewform?usp=dialog", true],
   },
   {
     title: "Boat Formal 🛥️",
     category: 8,
-    date: ["Tues, Dec 9", "Location: TBD", "Time: TBD"],
-    description: "Join us for our annual Seva boat formal! More details will be revealed soon.",
+    date: ["Tues, Dec 9", "Goldsmith Hall (photoshoot) and Lady Bird Lake (boat)", "4:30 P.M. - 9 P.M."],
+    description: "Join us for our annual Seva boat formal! Details will be sent out to those invited (get more Seva points by being more involved to attend!).",
   },
 ];
 

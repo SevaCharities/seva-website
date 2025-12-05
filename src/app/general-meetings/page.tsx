@@ -32,11 +32,23 @@ const GMInfo: GMProps[] = [
       "https://drive.google.com/file/d/1Ylta4HVkhpOzK23NsmpFRSsl5JaFlX7_/view?usp=sharing",
     date: ["Mon, Oct 20", "10/20/25", "6:30 P.M. - 8 P.M."],
   },
-    {
+  {
     meeting: 5,
     slides:
       "https://drive.google.com/file/d/1v5HXrU34Xz9wtPIKJer_ald3s6J-CTjA/view?usp=sharing",
     date: ["Mon, Nov 3", "11/3/25", "6:30 P.M. - 8 P.M."],
+  },
+  {
+    meeting: 6,
+    slides:
+      "https://drive.google.com/file/d/1bsY6UrbVaHaRXGQJH6TfTZAWQxlZ7I-w/view?usp=sharing",
+    date: ["Mon, Nov 17", "11/17/25", "6:30 P.M. - 8 P.M."],
+  },
+  {
+    meeting: 7,
+    slides:
+      "https://drive.google.com/file/d/1FGtGgWlP6lJPQOZm6q3ewR2TvKVwtrbf/view?usp=sharing",
+    date: ["Mon, Dec 1", "12/1/25", "6:30 P.M. - 8 P.M."],
   },
   ];
   
