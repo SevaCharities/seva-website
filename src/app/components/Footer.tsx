@@ -139,7 +139,46 @@ export default function Footer(): JSX.Element {
           </div>
         </div>
 
-        <div className="mt-12">
+        <Link href="/merch" className="w-full max-w-4xl">
+          <div
+            className="
+              group bg-white border border-gray-200 rounded-2xl p-6
+              shadow-sm hover:shadow-md transition-shadow
+              grid grid-cols-1 md:grid-cols-[320px_1fr]
+              items-center gap-6 md:gap-10 mt-3
+            "
+          >
+            <div className="flex justify-center md:justify-start">
+              <div className="relative w-64 h-64 md:w-72 md:h-72 rounded-2xl bg-gray-50 overflow-hidden">
+                <Image
+                  src="/merch/seva_25-26_front.png"
+                  alt="Seva Merch"
+                  fill
+                  className="object-contain p-4 group-hover:scale-[1.03] transition-transform"
+                  sizes="(max-width: 768px) 256px, 288px"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col w-full items-center md:items-start text-center md:text-left gap-4">
+              <h4 className="text-xl md:text-2xl font-semibold text-gray-900 leading-snug w-full">
+                Support our mission with official Seva merch!
+              </h4>
+
+              <div className="flex w-full flex-wrap items-center justify-center md:justify-start gap-3">
+                <span className="inline-block bg-green-500 group-hover:bg-green-400 text-white font-semibold py-2.5 px-5 rounded-xl border-b-4 border-green-700 group-hover:border-green-500 transition-transform group-active:scale-95">
+                  Shop Merch 🛍️
+                </span>
+
+                <span className="text-sm text-gray-500">
+                  Tees • Quarter Zips • Stickers
+                </span>
+              </div>
+            </div>
+          </div>
+        </Link>
+
+        <div id="faq" className="scroll-mt-28 -mt-8">
           <FAQ />
         </div>
 

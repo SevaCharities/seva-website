@@ -456,7 +456,7 @@ export default function AdminPage() {
               message: notificationMessage,
               link: notificationLink || null,
               read: false,
-              timestamp: new Date().toISOString()
+              created_at: new Date().toISOString()
             });
                       
           if (insertError) {

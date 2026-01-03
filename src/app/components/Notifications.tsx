@@ -9,7 +9,7 @@ import { Url } from "next/dist/shared/lib/router/router";
 export type NotificationsProps = {
     id: string;
     title: string;
-    timestamp: Date;
+    created_at: Date; // Changed from timestamp to created_at
     message: string;
     read: boolean;
     link?: Url;
@@ -72,7 +72,7 @@ export default function Notifications() {
                 } = await supabase.auth.getSession();
 
                 const userId = session?.user?.id;
-                console.log("🔍 YOUR USER ID:", userId); // <-- ADD THIS
+                console.log("🔍 YOUR USER ID:", userId);
 
                 if (!userId) {
                     return;
@@ -82,7 +82,13 @@ export default function Notifications() {
                     .from("notifications")
                     .select("*")
                     .eq("user_id", userId)
-                    .order("timestamp", { ascending: false });
+                    .order("created_at", { ascending: false }); // Changed from timestamp to created_at
+                
+                if (error) {
+                    console.error("Error fetching notifications:", error);
+                    return;
+                }
+                
                 if (data) {
                     setNotifications(data);
                     setUnreadCount(data.filter(n => !n.read).length);
@@ -143,19 +149,25 @@ export default function Notifications() {
         }
     };
 
-    const formatTimestamp = (timestamp: Date) => {
+    const formatTimestamp = (timestamp: Date | string) => {
         const now = new Date();
         const then = new Date(timestamp);
-        const diff = now.getTime() - then.getTime();
-        const minutes = Math.floor(diff / 60000);
-        const hours = Math.floor(diff / 3600000);
-        const days = Math.floor(diff / 86400000);
         
-        if (minutes < 1) return "Just now";
-        if (minutes < 60) return `${minutes}m ago`;
-        if (hours < 24) return `${hours}h ago`;
-        if (days < 7) return `${days}d ago`;
-        return then.toLocaleDateString();
+        const diffMs = now.getTime() - then.getTime();
+        const diffMinutes = Math.floor(diffMs / (1000 * 60));
+        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        
+        if (diffMinutes < 1) return "Just now";
+        if (diffMinutes < 60) return `${diffMinutes}m ago`;
+        if (diffHours < 24) return `${diffHours}h ago`;
+        if (diffDays < 7) return `${diffDays}d ago`;
+        
+        return then.toLocaleDateString('en-US', {
+          month: 'numeric',
+          day: 'numeric',
+          year: 'numeric'
+        });
     };
 
     // Add this early return
@@ -195,7 +207,7 @@ export default function Notifications() {
                                                 <h6 className="font-medium text-gray-900 text-sm">{notif.title}</h6>
                                                 <p className="text-xs text-gray-600 mt-0.5">{notif.message}</p>
                                                 <p className="text-[10px] text-gray-400 mt-1">
-                                                    {formatTimestamp(notif.timestamp)}
+                                                    {formatTimestamp(notif.created_at)}
                                                 </p>
                                             </div>
                                         </Link>
@@ -204,7 +216,7 @@ export default function Notifications() {
                                             <h6 className="font-medium text-gray-900 text-sm">{notif.title}</h6>
                                             <p className="text-xs text-gray-600 mt-0.5">{notif.message}</p>
                                             <p className="text-[10px] text-gray-400 mt-1">
-                                                {formatTimestamp(notif.timestamp)}
+                                                {formatTimestamp(notif.created_at)}
                                             </p>
                                         </div>
                                     )}
