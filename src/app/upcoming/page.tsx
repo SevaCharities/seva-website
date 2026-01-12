@@ -11,17 +11,22 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "Christmas Warehouse Phil 🎁",
+    title: "Seva Tabling",
     category: 1,
-    date: ["Sat, Dec 6", "Christmas Cheer Warehouse, 6510 S. Congress Ave", "9 A.M. - 12 P.M."],
-    description: "We’ll be volunteering with the Salvation Army to get their Angel Tree Christmas Warehouse ready for families in need. Tasks include unpacking and organizing toys, sorting clothing, decorating the warehouse, setting up shelves, and helping fulfill children’s holiday wishes.",
-    link: ["https://docs.google.com/forms/d/e/1FAIpQLScPB6SFjTv8gwKfO3Z6m5H60zV37_yz5r6EAD4sfaZ0e0gXGQ/viewform?usp=dialog", true],
+    date: ["Tue, Jan 13", "Speedway", "9:30 A.M. - 4 P.M."],
+    description: "We'll be tabling on Speedway for spring recruitment! Join us for more information on Seva Charities and our cause!",
   },
   {
-    title: "Boat Formal 🛥️",
-    category: 8,
-    date: ["Tues, Dec 9", "Goldsmith Hall (photoshoot) and Lady Bird Lake (boat)", "4:30 P.M. - 9 P.M."],
-    description: "Join us for our annual Seva boat formal! Details will be sent out to those invited (get more Seva points by being more involved to attend!).",
+    title: "Info Session",
+    category: 2,
+    date: ["Tue, Jan 20", "UTC 1.102", "6:30 P.M. - 8 P.M."],
+    description: "Join us for our spring info session and learn more about Seva and our philanthropic mission! Also, we will be releasing applications to become a chair on our board and make a bigger impact at Seva!",
+  },
+  {
+    title: "Recruitment Phil",
+    category: 3,
+    date: ["Tue, Jan 20", "Location: TBD", "Time: TBD"],
+    description: "Our first phil of the semester!",
   },
 ];
 
