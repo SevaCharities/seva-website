@@ -266,6 +266,8 @@ export default function AdminPage() {
     let alreadyAssignedCount = 0;
     let errorCount = 0;
 
+    const badge = badges.find(b => b.id === badgeId);
+
     try {
       // Process each selected member
       for (const memberId of selectedMembers) {
@@ -273,7 +275,7 @@ export default function AdminPage() {
           // Get current badge_ids
           const { data: memberData, error: memberError } = await supabase
             .from("members")
-            .select("badge_info")
+            .select("badge_info, user_id")
             .eq("id", memberId)
             .single();
 
@@ -309,6 +311,24 @@ export default function AdminPage() {
             errorCount++;
           } else {
             successCount++;
+
+            // Send notification after successful badge assignment
+            if (memberData.user_id && badge) {
+              const { error: notifError } = await supabase
+                .from("notifications")
+                .insert({
+                  user_id: memberData.user_id,
+                  title: `New Badge Earned! ${badge.emoji}`,
+                  message: `You've been awarded the "${badge.name}" badge. Check your profile to open the chest!`,
+                  link: "/profile",
+                  read: false,
+                  created_at: new Date().toISOString()
+                });
+              
+              if (notifError) {
+                console.error("Failed to send notification:", notifError);
+              }
+            }
           }
         } catch (err) {
           errorCount++;

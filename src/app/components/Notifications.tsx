@@ -324,6 +324,9 @@ export default function Notifications() {
                               )}
                             </div>
                             <p className="text-xs text-gray-600 mt-0.5">{notif.message}</p>
+                            <span className="inline-flex items-center mt-2 text-[11px] font-semibold text-blue-700 bg-blue-100 px-2 py-1 rounded-full group-hover:bg-blue-200">
+                                View Details &lt;-
+                            </span>
                             <p className="text-[10px] text-gray-400 mt-1">{formatTimestamp(notif.created_at)}</p>
                           </div>
                         </Link>
