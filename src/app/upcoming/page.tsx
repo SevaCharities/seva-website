@@ -11,26 +11,20 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "Board Game Night",
-    category: 1,
-    date: ["Thu, Jan 22", "Lark Lounge", "6:30 P.M. - 8:30 P.M."],
-    description: "Our first social of the semester! Join us for some fun and competitive board games to start off the semester!",
-  },
-  {
-    title: "GM #9 (+ Chair Apps)",
-    category: 2,
-    date: ["Mon, Jan 26", "UTC 1.102", "6:30 P.M. - 8 P.M."],
-    description: "Join us for GM #9! We will have already released applications to become a chair on our board and make a bigger impact at Seva!",
-  },
-  {
     title: "Coffee Chat + Gong Cha Profit Share",
-    category: 3,
+    category: 1,
     date: ["Wed, Jan 28", "Gong Cha @ Target on Guad", "5 P.M. - 7 P.M."],
     description: "Join us for a coffee chat at Gong Cha to learn more about our chair position! Also, we will be having a profit share there anyway, so show up to support Seva!",
   },
   {
+    title: "Despicable Baking Show",
+    category: 2,
+    date: ["Thu, Jan 29", "Lark Lounge", "7 P.M. - 8:30 P.M."],
+    description: "Join us with your circle for our baking competition! Bake with your circle members and come with your dish to see who wins the great bake-off!",
+  },
+  {
     title: "Recruitment Party",
-    category: 4,
+    category: 3,
     date: ["Sat, Feb 7", "Block on 25th Rooftop", "10 P.M. - 2 A.M."],
     description: "Get hype for SEVA's first party of the year!! The pricing is free for members, $8 for non-members,  and there must be a SEPARATE form filled out for every ticket you purchase.",
     link: ["https://docs.google.com/forms/d/e/1FAIpQLSc3a6qJzCqx9ecEYq5m6gFA8Bp9IbLbVV2d4Q1F9fLGwFjdNQ/viewform?usp=dialog", true],

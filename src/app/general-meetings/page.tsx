@@ -9,10 +9,10 @@ export type GMProps = {
 
 const GMInfo: GMProps[] = [
   {
-    meeting: 7,
+    meeting: 1,
     slides:
-      "https://drive.google.com/file/d/1FGtGgWlP6lJPQOZm6q3ewR2TvKVwtrbf/view?usp=sharing",
-    date: ["Mon, Dec 1", "12/1/25", "6:30 P.M. - 8 P.M."],
+      "https://www.canva.com/design/DAG_GNNqXp8/mABi6lzMRMVqHbUvqF9XiA/view?utm_content=DAG_GNNqXp8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8906b2f519",
+    date: ["Mon, Jan 26", "1/26/26", "6:30 P.M. - 8 P.M."],
   },
   ];
   
