@@ -14,6 +14,12 @@ const GMInfo: GMProps[] = [
       "https://www.canva.com/design/DAG_GNNqXp8/mABi6lzMRMVqHbUvqF9XiA/view?utm_content=DAG_GNNqXp8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8906b2f519",
     date: ["Mon, Jan 26", "1/26/26", "6:30 P.M. - 8 P.M."],
   },
+  {
+    meeting: 2,
+    slides:
+      "https://drive.google.com/file/d/1wluNeZY9b5rH9Wh6VIilfLeIV6633nF1/view?usp=sharing",
+    date: ["Mon, Feb 9", "2/9/26", "6:30 P.M. - 8 P.M."],
+  },
   ];
   
   const Page = () => {

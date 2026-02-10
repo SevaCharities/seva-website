@@ -11,23 +11,18 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "Coffee Chat + Gong Cha Profit Share",
+    title: "Potatogram Tabling",
     category: 1,
-    date: ["Wed, Jan 28", "Gong Cha @ Target on Guad", "5 P.M. - 7 P.M."],
-    description: "Join us for a coffee chat at Gong Cha to learn more about our chair position! Also, we will be having a profit share there anyway, so show up to support Seva!",
+    date: ["Tue, Feb 10", "Speedway", "10 A.M. - 4 P.M."],
+    description: "It's Valentine's Season! Fill out this form to send a potato to that special partner, friend or roommate!",
+    link: ["https://docs.google.com/forms/d/e/1FAIpQLSci3HChPL-BD0IR1sEv5o_RETLO9rMOWwOgTKGFW2muxB1m5A/viewform?usp=header", true],
   },
   {
-    title: "Despicable Baking Show",
+    title: "Austin Marathon Phil",
     category: 2,
-    date: ["Thu, Jan 29", "Lark Lounge", "7 P.M. - 8:30 P.M."],
-    description: "Join us with your circle for our baking competition! Bake with your circle members and come with your dish to see who wins the great bake-off!",
-  },
-  {
-    title: "Recruitment Party",
-    category: 3,
-    date: ["Sat, Feb 7", "Block on 25th Rooftop", "10 P.M. - 2 A.M."],
-    description: "Get hype for SEVA's first party of the year!! The pricing is free for members, $8 for non-members,  and there must be a SEPARATE form filled out for every ticket you purchase.",
-    link: ["https://docs.google.com/forms/d/e/1FAIpQLSc3a6qJzCqx9ecEYq5m6gFA8Bp9IbLbVV2d4Q1F9fLGwFjdNQ/viewform?usp=dialog", true],
+    date: ["Sun, Feb 15", "Mile 23 Station", "7:30 A.M. - 2 P.M."],
+    description: "Seva is an official partner of the Austin Marathon this year! This is our biggest philanthropy event of the year, and we’ll be volunteering alongside orgs like Texas Thon, SEEK, and The Collective.",
+    link: ["https://docs.google.com/forms/d/e/1FAIpQLSfHLVZxBbxDiymEVhu8wTQ604wm2kV8KlO1j7PqhZRL3bqsCg/viewform?usp=header", true],
   },
 ];
 
