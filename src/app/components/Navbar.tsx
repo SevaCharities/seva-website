@@ -60,6 +60,7 @@ export default function Navbar() {
     { name: "officers" },
     { name: "general meetings" },
     { name: "upcoming" },
+    { name: "seva spotlight" },
     { name: "gallery" },
     { name: "seva history" },
     { name: "calendar" },
@@ -119,7 +120,7 @@ export default function Navbar() {
       </div>
 
       {showScreen && (
-        <div className="bg-orange-2 fixed inset-0 z-40 flex flex-col gap-2 justify-center items-center">
+        <div className="bg-orange-2 fixed inset-0 z-40 flex flex-col gap-1 justify-center items-center">
           {navLinks.map((link, index) => {
             return (
               <div key={index} className="flex flex-col items-center">
