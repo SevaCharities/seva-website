@@ -101,10 +101,10 @@ export default function SevaSpotlight() {
             </div>
             
             {/* Horizontal scrolling container for Instagram cards */}
-            <div className="flex overflow-x-auto gap-6 pb-8 px-4 snap-x snap-mandatory scroll-smooth">
+            <div className="flex overflow-x-auto gap-6 pb-8 px-4 snap-x snap-mandatory scroll-smooth items-stretch">
                 {instagramPosts.map((post) => (
-                    <div className="snap-center">
-                        <Card key={post.id} {...post} />
+                    <div key={post.id} className="snap-center">
+                        <Card {...post} />
                     </div>
                 ))}
             </div>
