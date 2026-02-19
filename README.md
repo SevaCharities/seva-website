@@ -39,14 +39,18 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 Clone the repo:
 
+```bash
 git clone https://github.com/SevaCharities/seva-website.git
 cd seva-website
+```
 
 Grab all branches and switch to yours:
 
+```bash
 git fetch origin
 git checkout visvesh
 git pull
+```
 
 After this, you should always see you're on visvesh when you run:
 
@@ -56,17 +60,21 @@ git branch
 
 Whenever you’re working, make your changes, stage them (. for all files or just whichever file u worked on is good), commit, push:
 
+```bash
 git add .
 git commit -m "Short description of what you did"
 git push
+```
 
 That’s it. Everything stays on your branch.
 
 When you’re ready for review when a feature or fix is done, go to the repo on GitHub, and click “Compare & pull request”. 
 Make sure it says:
 
+```bash
 base: master
 compare: visvesh
+```
 
 Add a quick summary of what you did, open the PR, and I’ll review it and merge it if everything looks good.
 Pretty chill, just don’t work on master, and stay on the visvesh branch so we can isolate work and I could review after pushes.
@@ -75,11 +83,13 @@ Pretty chill, just don’t work on master, and stay on the visvesh branch so we 
 
 If I merge something and you need the latest changes:
 
+```bash
 git checkout master
 git pull origin master
 
 git checkout visvesh
 git merge master
 git push
+```
 
 That keeps you in sync.
