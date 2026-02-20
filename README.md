@@ -54,7 +54,14 @@ git pull
 
 After this, you should always see you're on visvesh when you run:
 
+```bash
 git branch
+```
+Btw, you could run these commands to actually locally test
+```bash
+npm run build
+npm run dev
+```
 
 ## Your Normal Workflow
 
