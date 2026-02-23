@@ -10,6 +10,7 @@ function escapeHtml(input: string) {
     .replaceAll("'", "&#039;");
 }
 
+// Builds full link.
 function buildFullLink(siteUrl: string, link?: string) {
   if (!link) return undefined;
   if (link.startsWith("http")) return link;
