@@ -53,12 +53,44 @@ export default function AdminPage() {
   const [selectedNotificationMembers, setSelectedNotificationMembers] = useState<string[]>([]);
   const [sendingNotification, setSendingNotification] = useState(false);
   const [notificationSearchTerm, setNotificationSearchTerm] = useState<string>("");
+  const [sendEmailWithNotification, setSendEmailWithNotification] = useState(false);
 
   // Filter members for notification.
   const filteredNotificationMembers = members.filter((member) =>
     member.name.toLowerCase().includes(notificationSearchTerm.toLowerCase())
   );
 
+  async function sendNotificationEmail({
+    email,
+    subject,
+    message,
+    link,
+  }: {
+    email: string;
+    subject: string;
+    message: string;
+    link?: string;
+  }) {
+    try {
+      // Use relative URL to avoid CORS issues
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ to: email, subject, message, link }),
+      });
+  
+      if (!response.ok) {
+        console.error('Failed to send email:', await response.text());
+        return false;
+      }
+  
+      return true;
+    } catch (error) {
+      console.error('Email send error:', error);
+      return false;
+    }
+  }
+  
   async function fetchActivities() {
     try {
       const response = await fetch("/api/activities");
@@ -275,7 +307,7 @@ export default function AdminPage() {
           // Get current badge_ids
           const { data: memberData, error: memberError } = await supabase
             .from("members")
-            .select("badge_info, user_id")
+            .select("badge_info, user_id, email, name")
             .eq("id", memberId)
             .single();
 
@@ -322,11 +354,23 @@ export default function AdminPage() {
                   message: `You've been awarded the "${badge.name}" badge. Check your profile to open the chest!`,
                   link: "/profile",
                   read: false,
+                  priority: "medium",
+                  send_email: true,
                   created_at: new Date().toISOString()
                 });
               
               if (notifError) {
                 console.error("Failed to send notification:", notifError);
+              }
+
+              // Send notification email.
+              if (memberData.email) {
+                await sendNotificationEmail({
+                  email: memberData.email,
+                  subject: `You earned a new badge: ${badge.name}`,
+                  message: `Congratulations${memberData.name ? ', ' + memberData.name.split(' ')[0] : ''}! You've been awarded the "${badge.name}" badge. This recognizes your contribution to Seva Charities.`,
+                  link: '/profile' // Use relative link
+                });
               }
             }
           }
@@ -457,7 +501,7 @@ export default function AdminPage() {
           // Get member's user_id from members table
           const { data: memberData, error: memberError } = await supabase
             .from("members")
-            .select("user_id")
+            .select("user_id, email, name")
             .eq("id", memberId)
             .single();
 
@@ -476,6 +520,8 @@ export default function AdminPage() {
               message: notificationMessage,
               link: notificationLink || null,
               read: false,
+              priority: "medium",
+              send_email: sendEmailWithNotification, // Based on admin's choice.
               created_at: new Date().toISOString()
             });
                       
@@ -484,6 +530,16 @@ export default function AdminPage() {
             errorCount++;
           } else {
             successCount++;
+
+            // Send email if admin enabled it
+            if (sendEmailWithNotification && memberData.email) {
+              await sendNotificationEmail({
+                email: memberData.email,
+                subject: notificationTitle,
+                message: notificationMessage,
+                link: notificationLink || undefined // Just use the link as-is (relative or full URL)
+              });
+            }
           }
         } catch (err) {
           console.error("Error processing member:", err);
@@ -857,7 +913,7 @@ export default function AdminPage() {
         </button>
       </div>
 
-      {/* Current Badges Section */}
+      {/* Current Badges Section with DELETE button */}
       <div className="bg-white rounded-lg shadow-md p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4">Current Badges</h2>
 
@@ -872,8 +928,54 @@ export default function AdminPage() {
               {badges.map((badge: any) => (
                 <div
                   key={badge.id}
-                  className="border rounded-lg p-4 hover:shadow-md transition-shadow"
+                  className="border rounded-lg p-4 hover:shadow-md transition-shadow relative group"
                 >
+                  {/* Delete button - appears on hover */}
+                  <button
+                    onClick={async () => {
+                      if (window.confirm(`Are you sure you want to delete "${badge.name}"? This will remove it from all members who have it.`)) {
+                        try {
+                          const { error } = await supabase
+                            .from("badges")
+                            .delete()
+                            .eq("id", badge.id);
+
+                          if (error) throw error;
+
+                          // Also remove this badge from all members
+                          const { data: membersWithBadge } = await supabase
+                            .from("members")
+                            .select("id, badge_info")
+                            .not("badge_info", "is", null);
+
+                          if (membersWithBadge) {
+                            for (const member of membersWithBadge) {
+                              const updatedBadges = member.badge_info.filter(
+                                (b: BadgeInfo) => b.badge_id !== badge.id
+                              );
+                              await supabase
+                                .from("members")
+                                .update({ badge_info: updatedBadges })
+                                .eq("id", member.id);
+                            }
+                          }
+
+                          toast.success(`Badge "${badge.name}" deleted successfully`);
+                          await fetchData();
+                        } catch (error) {
+                          console.error("Error deleting badge:", error);
+                          toast.error("Failed to delete badge");
+                        }
+                      }
+                    }}
+                    className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-red-500 hover:bg-red-600 text-white p-2 rounded-full shadow-lg z-10"
+                    title="Delete badge"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                  </button>
+                  
                   <div className="flex items-center gap-4">
                     <div className="relative w-16 h-16 flex-shrink-0">
                       <Image
@@ -1031,6 +1133,199 @@ export default function AdminPage() {
         >
           {assignLoading ? "Assigning..." : "Assign Badge to Selected Members"}
         </button>
+        
+        {/* Info box about email notifications */}
+        <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-md">
+          <p className="text-xs text-blue-800">
+            📧 Members will receive both an in-app notification and an email when you assign a badge.
+          </p>
+        </div>
+      </div>
+
+      {/* Remove Badge from Members Section - NEW */}
+      <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+        <h2 className="text-xl font-semibold mb-4">Remove Badge from Members</h2>
+
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Select Badge to Remove
+          </label>
+          <select
+            className="w-full p-2 border rounded-md"
+            value={selectedBadge}
+            onChange={(e) => setSelectedBadge(e.target.value)}
+          >
+            <option value="">-- Select Badge --</option>
+            {badges.map((badge: any) => (
+              <option key={badge.id} value={badge.id}>
+                {badge.name} {badge.emoji}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {selectedBadge && (
+          <>
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Members who have this badge
+              </label>
+              <div className="max-h-64 overflow-y-auto border rounded-md p-2">
+                {members
+                  .filter((member) =>
+                    member.badge_info?.some(
+                      (b: BadgeInfo) => b.badge_id === parseInt(selectedBadge)
+                    )
+                  )
+                  .map((member) => (
+                    <div
+                      key={member.id}
+                      className="flex items-center py-1 hover:bg-gray-50"
+                    >
+                      <input
+                        type="checkbox"
+                        id={`remove-member-${member.id}`}
+                        checked={selectedMembers.includes(member.id)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setSelectedMembers([...selectedMembers, member.id]);
+                          } else {
+                            setSelectedMembers(
+                              selectedMembers.filter((id) => id !== member.id)
+                            );
+                          }
+                        }}
+                        className="h-4 w-4 text-red-600 focus:ring-red-500 rounded"
+                      />
+                      <label
+                        htmlFor={`remove-member-${member.id}`}
+                        className="ml-2 block text-sm text-gray-900 cursor-pointer"
+                      >
+                        {member.name} ({member.email})
+                      </label>
+                    </div>
+                  ))}
+                {members.filter((member) =>
+                  member.badge_info?.some(
+                    (b: BadgeInfo) => b.badge_id === parseInt(selectedBadge)
+                  )
+                ).length === 0 && (
+                  <p className="text-gray-500 italic text-sm p-2">
+                    No members have this badge
+                  </p>
+                )}
+              </div>
+              <div className="flex gap-2 mt-2">
+                <button
+                  onClick={() => {
+                    const membersWithBadge = members
+                      .filter((member) =>
+                        member.badge_info?.some(
+                          (b: BadgeInfo) => b.badge_id === parseInt(selectedBadge)
+                        )
+                      )
+                      .map((m) => m.id);
+                    setSelectedMembers(membersWithBadge);
+                  }}
+                  className="text-xs py-1 px-2 bg-red-100 text-red-700 rounded hover:bg-red-200"
+                >
+                  Select All
+                </button>
+                <button
+                  onClick={clearMemberSelection}
+                  className="text-xs py-1 px-2 bg-gray-100 text-gray-700 rounded hover:bg-gray-200"
+                >
+                  Clear
+                </button>
+              </div>
+              <p className="text-sm text-gray-500 mt-1">
+                {selectedMembers.length} member{selectedMembers.length !== 1 ? "s" : ""} selected for removal
+              </p>
+            </div>
+
+            <button
+              onClick={async () => {
+                if (selectedMembers.length === 0) {
+                  toast.error("Please select at least one member");
+                  return;
+                }
+
+                if (!window.confirm(`Remove this badge from ${selectedMembers.length} member${selectedMembers.length > 1 ? 's' : ''}?`)) {
+                  return;
+                }
+
+                setAssignLoading(true);
+                const badgeId = parseInt(selectedBadge);
+                let successCount = 0;
+                let errorCount = 0;
+
+                try {
+                  for (const memberId of selectedMembers) {
+                    try {
+                      const { data: memberData, error: memberError } = await supabase
+                        .from("members")
+                        .select("badge_info")
+                        .eq("id", memberId)
+                        .single();
+
+                      if (memberError) {
+                        errorCount++;
+                        continue;
+                      }
+
+                      // Remove the badge from the array
+                      const updatedBadges = (memberData.badge_info || []).filter(
+                        (b: BadgeInfo) => b.badge_id !== badgeId
+                      );
+
+                      const { error: updateError } = await supabase
+                        .from("members")
+                        .update({ badge_info: updatedBadges })
+                        .eq("id", memberId);
+
+                      if (updateError) {
+                        errorCount++;
+                      } else {
+                        successCount++;
+                      }
+                    } catch (err) {
+                      errorCount++;
+                    }
+                  }
+
+                  if (successCount > 0) {
+                    toast.success(
+                      `Badge removed from ${successCount} member${successCount > 1 ? "s" : ""}`
+                    );
+                  }
+                  if (errorCount > 0) {
+                    toast.error(
+                      `Failed to remove badge from ${errorCount} member${errorCount > 1 ? "s" : ""}`
+                    );
+                  }
+
+                  setSelectedMembers([]);
+                  await fetchData();
+                } catch (error) {
+                  console.error("Error removing badge:", error);
+                  toast.error("Failed to remove badge");
+                } finally {
+                  setAssignLoading(false);
+                }
+              }}
+              disabled={assignLoading || selectedMembers.length === 0}
+              className="w-full py-2 px-4 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors disabled:bg-red-300 disabled:cursor-not-allowed"
+            >
+              {assignLoading ? "Removing..." : `Remove Badge from ${selectedMembers.length} Member${selectedMembers.length !== 1 ? "s" : ""}`}
+            </button>
+          </>
+        )}
+
+        {!selectedBadge && (
+          <p className="text-gray-500 italic text-sm">
+            Select a badge to see members who have it
+          </p>
+        )}
       </div>
 
       {/* Send Notification Section */}
@@ -1164,7 +1459,22 @@ export default function AdminPage() {
             placeholder="https://sevacharities.com/events"
           />
         </div>
-
+        
+        {/* Email Toggle */}
+        <div className="mb-6">
+          <label className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border cursor-pointer hover:bg-gray-100 transition-colors">
+            <div>
+              <div className="font-medium text-gray-900">Also send as email</div>
+              <div className="text-sm text-gray-500">Members will receive this notification via email in addition to in-app</div>
+            </div>
+            <input 
+              type="checkbox" 
+              checked={sendEmailWithNotification}
+              onChange={(e) => setSendEmailWithNotification(e.target.checked)}
+              className="w-5 h-5 text-blue-600 focus:ring-blue-500 rounded"
+            />
+          </label>
+        </div>
         {/* Preview Section */}
         {(notificationTitle || notificationMessage) && (
           <div className="mb-6 p-4 bg-gray-50 rounded-lg border">
