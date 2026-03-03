@@ -11,19 +11,27 @@ export type UpcomingEventsProps = {
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
-    title: "Potatogram Tabling",
+    title: "Volleyball Social",
     category: 1,
-    date: ["Tue, Feb 10", "Speedway", "10 A.M. - 4 P.M."],
-    description: "It's Valentine's Season! Fill out this form to send a potato to that special partner, friend or roommate!",
-    link: ["https://docs.google.com/forms/d/e/1FAIpQLSci3HChPL-BD0IR1sEv5o_RETLO9rMOWwOgTKGFW2muxB1m5A/viewform?usp=header", true],
+    date: ["Wed, Mar 4", "Pease Park Volleyball Courts", "5:30 P.M. - 7 P.M."],
+    description: "Join us for a fun volleyball social at Pease Park! Whether you're a pro or just want to have fun, come out and play with us. All skill levels welcome!",
+    link: ["https://docs.google.com/forms/d/1XZoV2fY0J3uPo6N5Qaa9pON06k2sqk3gMr9KS2kvRK4/edit", true]
   },
   {
-    title: "Austin Marathon Phil",
+    title: "It's My Park Day Phil",
     category: 2,
-    date: ["Sun, Feb 15", "Mile 23 Station", "7:30 A.M. - 2 P.M."],
-    description: "Seva is an official partner of the Austin Marathon this year! This is our biggest philanthropy event of the year, and we’ll be volunteering alongside orgs like Texas Thon, SEEK, and The Collective.",
-    link: ["https://docs.google.com/forms/d/e/1FAIpQLSfHLVZxBbxDiymEVhu8wTQ604wm2kV8KlO1j7PqhZRL3bqsCg/viewform?usp=header", true],
+    date: ["Sat, Mar 7", "N Austin Community Garden/YMCA Pedestrian Walkway", "9 A.M. - 12 P.M."],
+    description: "Join us for the My Park Day Phil! We'll be helping to clean up the park and make it a better place for everyone. It's a great way to give back to the community and enjoy the outdoors!",
+    link: ["", false]
   },
+  {
+    title: "Seva Sips Pop-Up",
+    category: 3,
+    date: ["Sunday, Mar 8","Location Coming Soon", "10 A.M. - 2 P.M."],
+    description: "Join us for our Seva Sips Pop-Up! We'll be selling delicious food and drinks to raise money for Akshaya Patra. Bring your friends and enjoy some tasty treats while supporting a great cause!",
+    link: ["https://partiful.com/e/Q1tWijpbJP6pQlFurV95", true]
+  }
+
 ];
 
 const Page = () => {
