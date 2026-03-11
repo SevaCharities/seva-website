@@ -20,6 +20,18 @@ const GMInfo: GMProps[] = [
       "https://drive.google.com/file/d/1wluNeZY9b5rH9Wh6VIilfLeIV6633nF1/view?usp=sharing",
     date: ["Mon, Feb 9", "2/9/26", "6:30 P.M. - 8 P.M."],
   },
+  {
+    meeting: 3,
+    slides:
+      "https://drive.google.com/file/d/1nc_SCqQyR7CdT80ahhd_rcCfP-UvXYdc/view?usp=sharing",
+    date: ["Mon, Feb 23", "2/23/26", "6:30 P.M. - 8 P.M."],
+  },
+  {
+    meeting: 4,
+    slides:
+      "https://drive.google.com/file/d/10gigXZ-9rxNFopKr4YRQ_9Oky62vTgyF/view?usp=sharing",
+    date: ["Mon, Mar 9", "3/9/26", "6:30 P.M. - 8 P.M."],
+  },
   ];
   
   const Page = () => {
