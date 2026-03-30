@@ -32,6 +32,12 @@ const GMInfo: GMProps[] = [
       "https://drive.google.com/file/d/10gigXZ-9rxNFopKr4YRQ_9Oky62vTgyF/view?usp=sharing",
     date: ["Mon, Mar 9", "3/9/26", "6:30 P.M. - 8 P.M."],
   },
+  {
+    meeting: 5,
+    slides:
+      "https://drive.google.com/file/d/1qo27uNeMMaVCQ-4IPZBIvzBAgM-WBWuH/view?usp=sharing",
+    date: ["Mon, Mar 23", "3/23/26", "6:30 P.M. - 8 P.M."],
+  },
   ];
   
   const Page = () => {

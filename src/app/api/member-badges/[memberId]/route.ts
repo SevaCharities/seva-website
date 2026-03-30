@@ -4,14 +4,15 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
-  { params }: { params: { memberId: string } }
+  { params }: { params: Promise<{ memberId: string }> }
 ) {
+  const { memberId } = await params; 
   try {
     // Step 1: Get the member's badge_info array
     const { data: memberData, error: memberError } = await supabase
       .from("members")
       .select("badge_info")
-      .eq("id", params.memberId)
+      .eq("id", memberId)
       .single();
 
     if (memberError) {
@@ -63,8 +64,9 @@ export async function GET(
 
 export async function POST(
   request: Request,
-  { params }: { params: { memberId: string } }
+  { params }: { params: Promise<{ memberId: string }> }
 ) {
+  const { memberId } = await params;
   try {
     const { badge_id } = await request.json();
 
@@ -72,7 +74,7 @@ export async function POST(
     const { data: memberData, error: memberError } = await supabase
       .from("members")
       .select("badge_info")
-      .eq("id", params.memberId)
+      .eq("id", memberId)
       .single();
 
     if (memberError) {
@@ -91,7 +93,7 @@ export async function POST(
     const { error: updateError } = await supabase
       .from("members")
       .update({ badge_info: updatedBadgeInfo })
-      .eq("id", params.memberId);
+      .eq("id", memberId);
 
     if (updateError) {
       console.error("Error updating badge status:", updateError);
