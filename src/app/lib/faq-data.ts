@@ -19,7 +19,7 @@ export const faqData: FAQItem[] = [
     {
       id: "2",
       question: "Where can I find more information about all our events?",
-      answer: "Our General Meetings and GroupMe are the best places to learn about and sign up for upcoming events and socials. You should also check out our Upcoming page and follow us on Instagram. Events in Seva specifically refers to special events (Larger scale, Ex. Saanj, Seva Sips, Lakehouse, Boat Formal). Other 'events' are more like philanthrophy events to make an impact around Austin, or our engagement events which are socials and parties. GM's are not events, but rather biweekly meetings",
+      answer: "Our General Meetings and GroupMe are the best places to learn about and sign up for upcoming events and socials. You should also check out our Upcoming page on the website and follow us on Instagram. Events in Seva specifically refers to special events (Larger scale, Ex. Saanj, Seva Sips, Lakehouse, Boat Formal). Other 'events' are more like philanthrophy events to make an impact around Austin, or our engagement events which are socials and parties. GM's are not events, but rather biweekly meetings",
       category: "events",
       keywords: ["events", "information", "schedule", "upcoming"],
       links: [
@@ -31,7 +31,7 @@ export const faqData: FAQItem[] = [
     {
       id: "3",
       question: "How often do we meet?",
-      answer: "We hold General Meetings every other Monday at 6:30 pm at UTC 1.102. We also will have various socials, fundraising events, and philanthropic events each month for our members! These meetings and events are not mandatory, but are highly encouraged.",
+      answer: "We hold General Meetings every other Monday at 6:30 pm at UTC 1.102. Check out our General Meetings page to see past slides from past GM's. During GM, we have fun activities such as Elephant in the Room, in-meeting phils, and slideshows detailing our upcoming planned events in the coming weeks. We also will have various socials, fundraising events, and philanthropic events each month for our members! These meetings and events are not mandatory, but are highly encouraged.",
       category: "meetings",
       keywords: ["meetings", "schedule", "monday", "time", "frequency"],
       links: [

@@ -1,75 +1,127 @@
+"use client";
 import { useState } from "react";
-import { CldUploadButton } from "next-cloudinary";
-import Image from "next/image";
 
 interface CheckInModalProps {
   onClose: () => void;
-  onSubmit: (imageUrl: string) => Promise<void>;
-  loading: boolean;
+  onSubmit: (data: CheckInData) => Promise<void>;
 }
 
-export default function CheckInModal({
-  onClose,
-  onSubmit,
-  loading,
-}: CheckInModalProps) {
-  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+export interface CheckInData {
+  secretCode: string;
+}
 
-  const handleUpload = (result: any) => {
-    setUploadedImage(result.info.secure_url);
+export default function CheckInModal({ onClose, onSubmit }: CheckInModalProps) {
+  const [secretCode, setSecretCode] = useState("");
+  const [unlocked, setUnlocked] = useState(false);
+  const [feedbackFormUrl, setFeedbackFormUrl] = useState<string | null>(null);
+  const [codeError, setCodeError] = useState("");
+  const [checkingCode, setCheckingCode] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleUnlock = async () => {
+    if (!secretCode.trim()) {
+      setCodeError("Enter the code from the whiteboard.");
+      return;
+    }
+    setCheckingCode(true);
+    try {
+      const res = await fetch("/api/check-ins/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ secret_code: secretCode.trim() }),
+      });
+      const json = await res.json();
+      if (!res.ok) {
+        setCodeError("Wrong code — check the whiteboard and try again.");
+      } else {
+        setFeedbackFormUrl(json.feedback_form_url ?? null);
+        setUnlocked(true);
+        setCodeError("");
+      }
+    } catch {
+      setCodeError("Something went wrong. Try again.");
+    } finally {
+      setCheckingCode(false);
+    }
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 max-w-md w-full">
-        <h2 className="text-xl font-semibold mb-4">Check In Photo</h2>
-
-        <div className="mb-4">
-          {uploadedImage ? (
-            <div className="relative w-full h-64">
-              <Image
-                src={uploadedImage}
-                alt="Check-in photo"
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-          ) : (
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
-              <CldUploadButton
-                uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_GENERAL_PRESET}
-                onSuccess={handleUpload}
-                options={{
-                  maxFiles: 1,
-                  resourceType: "image",
-                  folder: "profile_pictures",
-
-                  maxFileSize: 10485760, // 10MB
+      <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        {!unlocked ? (
+          <>
+            <h2 className="text-xl font-semibold mb-1">Check In</h2>
+            <p className="text-sm text-gray-500 mb-5">
+              Enter the code on the whiteboard to check in.
+            </p>
+            <div className="mb-4">
+              <input
+                type="text"
+                value={secretCode}
+                onChange={(e) => {
+                  setSecretCode(e.target.value);
+                  setCodeError("");
                 }}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
-              >
-                Upload Photo
-              </CldUploadButton>
+                onKeyDown={(e) => e.key === "Enter" && handleUnlock()}
+                placeholder="Enter code"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                maxLength={50}
+                autoFocus
+              />
+              {codeError && (
+                <p className="text-red-500 text-xs mt-1">{codeError}</p>
+              )}
             </div>
-          )}
-        </div>
-
-        <div className="flex justify-end gap-2">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 text-gray-600 hover:text-gray-800"
-            disabled={loading}
-          >
-            Cancel
-          </button>
-          <button
-            onClick={() => uploadedImage && onSubmit(uploadedImage)}
-            disabled={!uploadedImage || loading}
-            className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? "Submitting..." : "Submit Check-in"}
-          </button>
-        </div>
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={onClose}
+                className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleUnlock}
+                disabled={checkingCode}
+                className="px-4 py-2 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50"
+              >
+                {checkingCode ? "Checking..." : "Unlock"}
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <h2 className="text-xl font-semibold mb-1">You're checked in!</h2>
+            <p className="text-sm text-gray-500 mb-5">
+              {feedbackFormUrl
+                ? "Fill out the feedback form while you're here — it only takes a minute."
+                : "Thanks for coming!"}
+            </p>
+            {feedbackFormUrl && (
+              <a
+                href={feedbackFormUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-center px-4 py-2 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600 mb-3"
+              >
+                Open Feedback Form
+              </a>
+            )}
+            <button
+              onClick={async () => {
+                setSubmitting(true);
+                try {
+                  await onSubmit({ secretCode: secretCode.trim() });
+                } finally {
+                  setSubmitting(false);
+                }
+              }}
+              disabled={submitting}
+              className="w-full px-4 py-2 text-sm border border-gray-300 text-gray-600 rounded-lg hover:bg-gray-50 disabled:opacity-50"
+            >
+              {submitting ? "Submitting..." : "Done"}
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

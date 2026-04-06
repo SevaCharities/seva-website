@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-
 import { supabase } from "../lib/supabaseClient";
 import toast from "react-hot-toast";
 import Image from "next/image";
@@ -26,9 +25,7 @@ export default function Profile({
 
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-
   const [isCheckInModalOpen, setIsCheckInModalOpen] = useState(false);
-
   const [alreadyCheckedIn, setAlreadyCheckedIn] = useState(false);
   const [canCheckIn, setCanCheckIn] = useState(false);
 
@@ -51,8 +48,6 @@ export default function Profile({
       .eq("activity_id", activity_id);
 
     if (checkError) throw checkError;
-
-    // already checked in for event / check-in is disabled
     setAlreadyCheckedIn(existingCheckIn.length > 0);
   };
 
@@ -63,42 +58,35 @@ export default function Profile({
       .eq("name", _name);
 
     if (activityError) throw activityError;
-
     return activity[0].id;
   };
 
   const handleCheckIn = async () => {
-    try {
-      setLoading(true);
-      setIsCheckInModalOpen(true);
-    } catch (error) {
-      toast.error("Error checking in");
-    } finally {
-      setLoading(false);
-    }
+    setIsCheckInModalOpen(true);
   };
 
-  const submitCheckIn = async (imageUrl: string) => {
+  const submitCheckIn = async (data: { secretCode: string }) => {
     try {
-      setLoading(true);
+      if (!activityRef.current) {
+        await checkInToday();
+      }
+
       const { error } = await supabase.from("check_ins").insert({
         user_id: user?.id,
         activity_id: activityRef.current?.id,
         name: user?.name,
         activity_name: activityRef.current?.name,
         created_at: new Date().toISOString(),
-        data: { image_url: imageUrl },
+        data: { secret_code: data.secretCode },
       });
 
       if (error) throw error;
 
-      setIsCheckInModalOpen(false);
       toast.success("Checked in successfully!");
+      setAlreadyCheckedIn(true);
+      setIsCheckInModalOpen(false);
     } catch (error) {
       toast.error("Error checking in");
-    } finally {
-      setLoading(false);
-      checkInToday();
     }
   };
 
@@ -113,7 +101,7 @@ export default function Profile({
             alt="Profile"
             width={300}
             height={300}
-            sizes="(max-width: 768px) 100vw, 400px" // Add sizes prop
+            sizes="(max-width: 768px) 100vw, 400px"
             className="rounded-lg object-cover w-full md:w-[400px] h-[400px]"
           />
         </div>
@@ -126,13 +114,11 @@ export default function Profile({
             >
               <FiSettings size={24} />
             </button>
-
             {isEditing ? <Edit user={user} /> : <View user={user} />}
           </div>
         </div>
       </div>
 
-      {/* check in */}
       <div className="mt-8 border-t pt-8">
         <div className="flex items-center justify-between">
           <div>
@@ -166,7 +152,6 @@ export default function Profile({
         <CheckInModal
           onClose={() => setIsCheckInModalOpen(false)}
           onSubmit={submitCheckIn}
-          loading={loading}
         />
       )}
     </div>
@@ -178,7 +163,6 @@ const View = ({ user }: { user: UserInterface }) => {
     <div>
       <h2 className="text-4xl font-semibold text-gray-900 mb-1">{user.name}</h2>
       <p className="text-gray-600 text-sm">{user.email}</p>
-
       {user.email === "sevacharities@gmail.com" && (
         <a
           href="/admin"
@@ -203,7 +187,6 @@ const Edit = ({ user }: { user: UserInterface }) => {
         updated_at: new Date().toISOString(),
       }));
       const { error } = await supabase.from("members").upsert(userEdit);
-
       if (error) throw error;
       toast.success("Profile updated successfully!");
     } catch (error) {
@@ -218,7 +201,6 @@ const Edit = ({ user }: { user: UserInterface }) => {
       <div className="mb-4">
         <p className="text-lg font-medium">Edit Profile</p>
       </div>
-
       <div className="flex flex-col gap-4">
         <ImageUpload
           onUploadSuccess={async (url) => {

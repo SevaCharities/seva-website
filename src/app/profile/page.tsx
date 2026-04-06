@@ -1,9 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { supabase } from "../lib/supabaseClient";
-import { Session, User, AuthChangeEvent } from "@supabase/supabase-js";
+import { Session, User } from "@supabase/supabase-js";
 import Profile from "../components/Profile";
 import { Toaster, toast } from "react-hot-toast";
 import Badges, { Badge } from "../components/Badges";
@@ -22,19 +22,16 @@ export type UserInterface = {
   profile_picture: string;
 };
 
-// Helper function to get the correct redirect URL based on environment
 const getRedirectURL = () => {
-  // Check if we're in development
   if (process.env.NODE_ENV === 'development') {
     return 'http://localhost:3000/profile';
   }
-  
-  // Use the environment variable for production/preview
   return process.env.NEXT_PUBLIC_REDIRECT_URL || 'http://localhost:3000/profile';
 };
 
 export default function App() {
   const [userSession, setUserSession] = useState<Session | null>(null);
+  const userSessionRef = useRef<Session | null>(null);
   const [user, setUser] = useState<UserInterface>();
   const [settings, setSettings] = useState<Settings | null>(null);
   const [loading, setLoading] = useState(true);
@@ -44,14 +41,13 @@ export default function App() {
       const { data: existingProfile } = await supabase
         .from("members")
         .select("id")
-        .eq("user_id", _user.id)  // <-- Changed from .eq("id", _user.id)
+        .eq("user_id", _user.id)
         .single();
-  
+
       if (!existingProfile) {
         const { error } = await supabase.from("members").insert([
           {
-            // Don't set id here - let Supabase auto-generate it
-            user_id: _user.id,  // <-- ADD THIS: link to auth user
+            user_id: _user.id,
             name: _user.user_metadata?.full_name,
             email: _user.email,
             is_member: false,
@@ -69,19 +65,19 @@ export default function App() {
     }
   };
 
-  async function getUserProfile(_userId: string) {  // Renamed param for clarity
+  async function getUserProfile(_userId: string) {
     try {
       setLoading(true);
       const { data, error } = await supabase
         .from("members")
-        .select("id, name, updated_at, email, profile_picture, user_id")  // Add user_id
-        .eq("user_id", _userId)  // <-- Changed from .eq("id", _userId)
+        .select("id, name, updated_at, email, profile_picture, user_id")
+        .eq("user_id", _userId)
         .single();
-  
+
       if (error) throw error;
       if (data) {
         setUser({
-          id: data.id,  // This is the member table ID
+          id: data.id,
           name: data.name,
           updated_at: new Date(data.updated_at).toISOString(),
           email: data.email,
@@ -109,7 +105,6 @@ export default function App() {
           data.find((s) => s.key === "general_meeting")?.value
         ),
       };
-
       setSettings(settings);
     }
   };
@@ -117,35 +112,36 @@ export default function App() {
   useEffect(() => {
     const initializeAuth = async () => {
       try {
-        // First, get the current session
         const {
           data: { session },
         } = await supabase.auth.getSession();
 
-        setUserSession(session);
-
-        // If we have a session, check/create profile
         if (session) {
-          const user = session.user;
-          await createProfileIfNeeded(user);
-          await getUserProfile(user.id);
+          setUserSession(session);
+          userSessionRef.current = session;
+          await createProfileIfNeeded(session.user);
+          await getUserProfile(session.user.id);
           await getSettings();
         }
 
-        // Set up auth state listener
         const {
           data: { subscription },
         } = supabase.auth.onAuthStateChange(async (event, session) => {
           console.log('Auth event:', event);
-          
+
           if (event === "SIGNED_IN" && session) {
+            if (userSessionRef.current?.user?.id === session.user.id) return;
+
+            setUserSession(session);
+            userSessionRef.current = session;
             await createProfileIfNeeded(session.user);
             await getUserProfile(session.user.id);
             await getSettings();
           }
-          
+
           if (event === "SIGNED_OUT") {
             setUserSession(null);
+            userSessionRef.current = null;
             setUser(undefined);
             setSettings(null);
           }
@@ -165,16 +161,10 @@ export default function App() {
     initializeAuth();
   }, []);
 
-  // TESTING
   useEffect(() => {
     console.log("user", user);
     console.log("settings", settings);
     console.log("current redirect URL:", getRedirectURL());
-
-    // // Redirect admin user to admin page
-    // if (user && user.email === process.env.NEXT_PUBLIC_ADMIN) {
-    //   window.location.href = "/admin";
-    // }
   }, [user, settings]);
 
   const handleSignOut = async () => {
@@ -183,7 +173,6 @@ export default function App() {
       toast.error("Error signing out");
     } else {
       toast.success("Signed out successfully");
-      // Redirect to home page after sign out
       window.location.href = "/";
     }
   };
@@ -230,7 +219,6 @@ export default function App() {
         <div className="my-16 sm:my-24">
           <div className="mx-auto max-w-6xl px-4">
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-              {/* Main content */}
               <div className="lg:col-span-3">
                 <Profile user={user!} settings={settings!} />
                 <Badges user={user!} />
@@ -241,8 +229,6 @@ export default function App() {
                   Sign Out
                 </button>
               </div>
-
-              {/* Sidebar with member status */}
               <div className="lg:col-span-1">
                 {user && <MemberStatus userId={user.id} />}
               </div>
