@@ -13,20 +13,27 @@ export interface Merch {
 const merch: Merch[] = [
   {
     id: 1,
+    name: "Seva Crewneck Sweatshirt",
+    price: 27,
+    image: ["/merch/seva_25-26_sweater_front.png", "/merch/seva_25-26_sweater_back.png"],
+    buyLink: "https://docs.google.com/forms/d/e/1FAIpQLSfk8t6IqOMHhq14jnl7HiWmRpU_KStR99oBod7dBUj1PfGeSQ/viewform?usp=dialog",
+  },
+  {
+    id: 2,
     name: "Seva T-Shirt 2025-26",
     price: 12,
     image: ["/merch/seva_25-26_front.png", "/merch/seva_25-26_back.png"],
     buyLink: "https://docs.google.com/forms/d/e/1FAIpQLSfkOXisC53oePZDLO3pGhyPM_tUTFPKKfhFl-SEmT6x20ydXg/viewform?usp=dialog",
   },
   {
-    id: 2,
+    id: 3,
     name: "Seva T-Shirt 2024-25",
     price: 8,
     image: ["/merch/seva_24-25_front.png", "/merch/seva_24-25_back.png"],
     buyLink: "https://docs.google.com/forms/d/e/1FAIpQLSdjDxsHj_O0DA8ab2lw3an6RsbMYxwlhIXO3b_Omdy0ZLQg6A/viewform?usp=header",
   },
   {
-    id: 3,
+    id: 4,
     name: "Laptop Stickers 2025",
     price: 2,
     image: ["/merch/seva_24-25_sticker.png"],

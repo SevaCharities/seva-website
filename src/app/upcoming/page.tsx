@@ -13,21 +13,29 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
     title: "Seva Assassins (Circle Competition",
     category: 1,
-    date: ["Thu, Mar 26 - Thu, Apr 2","UT Austin", "Week-long, ends Thursday evening"],
+    date: ["Thu, Mar 26 - Thu, Apr 9","UT Austin", "Week-long, ends Thursday evening"],
     description: "Each Circle will be assigned another circle to eliminate. The rules are posted in the link below.",
     link: ["https://docs.google.com/spreadsheets/d/1KL-2xAdzEbm2Z0T4sB0hXWEhEkEqlMM4PWMn0EA7LqM/edit?usp=sharing", true]
   },
   {
-    title: "Seva Zilker Park Social",
+    title: "GM 6 + In-Meeting Phil",
     category: 2,
-    date: ["Thu, Apr 2","Zilker Park", "5:30 P.M. - 8 P.M."],
-    description: "A fun evening of sports and chilling at Zilker Park!",
+    date: ["Mon, Apr 6","UTC 1.102", "6:30 P.M. - 8 P.M."],
+    description: "Our 6th general meeting of the semester! We will also have an in-meeting philanthropy event, so definitely come join!",
   },
   {
-    title: "Lakehouse",
-    category: 2,
-    date: ["Fri, Apr 4 - Sun, Apr 6","TBD", "Friday afternoon - Sunday morning"],
-    description: "Join us at a lakehouse for a great weekend of fun! Invited members only, details will be given out during Wednesday's mandatory meeting.",
+    title: "Kayak Phil",
+    category: 3,
+    date: ["Sat, Apr 11", "8 A.M. - 10 A.M.", "TBD"],
+    description: "Join us for kayaking and cleaning up the rivers!",
+    link: ["", true]
+  },
+  {
+    title: "Amazing Race",
+    category: 4,
+    date: ["Sun, Apr 12", "UT Campus", "3:30 P.M. - 5:30 P.M."],
+    description: "How well do you know your amazing campus? Lead your team through a scavenger hunt across UT, but make sure to hurry! You'll be competing against other teams, with hundred of dollars of prizes up for grabs!",
+    link: ["https://docs.google.com/forms/d/e/1FAIpQLSdGjHVVgT9BmpNUxH-9l4uin7VXmjWNu5FejulrWvk6f8p2Bw/viewform?usp=dialog", true]
   },
 ];
 

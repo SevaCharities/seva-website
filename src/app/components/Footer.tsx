@@ -153,7 +153,7 @@ export default function Footer(): JSX.Element {
               <div className="flex justify-center md:justify-start">
                 <div className="relative w-64 h-64 md:w-72 md:h-72 rounded-2xl bg-gray-50 overflow-hidden">
                   <Image
-                    src="/merch/seva_25-26_front.png"
+                    src="/merch/seva_25-26_sweater_front.png"
                     alt="Seva Merch"
                     fill
                     className="object-contain p-4 group-hover:scale-[1.03] transition-transform"
@@ -173,7 +173,7 @@ export default function Footer(): JSX.Element {
                   </span>
 
                   <span className="text-sm text-gray-500">
-                    Tees • Quarter Zips • Stickers
+                    Tees • Crewnecks • Stickers
                   </span>
                 </div>
               </div>
