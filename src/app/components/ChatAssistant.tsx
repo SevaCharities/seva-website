@@ -10,7 +10,10 @@ import { PaperPlaneRight } from "@phosphor-icons/react";
  * Persists conversation across page navigation using localStorage.
  */
 export default function ChatAssistant() {
-    
+
+    // hydrated: prevents SSR mismatch by waiting for client mount before reading localStorage
+    const [hydrated, setHydrated] = useState(false);
+
     // Vercel AI SDK hook - handles all chat logic
     // messages: array of chat messages [{role: 'user', content: '...'}, ...]
     // input: current text in input box
@@ -25,11 +28,11 @@ export default function ChatAssistant() {
         handleSubmit,
         isLoading,
         setMessages,
-    } = useChat({ 
+    } = useChat({
         api: "/api/chat",
     });
 
-    // Load saved conversation from localStorage on mount
+    // Load saved conversation from localStorage on mount (gated behind hydrated to fix SSR mismatch)
     useEffect(() => {
         const savedMessages = localStorage.getItem('seva-chat-messages');
         if (savedMessages) {
@@ -40,14 +43,16 @@ export default function ChatAssistant() {
                 console.error('Failed to load chat history:', e);
             }
         }
+        setHydrated(true);
     }, [setMessages]);
 
     // Save messages to localStorage whenever they change
     useEffect(() => {
+        if (!hydrated) return; // Don't save until after we've loaded
         if (messages.length > 0) {
             localStorage.setItem('seva-chat-messages', JSON.stringify(messages));
         }
-    }, [messages]);
+    }, [messages, hydrated]);
 
     // Suggested starter questions (shown when conversation is empty)
     const suggestions = [
@@ -64,7 +69,7 @@ export default function ChatAssistant() {
         } as React.FormEvent<HTMLFormElement>;
 
         handleInputChange({
-            target: { value: suggestion } 
+            target: { value: suggestion }
         } as any);
 
         setTimeout(() => handleSubmit(fakeEvent), 0);
@@ -77,15 +82,18 @@ export default function ChatAssistant() {
     };
 
     // Auto-scroll to bottom when new messages arrive
-    const messagesEndRef = useRef<HTMLDivElement>(null);
-    
+    // Uses scrollTop on the container instead of scrollIntoView to avoid scrolling the whole page
+    const messagesContainerRef = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        if (messages.length > 0 && messagesContainerRef.current) {
+            messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+        }
     }, [messages]);
 
     return (
-        <div 
-            id="faq" 
+        <div
+            id="faq"
             className="w-full max-w-4xl mx-auto rounded-2xl bg-white border-4 border-orange-400 shadow-lg flex flex-col p-8 gap-6 my-16"
             style={{ minHeight: "600px" }}
         >
@@ -95,8 +103,8 @@ export default function ChatAssistant() {
                     <h2 className="text-3xl font-bold text-black tracking-wide">
                         Ask Raghav 🐘
                     </h2>
-                    {/* Clear button (only shows when there are messages) */}
-                    {messages.length > 0 && (
+                    {/* Clear button (only shows when there are messages) — gated behind hydrated to prevent SSR mismatch */}
+                    {hydrated && messages.length > 0 && (
                         <button
                             onClick={handleClearChat}
                             className="text-xs text-gray-500 hover:text-red-500 underline"
@@ -111,16 +119,16 @@ export default function ChatAssistant() {
                 </p>
             </div>
 
-            {/* Messages Area (scrollable) */}
-            <div className="flex-1 overflow-y-auto space-y-4 px-2">
-                
-                {/* Show suggestions if no messages yet */}
-                {messages.length === 0 && (
+            {/* Messages Area (scrollable) — ref used to scroll inside container only, not whole page */}
+            <div ref={messagesContainerRef} className="flex-1 overflow-y-auto space-y-4 px-2">
+
+                {/* Show suggestions if no messages yet — gated behind hydrated */}
+                {hydrated && messages.length === 0 && (
                     <div className="space-y-3">
                         <p className="text-gray-600 text-sm text-center mb-4">
                             👋 Hi! I'm here to answer questions about Seva. Try asking:
                         </p>
-                        
+
                         {/* Grid of clickable suggestion buttons */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {suggestions.map((suggestion, idx) => (
@@ -152,11 +160,11 @@ export default function ChatAssistant() {
                             }`}
                         >
                             {/* Render HTML content (includes clickable links from AI) */}
-                            <div 
+                            <div
                                 className="text-sm whitespace-pre-wrap
-                                    [&_a]:text-green-600 
-                                    [&_a]:underline 
-                                    [&_a]:font-semibold 
+                                    [&_a]:text-green-600
+                                    [&_a]:underline
+                                    [&_a]:font-semibold
                                     [&_a:hover]:text-green-700"
                                 dangerouslySetInnerHTML={{ __html: message.content }}
                             />
@@ -179,13 +187,10 @@ export default function ChatAssistant() {
                         </div>
                     </div>
                 )}
-
-                {/* Invisible anchor for auto-scrolling */}
-                <div ref={messagesEndRef} />
             </div>
 
             {/* Input Section */}
-            <form 
+            <form
                 onSubmit={handleSubmit}
                 className="border-t border-gray-200 pt-4"
             >

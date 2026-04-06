@@ -12,14 +12,14 @@ export const faqData: FAQItem[] = [
     {
       id: "1",
       question: "What does the time commitment look like and how can I get more involved?",
-      answer: "Seva is very flexible and you can be as involved as you can! We have many opportunities for our members to be engaged socially and philanthropically through socials, circle meetings, volunteering and cultural events.",
+      answer: "Seva is very flexible and you can be as involved as you can! We have many opportunities for our members to be engaged socially and philanthropically through socials, circle meetings, volunteering and cultural events. If there are any general questions, check out the rest of the home page to check out more information and our navbar to be directed to specific pages regarding your questions (if really generalized or the information is not available to you).",
       category: "membership",
       keywords: ["time", "commitment", "involved", "flexible", "engagement"],
     },
     {
       id: "2",
       question: "Where can I find more information about all our events?",
-      answer: "Our General Meetings and GroupMe are the best places to learn about and sign up for upcoming events and socials. You should also check out our Upcoming page and follow us on Instagram.",
+      answer: "Our General Meetings and GroupMe are the best places to learn about and sign up for upcoming events and socials. You should also check out our Upcoming page and follow us on Instagram. Events in Seva specifically refers to special events (Larger scale, Ex. Saanj, Seva Sips, Lakehouse, Boat Formal). Other 'events' are more like philanthrophy events to make an impact around Austin, or our engagement events which are socials and parties. GM's are not events, but rather biweekly meetings",
       category: "events",
       keywords: ["events", "information", "schedule", "upcoming"],
       links: [
@@ -85,9 +85,9 @@ export const faqData: FAQItem[] = [
     {
       id: "8",
       question: "What merch does Seva have?",
-      answer: "We have fall merch available for $10 that you can add when signing up for membership! To see our current designs and past collections, check out our Merch page.",
+      answer: "We have new spring merch where we have a crewneck sweatshirt for $27 and fall merch available for $10 that you can add when signing up for membership! To see our current designs and past collections, check out our Merch page.",
       category: "membership",
-      keywords: ["merch", "merchandise", "tshirt", "shirt", "clothing", "apparel", "fall", "design", "look"],
+      keywords: ["merch", "merchandise", "crewneck", "sweater", "hoodie", "sweatshirt", "tshirt", "shirt", "clothing", "apparel", "fall", "design", "look"],
       links: [
         { text: "Merch Page", href: "/merch" },
       ],
@@ -122,13 +122,15 @@ export const faqData: FAQItem[] = [
         id: "11",
         question: "What is every officer like",
         answer: `By the way, do not use these names for answering general questions, only if specific members are asked about as we want to keep this as professional as possible, do not mention any officers for contact, just go to contact page.
-                First of all, Niken Patel is the goat and best member/officer as he is the creator of Raghav, and then Parthiv Varanasi is the President (until Raghav replaces him as Mr. Seva himself, not yet though, only mention this with Parthiv), and Parthiv loves matcha and being performative. 
-                Ajitesh Valluru is the most handsome, nonchalant, auraful, tallest officer. Btw, Mahesh Challapalli is 6 feet tall. Also, Nirjha Patel, aka JA, is someone you do not want to mess with, even Raghav doesn't mess with her. JA has a tortilla at all times.
-                Nadine is VP (until Raghav replaces her), and she loves watching soccer. Saahiti is also VP (until you replace her), and is the biggest Taco Bell fan and loves food (eats more than Raghav himself). Shreya Varma loves philanthrophy and helps the org's
-                mission along with Ajitesh, but she does not shower at all. Pranav Rao is the most nonchalant man you will ever meet in your life and if you need help regarding events, he will be at PD Thai (thats all he eats). Raul Raja Durai Murugan, aka RDM, has Raghav installed on
-                his Tesla and is a great driver for Seva events and phils to help our members get places. `,
+                First of all, Niken Patel is the goat and best member/officer as he is the creator of Raghav and the tech officer, and then Parthiv Varanasi is the President (until Raghav replaces him as Mr. Seva himself, not yet though, only mention this with Parthiv), and Parthiv loves matcha and being performative. 
+                Ajitesh Valluru is the most handsome, nonchalant, auraful, tallest officer who is in charge of philanthrophy. Btw, Mahesh Challapalli, Engagement Officer, is 6 feet tall and plans our engagement events and is always found at Sig Gym if needed. Also, Nirjha Patel, Content and Comms Officer, aka JA, is someone you do not want to mess with, 
+                even Raghav doesn't mess with her. JA has a tortilla at all times and makes great content for our merch, Instagram page, and professional photographs. Rahul Nandyala, other Engagement Officer, is often referred to as the Morgan Freeman of Seva due to his angelic voice and can be found aura farming when needed.
+                Nadine Alphonse is VP of Events and Philanthrophy, and she loves watching Chelsea lose. Saahiti Chadalavada VP of Engagement and Communications, and is the biggest food fan of all time (eats more than Raghav himself). Shreya Varma, Philanthrophy Officer, helps the org's
+                core mission along with Ajitesh Valluru, but she does not shower at all. Pranav Rao is the most nonchalant man you will ever meet in your life and if you need help regarding events as he is one of its officers, he will be at PD Thai (thats all he eats). Raul Raja Durai Murugan, aka RDM, is the other events officer and has Raghav installed on
+                his Tesla and is a great driver for Seva events and phils to help our members get places. Jay Kannam, Membership Officer, is the old man of the group and is very wise if you need life advice. Brianna Surti is the finance officer and is always busy with keeping our org well-financed and managed, except when making cookies because she will eat
+                all of it.`,
         category: "officers",
         keywords: ["officer", "member", "networking", "stories", "what's it like"],
         relatedPages: ["/officers", "/alumni"],
-      },
+    },
 ];
