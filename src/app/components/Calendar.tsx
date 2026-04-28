@@ -16,20 +16,28 @@ const Calendar = () => {
 
   useEffect(() => {
     async function fetchEvents() {
-      let year = currentDate.getFullYear();
-      let monthIndex = currentDate.getMonth();
-      const calendarId = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID;
-      const apiKey = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_API_KEY;
-      //   console.log(calendarId, apiKey);
-      const response = await fetch(
-        `/api?year=${year}&monthIndex=${monthIndex}`
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch events");
+      try {
+        let year = currentDate.getFullYear();
+        let monthIndex = currentDate.getMonth();
+        const calendarId = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID;
+        const apiKey = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_API_KEY;
+        //   console.log(calendarId, apiKey);
+        const response = await fetch(
+          `/api?year=${year}&monthIndex=${monthIndex}`
+        );
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          console.error("Failed to fetch events:", response.status, errorData);
+          setEvents([]);
+          return;
+        }
+        const data = await response.json();
+        setEvents(data);
+        //   console.log(data);
+      } catch (error) {
+        console.error("Error fetching calendar events:", error);
+        setEvents([]);
       }
-      const data = await response.json();
-      setEvents(data);
-      //   console.log(data);
     }
 
     fetchEvents();
@@ -126,38 +134,38 @@ const Calendar = () => {
 
       return eventDate.getFullYear() === currentDate.getFullYear() &&
         eventDate.getMonth() === currentDate.getMonth() &&
-        event.isAllDay
-        ? eventDate.getUTCDate() === day
-        : eventDate.getDate() === day;
+        (event.isAllDay
+          ? eventDate.getUTCDate() === day
+          : eventDate.getDate() === day);
     });
   };
 
   return (
     <div className=" w-full">
-      <header className="flex items-center  justify-center sm:justify-between bg-teal-100 p-2 py-4 flex-wrap gap-2">
+      <header className="flex items-center  justify-center sm:justify-between bg-gradient-to-r from-teal-500 via-cyan-400 to-blue-500 p-2 py-6 flex-wrap gap-4 shadow-lg">
         <div className="flex items-center">
-          <button onClick={prevMonth} className="text-4xl">
-            <ArrowCircleLeft className="hover:text-orange-1" />
+          <button onClick={prevMonth} className="text-4xl text-white hover:text-white hover:scale-110 transition-all duration-300">
+            <ArrowCircleLeft weight="fill" />
           </button>
-          <button onClick={nextMonth} className="hidden sm:flex text-4xl">
-            <ArrowCircleRight className="hover:text-orange-1" />
+          <button onClick={nextMonth} className="hidden sm:flex text-4xl text-white hover:text-white hover:scale-110 transition-all duration-300">
+            <ArrowCircleRight weight="fill" />
           </button>
-          <h2 className=" text-center sm:text-left sm:pl-4 min-w-64 text-2xl">
+          <h2 className=" text-center sm:text-left sm:pl-4 min-w-64 text-3xl font-bold text-white drop-shadow-md">
             {currentDate.toLocaleString("default", { month: "long" })}{" "}
             {currentDate.getFullYear()}
           </h2>
-          <button onClick={nextMonth} className="visible sm:hidden text-4xl">
-            <ArrowCircleRight className="hover:text-orange-1" />
+          <button onClick={nextMonth} className="visible sm:hidden text-4xl text-white hover:text-white hover:scale-110 transition-all duration-300">
+            <ArrowCircleRight weight="fill" />
           </button>
         </div>
         <Link
           href={ADD_CALENDAR}
           target="_blank"
-          className="flex items-center gap-2 p-2 bg-blue-500 text-white rounded-md shadow-md text-sm"
+          className="flex items-center gap-2 px-4 py-2 bg-white text-blue-600 font-semibold rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm"
         >
           Google Calendar{" "}
           <Image
-            className="shadow-sm shadow-blue-700"
+            className="drop-shadow-md"
             alt="google calendar"
             width={32}
             height={32}
@@ -168,8 +176,8 @@ const Calendar = () => {
 
       <div className="grid  grid-cols-7">
         {daysOfWeek.map((day) => (
-          <div key={day} className="bg-teal-100 p-2 text-center">
-            <strong>{day}</strong>
+          <div key={day} className="bg-gradient-to-b from-teal-200 to-cyan-100 p-3 text-center font-bold text-teal-800 shadow-sm">
+            {day}
           </div>
         ))}
         {days.map((day, index) => {
@@ -179,31 +187,36 @@ const Calendar = () => {
               return (
                 <div
                   key={index}
-                  className={`h-24 sm:h-32 flex flex-col border-small py-6  ${
-                    eventsDay.length != 0 ? "bg-green-200 " : ""
+                  className={`h-24 sm:h-32 flex flex-col border border-gray-200 py-4 px-3 transition-all duration-300 hover:shadow-lg hover:scale-105 hover:z-10 ${
+                    eventsDay.length != 0 ? "bg-gradient-to-br from-emerald-100 to-green-200 shadow-md" : "bg-white hover:bg-gray-50"
                   }`}
                 >
                   {
                     <>
-                      <p className="px-6 pb-2">{day}</p>
-                      {getEventsForDay(day).map((event) => (
-                        <p
-                          key={event.id}
-                          className="block sm:p-2 text-xs text-green-800 overflow-hidden text-ellipsis whitespace-nowrap w-full bg-white"
-                        >
-                          {event.summary}
-                        </p>
-                      ))}
+                      <p className={`font-bold pb-1 ${
+                        eventsDay.length != 0 ? "text-green-900" : "text-gray-600"
+                      }`}>{day}</p>
+                      <div className="flex flex-col gap-1 overflow-y-auto">
+                        {getEventsForDay(day).map((event) => (
+                          <p
+                            key={event.id}
+                            className="block text-xs text-white font-semibold overflow-hidden text-ellipsis whitespace-nowrap w-full bg-gradient-to-r from-green-500 to-emerald-500 rounded px-2 py-1 shadow-md hover:shadow-lg hover:from-green-600 hover:to-emerald-600 transition-all duration-200 cursor-pointer"
+                            title={event.summary}
+                          >
+                            {event.summary}
+                          </p>
+                        ))}
+                      </div>
                     </>
                   }
                 </div>
               );
             } else {
               return (
-                <div key={index} className={`p-6 border-small  text-slate-400`}>
+                <div key={index} className={`p-4 border border-gray-100 text-slate-300 bg-gray-50 hover:bg-gray-100 transition-all duration-300`}>
                   {
                     <>
-                      <p>{day}</p>
+                      <p className="text-sm font-medium">{day}</p>
                     </>
                   }
                 </div>
