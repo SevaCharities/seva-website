@@ -9,24 +9,16 @@ export type UpcomingEventsProps = {
 };
 
 const UpcomingEventsInfo: UpcomingEventsProps[] = [
-  {
-    title: "Senior Sendoff",
-    category: 1,
-    date: ["Sat, Apr 25", "TBD", "6:30 P.M. - 8:30 P.M."],
-    description: "Come to our heartfelt goodbye for our graduating seniors! RSVP ASAP!.",
-    link: [
-      "https://docs.google.com/forms/d/e/1FAIpQLSek79XYewRN-jnuOaizXhU2YklHJ9JRO_9UTUXOd1TlqB6vLw/viewform?usp=dialog",
-      true,
-    ],
-  },
-  {
-    title: "Seva Sips Pop-Up",
-    category: 1,
-    date: ["Sunday, Mar 8", "The Mark Austin", "10 A.M. - 2 P.M."],
-    description:
-      "Join us for our Seva Sips Pop-Up! We'll be selling delicious food and drinks to raise money for Akshaya Patra. Bring your friends and enjoy some tasty treats while supporting a great cause!",
-    link: ["https://partiful.com/e/Q1tWijpbJP6pQlFurV95", true],
-  },
+  // {
+  //   title: "Senior Sendoff",
+  //   category: 1,
+  //   date: ["Sat, Apr 25", "TBD", "6:30 P.M. - 8:30 P.M."],
+  //   description: "Come to our heartfelt goodbye for our graduating seniors! RSVP ASAP!.",
+  //   link: [
+  //     "https://docs.google.com/forms/d/e/1FAIpQLSek79XYewRN-jnuOaizXhU2YklHJ9JRO_9UTUXOd1TlqB6vLw/viewform?usp=dialog",
+  //     true,
+  //   ],
+  // }
 ];
 
 const Page = () => {
