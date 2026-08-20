@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function SevaHistoryGallery() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const srcSet = [
+    "/history/seva9.jpg",
     "/history/seva8.JPG",
     "/history/seva7.jpg",
     "/history/seva6.jpg",
