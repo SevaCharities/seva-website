@@ -4,11 +4,13 @@ import { CaretDoubleDown } from "@phosphor-icons/react/dist/ssr";
 import Footer from "./components/Footer";
 import Gallery from "./components/Gallery";
 // import SaanjPopup from "./components/SaanjPopup"
-import SevaSipsPopup from "./components/SevaSipsPopup"
+//import SevaSipsPopup from "./components/SevaSipsPopup"
+import WelcomeWeekPopup from "./components/WelcomeWeekPopup";
 
 export default function Home() {
   return (
     <div>
+      <WelcomeWeekPopup />
       <section
         id="splash"
         className="relative shadow-md  bg-cover bg-center h-[650px] sm:h-[800px]  rounded-b-3xl flex flex-col  items-center text-center  py-32"
