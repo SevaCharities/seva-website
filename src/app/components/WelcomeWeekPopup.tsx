@@ -89,7 +89,7 @@ const WelcomeWeekPopup = () => {
 
                         <div className="bg-[#0B1D3A]/5 backdrop-blur-sm rounded-xl p-4 border border-[#0B1D3A]/15 hover:bg-[#0B1D3A]/10 transition-all">
                             <p className="text-[#0B1D3A] font-semibold text-xs uppercase tracking-wide mb-1">Get Involved</p>
-                            <p className="text-lg sm:text-xl font-bold">First week kickoff</p>
+                            <p className="text-lg sm:text-xl font-bold">Click the links to learn more</p>
                         </div>
                     </div>
 
