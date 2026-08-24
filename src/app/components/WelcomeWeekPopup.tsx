@@ -83,7 +83,7 @@ const WelcomeWeekPopup = () => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[#0B1D3A] mb-8">
                         <div className="bg-[#BF5700]/10 backdrop-blur-sm rounded-xl p-4 border border-[#BF5700]/25 hover:bg-[#BF5700]/15 transition-all">
-                            <p className="text-[#BF5700] font-semibold text-xs uppercase tracking-wide mb-1">First General Meeting</p>
+                            <p className="text-[#BF5700] font-semibold text-xs uppercase tracking-wide mb-1">First Interest/General Meeting</p>
                             <p className="text-xl sm:text-2xl font-bold">8/31/26</p>
                         </div>
 
