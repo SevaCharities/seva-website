@@ -102,7 +102,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className={`fixed top-0 z-50 inset-x-0 ${bgColor}`}>
+      <div className={`fixed top-0 z-[60] inset-x-0 ${bgColor}`}>
         <div className="mx-auto max-w-screen-xl flex px-8 sm:px-16 py-4 justify-between items-center">
           <Link href="/">
             <div className=" flex items-center hover:cursor-pointer">
@@ -120,7 +120,7 @@ export default function Navbar() {
       </div>
 
       {showScreen && (
-        <div className="bg-orange-2 fixed inset-0 z-40 flex flex-col gap-1 justify-center items-center">
+        <div className="bg-orange-2 fixed inset-0 z-[70] flex flex-col gap-1 justify-center items-center">
           {navLinks.map((link, index) => {
             return (
               <div key={index} className="flex flex-col items-center">
@@ -131,25 +131,22 @@ export default function Navbar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setShowScreen(false)}
+                    className={`hover:text-green-2 sm:p-2 ${
+                      getRoute(link) === pathname ? "text-white" : "text-yellow-0"
+                    }`}
                   >
-                    <button
-                      className={` hover:text-green-2 sm:p-2 ${
-                        getRoute(link) === pathname ? "text-white" : "text-yellow-0"
-                      }`}
-                    >
-                      <h3 className=" text-lg sm:text-xl">{link.name}</h3>
-                    </button>
+                    <h3 className="text-lg sm:text-xl">{link.name}</h3>
                   </a>
                 ) : (
                   // internal link
-                  <Link href={getRoute(link)} onClick={() => setShowScreen(false)}>
-                    <button
-                      className={` hover:text-green-2 sm:p-2 ${
-                        getRoute(link) === pathname ? "text-white" : "text-yellow-0"
-                      }`}
-                    >
-                      <h3 className=" text-lg sm:text-xl">{link.name}</h3>
-                    </button>
+                  <Link
+                    href={getRoute(link)}
+                    onClick={() => setShowScreen(false)}
+                    className={`hover:text-green-2 sm:p-2 ${
+                      getRoute(link) === pathname ? "text-white" : "text-yellow-0"
+                    }`}
+                  >
+                    <h3 className="text-lg sm:text-xl">{link.name}</h3>
                   </Link>
                 )}
 
