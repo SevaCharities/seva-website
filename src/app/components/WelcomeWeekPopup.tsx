@@ -1,15 +1,28 @@
 'use client'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { X } from "lucide-react";
 
 const WelcomeWeekPopup = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isAnimatingOut, setIsAnimatingOut] = useState(false);
+    const hasShownRef = useRef(false);
 
     useEffect(() => {
+        if (hasShownRef.current) return;
+
+        const popupAlreadySeen = window.sessionStorage.getItem("seva-welcome-popup-seen") === "true";
+        if (popupAlreadySeen) {
+            hasShownRef.current = true;
+            return;
+        }
+
+        hasShownRef.current = true;
+        window.sessionStorage.setItem("seva-welcome-popup-seen", "true");
+
         const timer = setTimeout(() => {
             setIsOpen(true);
         }, 500);
+
         return () => clearTimeout(timer);
     }, []);
 
