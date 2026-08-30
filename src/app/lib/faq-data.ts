@@ -57,7 +57,7 @@ export const faqData: FAQItem[] = [
       category: "membership",
       keywords: ["member", "join", "signup", "dues", "cost", "price", "35", "spring", "semester"],
       links: [
-        { text: "Membership Form", href: "https://docs.google.com/forms/d/e/1FAIpQLSeBCrT9Hq87pmHwejdbGOn8QK-Gm6cUa_mbn1P1vOlCEBh03Q/viewform" },
+        { text: "Membership Form", href: "https://docs.google.com/forms/d/e/1FAIpQLSd2OZ_HJCtpOtAZdp6giL9IneGougQuR2RaSnG9ZnsaXYO79A/viewform?usp=header" },
         { text: "GroupMe", href: "https://bit.ly/sevagroupme" },
       ],
       relatedPages: ["/merch"],

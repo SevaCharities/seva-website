@@ -90,7 +90,7 @@ export default function MemberStatus({ userId }: MemberStatusProps) {
             <h3 className="font-medium text-gray-900">Not a Member</h3>
             <p className="text-sm text-gray-500">Standard user access</p>
             <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSeBCrT9Hq87pmHwejdbGOn8QK-Gm6cUa_mbn1P1vOlCEBh03Q/viewform?usp=dialog"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSd2OZ_HJCtpOtAZdp6giL9IneGougQuR2RaSnG9ZnsaXYO79A/viewform?usp=header"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-3 bg-green-500 hover:bg-green-400 text-white font-semibold py-4 px-3 rounded-xl border-b-4 border-green-700 hover:border-green-500 transition-transform active:scale-95"

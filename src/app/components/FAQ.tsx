@@ -29,7 +29,7 @@ const info: infoProps[] = [
   {
     question: "How do I become a member?",
     answer:
-      "Just sign up using our Membership Form, pay dues ($50 for the entire year! and $60 if you want our custom t-shirt as well!), and join our GroupMe. That's it! </br></br>Check out our <a href='https://docs.google.com/forms/d/e/1FAIpQLSeBCrT9Hq87pmHwejdbGOn8QK-Gm6cUa_mbn1P1vOlCEBh03Q/viewform?usp=dialog' target='_blank'><b>Membership Form</b></a> and <a href='https://linktr.ee/sevacharities' target='_blank'><b>Linktree.</b></a>",
+      "Just sign up using our Membership Form, pay dues ($50 for the entire year! and $60 if you want our custom t-shirt as well!), and join our GroupMe. That's it! </br></br>Check out our <a href='https://docs.google.com/forms/d/e/1FAIpQLSd2OZ_HJCtpOtAZdp6giL9IneGougQuR2RaSnG9ZnsaXYO79A/viewform?usp=header' target='_blank'><b>Membership Form</b></a> and <a href='https://linktr.ee/sevacharities' target='_blank'><b>Linktree.</b></a>",
   },
 ];
 

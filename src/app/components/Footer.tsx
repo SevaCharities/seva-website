@@ -79,7 +79,7 @@ export default function Footer(): JSX.Element {
 
           <div className="mt-6 flex flex-col items-center space-y-4">
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSeBCrT9Hq87pmHwejdbGOn8QK-Gm6cUa_mbn1P1vOlCEBh03Q/viewform?usp=dialog"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSd2OZ_HJCtpOtAZdp6giL9IneGougQuR2RaSnG9ZnsaXYO79A/viewform?usp=header"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-green-500 hover:bg-green-400 text-white font-semibold py-3 px-6 rounded-xl border-b-4 border-green-700 hover:border-green-500 transition-transform active:scale-95"
