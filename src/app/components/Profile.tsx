@@ -36,8 +36,16 @@ export default function Profile({
     }
   }, [settings, user]);
 
+  const getCurrentActivityName = () => {
+    if (!settings?.general_meeting) return "GM 1";
+    if (settings.general_meeting === 1) {
+      return "GM 1 26-27";
+    }
+    return `GM ${settings.general_meeting}`;
+  };
+
   const checkInToday = async () => {
-    const activity_name = `GM ${settings?.general_meeting}`;
+    const activity_name = getCurrentActivityName();
     const activity_id = await getActivityId(activity_name);
     activityRef.current = { name: activity_name, id: activity_id };
 
@@ -125,7 +133,9 @@ export default function Profile({
             <h3 className="text-lg font-medium text-gray-900">Check-In</h3>
             <p className="text-sm text-gray-500">
               {canCheckIn && !alreadyCheckedIn
-                ? `GM #${settings?.general_meeting}`
+                ? settings?.general_meeting === 1
+                  ? "Info Session / GM 1 26-27"
+                  : `GM #${settings?.general_meeting}`
                 : alreadyCheckedIn
                 ? "You've already checked in"
                 : "Check-in is currently disabled"}
