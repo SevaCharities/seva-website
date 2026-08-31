@@ -105,11 +105,11 @@ export default function Home() {
       >
         <div>
           <h6 className="text-green-0">Last year Seva raised</h6>
-          <h1 className="text-green-2 py-2">$12,758!</h1>
+          <h1 className="text-green-2 py-2">$17,241!</h1>
         </div>
         <div>
           <h6 className="text-green-0">That’s enough to feed</h6>
-          <h1 className="text-green-2 py-2">638 kids</h1>
+          <h1 className="text-green-2 py-2">832 kids</h1>
         </div>
       </section>
       <div className="bg-black">

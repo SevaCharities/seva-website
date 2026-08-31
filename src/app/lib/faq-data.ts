@@ -42,7 +42,7 @@ export const faqData: FAQItem[] = [
     {
       id: "4",
       question: "How does Seva Charities help Akshaya Patra?",
-      answer: "We hold philanthropy events and socials open to the UT community where all proceeds are donated to Akshaya Patra in India. Last year, we raised $12,758, which was enough to feed 638 kids for a year! You can donate directly on our website.",
+      answer: "We hold philanthropy events and socials open to the UT community where all proceeds are donated to Akshaya Patra in India. Last year, we raised $17,241, which was enough to feed 832 kids for a year! You can donate directly on our website.",
       category: "mission",
       keywords: ["akshaya patra", "help", "donate", "fundraising", "impact", "charity", "philanthropy", "india", "kids", "feed"],
       links: [

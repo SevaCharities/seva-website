@@ -24,7 +24,7 @@ const info: infoProps[] = [
   {
     question: "How does Seva Charities help Akshaya Patra?",
     answer:
-      "We hold social media campaigns and events open to the UT community where all proceeds are donated to Akshaya Patra. Last year, we were able to raise $12,758, which was enough to feed 638 kids for a year!",
+      "We hold social media campaigns and events open to the UT community where all proceeds are donated to Akshaya Patra. Last year, we were able to raise $17,241, which was enough to feed 832 kids for a year!",
   },
   {
     question: "How do I become a member?",
