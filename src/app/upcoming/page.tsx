@@ -19,6 +19,12 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
   //     true,
   //   ],
   // }
+  {
+    title: "Info Session/GM #1",
+    category: 1,
+    date: ["Mon, Aug 31", "UTC 4.102", "6:30 P.M. - 8:00 P.M."],
+    description: "Come to the first meeting of the semester to learn about SEVA and how to get involved!"
+  }
 ];
 
 const Page = () => {
