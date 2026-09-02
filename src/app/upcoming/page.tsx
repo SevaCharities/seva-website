@@ -22,7 +22,7 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
   {
     title: "Recruitment Social",
     category: 1,
-    date: ["Thu, Sep 3", "Texas Union Underground", "6:15 P.M. - 8:15 P.M."],
+    date: ["Thu, Sep 3", "Texas Union Underground", "6:00 P.M. - 8:00 P.M."],
     description: "Join us for an evening of bowling and billiards at the Texas Union Underground! Bring your friends too!"
   }
 ];
