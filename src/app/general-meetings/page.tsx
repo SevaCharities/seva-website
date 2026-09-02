@@ -8,7 +8,12 @@ export type GMProps = {
 };
 
 const GMInfo: GMProps[] = [
-  
+  {
+  meeting: 1,
+  slides: "https://drive.google.com/file/d/18NVVE6xh4QN3XXWwUzdZCGMTz0X-uj-0/view?usp=sharing",
+  date: ["Monday, August 31st", "6:30 PM", "UTC 4.102"],
+  upcoming: false,
+  }
 ];
 
 const Page = () => {
