@@ -20,10 +20,10 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
   //   ],
   // }
   {
-    title: "Info Session/GM #1",
+    title: "Recruitment Social",
     category: 1,
-    date: ["Mon, Aug 31", "UTC 4.102", "6:30 P.M. - 8:00 P.M."],
-    description: "Come to the first meeting of the semester to learn about SEVA and how to get involved!"
+    date: ["Thu, Sep 3", "Texas Union Underground", "6:15 P.M. - 8:15 P.M."],
+    description: "Join us for an evening of bowling and billiards at the Texas Union Underground! Bring your friends too!"
   }
 ];
 
