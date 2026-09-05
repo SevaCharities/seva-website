@@ -20,10 +20,14 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
   //   ],
   // }
   {
-    title: "Recruitment Social",
+    title: "Recruitment Party",
     category: 1,
-    date: ["Thu, Sep 3", "Texas Union Underground", "6:00 P.M. - 8:00 P.M."],
-    description: "Join us for an evening of bowling and billiards at the Texas Union Underground! Bring your friends too!"
+    date: ["Fri, Sep 11", "Block on 25 W Rooftop - 2501 Pearl St, Austin, TX 78705", "10:00 P.M. - 2:00 A.M."],
+    description: "Come out to our Bombshell Beach Bash recruitment party this Friday at the Block on 25 W rooftop to meet other Seva members and have a good time! Wear your best beach club fits!",
+    link: [
+      "https://docs.google.com/forms/d/e/1FAIpQLSfdjHUO4KeKhfGXOUG78-i25cWXUAObgFeLSTNHmFFlxg3pZw/viewform?usp=dialog",
+      true
+    ]
   }
 ];
 
