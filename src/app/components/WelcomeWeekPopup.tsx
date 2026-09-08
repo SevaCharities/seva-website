@@ -103,20 +103,11 @@ const WelcomeWeekPopup = () => {
 
                         <div className="bg-[#E1F1EE] rounded-xl p-4 border border-[#A8D1CA] hover:bg-[#D6EBE7] transition-all">
                             <p className="text-[#176B63] font-bold text-xs uppercase tracking-wide mb-1">Get Involved</p>
-                            <p className="text-lg sm:text-xl font-bold">Click the links to learn more</p>
+                            <p className="text-lg sm:text-xl font-bold">Click the link to learn more</p>
                         </div>
                     </div>
 
                     <div className="flex flex-col gap-4 justify-center items-center mb-8">
-                        <a
-                            href="https://docs.google.com/forms/d/e/1FAIpQLSfHdrEjMVr3dkT2GrtEZUsvdvHJoDoKTY9TGVTahRHJn4RN1g/viewform"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-[#C94C35] text-white font-sans font-bold text-lg sm:text-xl px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-[1.02] hover:bg-[#A63D2D] transition-all duration-300 w-full sm:w-auto text-center"
-                        >
-                            Seva Interest Form
-                        </a>
-
                         <a
                             href="https://docs.google.com/forms/d/e/1FAIpQLSd2OZ_HJCtpOtAZdp6giL9IneGougQuR2RaSnG9ZnsaXYO79A/viewform?usp=header"
                             target="_blank"
