@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     const { data: activity, error } = await supabase
       .from("activities")
       .select("id, feedback_form_url")
-      .eq("secret_code", secret_code)
+      .ilike("secret_code", secret_code)
       .single();
 
     if (error || !activity) {

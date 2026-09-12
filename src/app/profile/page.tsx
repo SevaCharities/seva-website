@@ -12,6 +12,7 @@ import MemberStatus from "../components/MemberStatus";
 export type Settings = {
   check_in_enabled: boolean;
   general_meeting: number;
+  active_activity_name?: string;
 };
 
 export type UserInterface = {
@@ -95,7 +96,7 @@ export default function App() {
     const { data, error } = await supabase
       .from("settings")
       .select("key, value")
-      .in("key", ["check_in_enabled", "general_meeting"]);
+      .in("key", ["check_in_enabled", "general_meeting", "active_activity_name"]);
 
     if (!error && data) {
       const settings = {
@@ -104,6 +105,7 @@ export default function App() {
         general_meeting: Number(
           data.find((s) => s.key === "general_meeting")?.value
         ),
+        active_activity_name: data.find((s) => s.key === "active_activity_name")?.value,
       };
       setSettings(settings);
     }

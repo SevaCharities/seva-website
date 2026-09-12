@@ -37,6 +37,7 @@ export default function Profile({
   }, [settings, user]);
 
   const getCurrentActivityName = () => {
+    if (settings?.active_activity_name) return settings.active_activity_name;
     if (!settings?.general_meeting) return "GM 1";
     if (settings.general_meeting === 1) {
       return "GM 1 26-27";
@@ -77,6 +78,18 @@ export default function Profile({
     try {
       if (!activityRef.current) {
         await checkInToday();
+      }
+
+      const { data: activity, error: activityError } = await supabase
+        .from("activities")
+        .select("id")
+        .eq("id", activityRef.current?.id)
+        .ilike("secret_code", data.secretCode)
+        .single();
+
+      if (activityError || !activity) {
+        toast.error("That code is not valid for this event");
+        return;
       }
 
       const { error } = await supabase.from("check_ins").insert({
@@ -133,7 +146,9 @@ export default function Profile({
             <h3 className="text-lg font-medium text-gray-900">Check-In</h3>
             <p className="text-sm text-gray-500">
               {canCheckIn && !alreadyCheckedIn
-                ? settings?.general_meeting === 1
+                ? settings?.active_activity_name
+                  ? settings.active_activity_name
+                  : settings?.general_meeting === 1
                   ? "Info Session / GM 1 26-27"
                   : `GM #${settings?.general_meeting}`
                 : alreadyCheckedIn

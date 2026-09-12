@@ -20,7 +20,7 @@ export default function CheckInModal({ onClose, onSubmit }: CheckInModalProps) {
 
   const handleUnlock = async () => {
     if (!secretCode.trim()) {
-      setCodeError("Enter the code from the whiteboard.");
+      setCodeError("Enter the secret code");
       return;
     }
     setCheckingCode(true);
@@ -32,7 +32,7 @@ export default function CheckInModal({ onClose, onSubmit }: CheckInModalProps) {
       });
       const json = await res.json();
       if (!res.ok) {
-        setCodeError("Wrong code — check the whiteboard and try again.");
+        setCodeError("Wrong code — try again");
       } else {
         setFeedbackFormUrl(json.feedback_form_url ?? null);
         setUnlocked(true);
@@ -52,7 +52,7 @@ export default function CheckInModal({ onClose, onSubmit }: CheckInModalProps) {
           <>
             <h2 className="text-xl font-semibold mb-1">Check In</h2>
             <p className="text-sm text-gray-500 mb-5">
-              Enter the code on the whiteboard to check in.
+              Enter the secret code
             </p>
             <div className="mb-4">
               <input
