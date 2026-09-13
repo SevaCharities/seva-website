@@ -7,6 +7,7 @@ export type OfficerProps = {
   name: string;
   role: string;
   bio: string;
+  photoVersion?: string;
 };
 
 const Card = ({ info }: { info: OfficerProps }) => {
@@ -23,7 +24,7 @@ const Card = ({ info }: { info: OfficerProps }) => {
     >
       <div className="relative w-72 h-56">
         <Image
-          src={`/officers/${info.name}.jpg`}
+          src={`/officers/${info.name}.jpg${info.photoVersion ? `?v=${info.photoVersion}` : ""}`}
           alt={info.name}
           layout="fill"
           className="rounded-t-xl object-cover"
