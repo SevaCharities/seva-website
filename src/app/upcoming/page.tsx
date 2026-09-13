@@ -20,12 +20,12 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
   //   ],
   // }
   {
-    title: "Recruitment Party",
+    title: "Pickleball Tournament",
     category: 1,
-    date: ["Fri, Sep 11", "Block on 25 W Rooftop - 2501 Pearl St, Austin, TX 78705", "10:00 P.M. - 2:00 A.M."],
-    description: "Come out to our Bombshell Beach Bash recruitment party this Friday at the Block on 25 W rooftop to meet other Seva members and have a good time! Wear your best beach club fits!",
+    date: ["Sun, Sep 20", "Whitaker Courts - 4901 Guadalupe St, Austin, TX 78751"],
+    description: "Come to compete at our pickleball tournament at Whitaker Courts for a grand prize of $200!",
     link: [
-      "https://docs.google.com/forms/d/e/1FAIpQLSfdjHUO4KeKhfGXOUG78-i25cWXUAObgFeLSTNHmFFlxg3pZw/viewform?usp=dialog",
+      "https://docs.google.com/forms/d/e/1FAIpQLSfQm3NchZO-6YjdFR3DLvTYsUZcUXPsJS6oL5GQ5JFu4lUP4w/viewform?usp=dialog",
       true
     ]
   }
