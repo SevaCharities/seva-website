@@ -658,7 +658,7 @@ export default function AdminPage() {
       {/* Check-ins Section */}
       <div className="bg-white rounded-lg shadow-md p-6 mb-8">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold">GM Check-ins</h2>
+          <h2 className="text-xl font-semibold">GM/Event Check-ins</h2>
 
           <div className="flex items-center gap-4">
             <select
