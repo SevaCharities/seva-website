@@ -131,7 +131,7 @@ export default function AdminPage() {
     setCheckInsLoading(true);
     try {
       const checkInsResponse = await fetch(
-        `/api/check-ins?activity_name=${activityName}`
+        `/api/check-ins?activity_name=${encodeURIComponent(activityName)}`
       );
       const checkInsData = await checkInsResponse.json();
       setCheckIns(checkInsData.checkIns || []);
