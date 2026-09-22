@@ -19,16 +19,7 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
   //     true,
   //   ],
   // }
-  {
-    title: "Pickleball Tournament",
-    category: 1,
-    date: ["Sun, Sep 20", "Whitaker Courts - 4901 Guadalupe St, Austin, TX 78751"],
-    description: "Come to compete at our pickleball tournament at Whitaker Courts for a grand prize of $200!",
-    link: [
-      "https://docs.google.com/forms/d/e/1FAIpQLSfQm3NchZO-6YjdFR3DLvTYsUZcUXPsJS6oL5GQ5JFu4lUP4w/viewform?usp=dialog",
-      true
-    ]
-  }
+  
 ];
 
 const Page = () => {
