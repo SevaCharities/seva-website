@@ -19,7 +19,12 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
   //     true,
   //   ],
   // }
-  
+  {
+    title: "Circle Comp #1",
+    category: 1,
+    date: ["Mon, Oct 5th", "TBD", "6:30 P.M. - 8 P.M."],
+    description: "Join us for the first circle comp of the semester! Pull up with your circle and prove that you are the best at Family Feud!"
+  }
 ];
 
 const Page = () => {
