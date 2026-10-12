@@ -19,6 +19,12 @@ const GMInfo: GMProps[] = [
   slides: "https://drive.google.com/file/d/1iTZcVB7gvhcOgfJr6uD2-Xx9ez2UPXn7/view?usp=sharing",
   date: ["Monday, September 14th", "6:30 PM", "UTC 4.102"],
   upcoming: false,
+  },
+  {
+  meeting: 3,
+  slides: "https://drive.google.com/file/d/17DKhohmHejs3hShN9g7x41MTJNPq6xd0/view?usp=sharing",
+  date: ["Monday, September 28th", "6:30 PM", "UTC 4.102"],
+  upcoming: false,
   }
 ];
 
