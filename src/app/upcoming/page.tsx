@@ -19,6 +19,12 @@ const UpcomingEventsInfo: UpcomingEventsProps[] = [
   //     true,
   //   ],
   // }
+  {
+    title: "Circle Comp #2",
+    category: 1,
+    date: ["Wed, Nov 4", "Lark Lounge", "6:30 P.M. - 8:00 P.M."],
+    description: "Pull up with your circle to prove that you are the best in Minute to Win it style games!"
+  }
 ];
 
 const Page = () => {
