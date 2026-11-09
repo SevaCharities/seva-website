@@ -36,7 +36,7 @@ const semesters = [
   {
     title: "Fall 2025",
     folderName: "fall2025", 
-    photoCount: 44,
+    photoCount: 49,
     startIndex: 94,
     captions: [
       "Cherry Creek Phil",
@@ -44,7 +44,9 @@ const semesters = [
       "Pickleball Social",
       "Saanj",
       "Cuddle for a Cause",
-      "The Project"
+      "The Project",
+      "Dodgeball",
+      "Camp Seva"
     ],
     captionRanges: [
       [94, 94], // Cherry Creek Phil
@@ -53,6 +55,8 @@ const semesters = [
       [101, 132], // Saanj
       [133, 134], // Cuddle for a Cause
       [135, 137], // The Project
+      [138, 140], // Dodgeball
+      [141, 142], // Camp Seva
     ],
     getCaptionFunction: function(index: number): string {
       for (let i = 0; i < this.captionRanges.length; i++) {
