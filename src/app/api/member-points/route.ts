@@ -67,12 +67,6 @@ export async function GET(request: Request) {
 
     if (memberError) throw memberError;
     const memberName = member.name?.trim().replace(/\s+/g, " ").toLowerCase();
-    if (!memberName) {
-      return NextResponse.json(
-        { error: "Your profile needs a name before points can be matched." },
-        { status: 404 }
-      );
-    }
 
     const serviceAccountEmail = process.env.GOOGLE_SHEETS_CLIENT_EMAIL;
     const privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY?.replace(
@@ -110,16 +104,21 @@ export async function GET(request: Request) {
     if (!headers) throw new Error("Points sheet header row is empty");
 
     const nameColumn = headers.indexOf("name");
+    const emailColumn = headers.indexOf("email");
     const totalColumn = headers.indexOf("total");
 
-    if (nameColumn < 0 || totalColumn < 0) {
+    if (nameColumn < 0 || emailColumn < 0 || totalColumn < 0) {
       throw new Error("Points sheet is missing a required header");
     }
 
-    const [namesResponse, totalsResponse] = await Promise.all([
+    const [namesResponse, emailsResponse, totalsResponse] = await Promise.all([
       sheets.spreadsheets.values.get({
         spreadsheetId: SPREADSHEET_ID,
         range: `${SHEET_NAME}!${columnLetter(nameColumn)}2:${columnLetter(nameColumn)}`,
+      }),
+      sheets.spreadsheets.values.get({
+        spreadsheetId: SPREADSHEET_ID,
+        range: `${SHEET_NAME}!${columnLetter(emailColumn)}2:${columnLetter(emailColumn)}`,
       }),
       sheets.spreadsheets.values.get({
         spreadsheetId: SPREADSHEET_ID,
@@ -130,19 +129,50 @@ export async function GET(request: Request) {
     const names = namesResponse.data.values?.map((row) =>
       String(row[0] ?? "").trim().replace(/\s+/g, " ").toLowerCase()
     ) ?? [];
+    const emails = emailsResponse.data.values?.map((row) =>
+      String(row[0] ?? "").trim().toLowerCase()
+    ) ?? [];
     const totals = totalsResponse.data.values?.map((row) => row[0]) ?? [];
-    const matchingRows = names.flatMap((name, index) =>
-      name === memberName ? [index] : []
-    );
+    const nameMatches = memberName
+      ? names.flatMap((name, index) => (name === memberName ? [index] : []))
+      : [];
 
-    if (matchingRows.length !== 1) {
+    if (nameMatches.length > 1) {
       return NextResponse.json(
         {
-          error: matchingRows.length
-            ? "Your name matches multiple rows in the points sheet. Please contact a site administrator."
-            : "No points record matches your profile name. Check that the name on the sheet matches your SEVA profile name.",
+          error:
+            "Your name matches multiple rows in the points sheet. Please contact a site administrator.",
         },
-        { status: matchingRows.length ? 409 : 404 }
+        { status: 409 }
+      );
+    }
+
+    const email = user.email?.trim().toLowerCase();
+    const emailMatches = nameMatches.length === 0 && email
+      ? emails.flatMap((sheetEmail, index) =>
+          sheetEmail === email ? [index] : []
+        )
+      : [];
+
+    if (emailMatches.length > 1) {
+      return NextResponse.json(
+        {
+          error:
+            "Your email matches multiple rows in the points sheet. Please contact a site administrator.",
+        },
+        { status: 409 }
+      );
+    }
+
+    const matchingRows = nameMatches.length === 1 ? nameMatches : emailMatches;
+
+    if (matchingRows.length === 0) {
+      return NextResponse.json(
+        {
+          error:
+            "No points record matches your profile name or login email.",
+        },
+        { status: 404 }
       );
     }
 
