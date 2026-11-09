@@ -34,6 +34,37 @@ const semesters = [
   //   }
   // },
   {
+    title: "Fall 2025",
+    folderName: "fall2025", 
+    photoCount: 44,
+    startIndex: 94,
+    captions: [
+      "Cherry Creek Phil",
+      "Guess or Else",
+      "Pickleball Social",
+      "Saanj",
+      "Cuddle for a Cause",
+      "The Project"
+    ],
+    captionRanges: [
+      [94, 94], // Cherry Creek Phil
+      [95, 97], // Guess or Else
+      [98, 100], // Pickleball Social
+      [101, 132], // Saanj
+      [133, 134], // Cuddle for a Cause
+      [135, 137], // The Project
+    ],
+    getCaptionFunction: function(index: number): string {
+      for (let i = 0; i < this.captionRanges.length; i++) {
+        const [start, end] = this.captionRanges[i];
+        if (index >= start && index <= end) {
+          return this.captions[i];
+        }
+      }
+      return "Event";
+    }
+  },
+  {
     title: "Spring 2025",
     folderName: "spring2025",
     photoCount: 46,
@@ -157,6 +188,7 @@ export default function Gallery() {
                         alt={`Event ${photoIndex}`}
                         layout="fill"
                         objectFit="cover"
+                        unoptimized={photoIndex === 94 || photoIndex === 135}
                         placeholder="blur"
                         blurDataURL="/blur.png"
                       />
