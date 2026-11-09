@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { supabase } from "../lib/supabaseClient";
 import toast from "react-hot-toast";
 import Image from "next/image";
@@ -28,6 +28,9 @@ export default function Profile({
   const [isCheckInModalOpen, setIsCheckInModalOpen] = useState(false);
   const [alreadyCheckedIn, setAlreadyCheckedIn] = useState(false);
   const [canCheckIn, setCanCheckIn] = useState(false);
+  const [points, setPoints] = useState<number | null>(null);
+  const [pointsLoading, setPointsLoading] = useState(true);
+  const [pointsError, setPointsError] = useState<string | null>(null);
 
   useEffect(() => {
     if (settings && user) {
@@ -35,6 +38,51 @@ export default function Profile({
       checkInToday();
     }
   }, [settings, user]);
+
+  const loadPoints = useCallback(async () => {
+    setPointsLoading(true);
+    setPointsError(null);
+
+    try {
+      const {
+        data: { session },
+        error: sessionError,
+      } = await supabase.auth.getSession();
+      if (sessionError) throw sessionError;
+      if (!session?.access_token) throw new Error("No active session");
+
+      const response = await fetch("/api/member-points", {
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
+      });
+      if (!response.ok) {
+        const errorData: { error?: string } = await response
+          .json()
+          .catch(() => ({}));
+        throw new Error(errorData.error || "Unable to load your points.");
+      }
+
+      const data: { total: number } = await response.json();
+      if (!Number.isFinite(data.total)) {
+        throw new Error("Invalid points total");
+      }
+
+      setPoints(data.total);
+    } catch (error) {
+      console.error("Error loading member points:", error);
+      setPointsError(
+        error instanceof Error ? error.message : "Unable to load your points."
+      );
+      setPoints(null);
+    } finally {
+      setPointsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user) void loadPoints();
+  }, [loadPoints, user]);
 
   const getCurrentActivityName = () => {
     if (settings?.active_activity_name) return settings.active_activity_name;
@@ -138,6 +186,31 @@ export default function Profile({
             {isEditing ? <Edit user={user} /> : <View user={user} />}
           </div>
         </div>
+      </div>
+
+      <div className="mt-8 rounded-lg border border-orange-200 bg-orange-50 p-6">
+        <h3 className="text-lg font-medium text-gray-900">Your Points</h3>
+        {pointsLoading ? (
+          <p className="mt-1 text-sm text-gray-600" aria-live="polite">
+            Loading your points...
+          </p>
+        ) : pointsError ? (
+          <div className="mt-1 flex items-center gap-3">
+            <p className="text-sm text-red-700" role="alert">
+              {pointsError}
+            </p>
+            <button
+              onClick={() => void loadPoints()}
+              className="text-sm font-medium text-orange-700 underline hover:text-orange-800"
+            >
+              Try again
+            </button>
+          </div>
+        ) : (
+          <p className="mt-1 text-3xl font-semibold text-orange-700">
+            {points}
+          </p>
+        )}
       </div>
 
       <div className="mt-8 border-t pt-8">
