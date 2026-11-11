@@ -12,25 +12,37 @@ const GMInfo: GMProps[] = [
   meeting: 1,
   slides: "https://drive.google.com/file/d/18NVVE6xh4QN3XXWwUzdZCGMTz0X-uj-0/view?usp=sharing",
   date: ["Monday, August 31st", "6:30 PM", "UTC 4.102"],
-  upcoming: false,
+  upcoming: false
   },
   {
   meeting: 2,
   slides: "https://drive.google.com/file/d/1iTZcVB7gvhcOgfJr6uD2-Xx9ez2UPXn7/view?usp=sharing",
   date: ["Monday, September 14th", "6:30 PM", "UTC 4.102"],
-  upcoming: false,
+  upcoming: false
   },
   {
   meeting: 3,
   slides: "https://drive.google.com/file/d/17DKhohmHejs3hShN9g7x41MTJNPq6xd0/view?usp=sharing",
   date: ["Monday, September 28th", "6:30 PM", "UTC 4.102"],
-  upcoming: false,
+  upcoming: false
   },
   {
   meeting: 4,
   slides: "https://drive.google.com/file/d/1fBIHrdOSdbp7r6HKaICAJ-Ce9Rvb-Z_4/view?usp=sharing",
   date: ["Monday, October 12th", "6:30 PM", "UTC 4.102"],
-  upcoming: false,
+  upcoming: false
+  },
+  {
+    meeting: 5,
+    slides: "https://drive.google.com/file/d/1YKib6RKtRAHCkCxWkkYuBsq9wu7l1ahu/view?usp=sharing",
+    date: ["Monday, October 26th", "6:30 PM", "UTC 4.102"],
+    upcoming: false,
+  },
+  {
+    meeting: 6,
+    slides: "https://drive.google.com/file/d/1ShAfTdZoPT0yVpGohzqc70VDK7OdnW2-/view?usp=sharing",
+    date: ["Monday, November 9th", "6:30 PM", "UTC 4.102"],
+    upcoming: false,
   }
 ];
 
