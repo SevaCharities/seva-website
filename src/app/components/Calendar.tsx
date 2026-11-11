@@ -13,6 +13,7 @@ const ADD_CALENDAR =
 const Calendar = () => {
   const [events, setEvents] = useState<EventItem[]>([]);
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
 
   useEffect(() => {
     async function fetchEvents() {
@@ -198,13 +199,15 @@ const Calendar = () => {
                       }`}>{day}</p>
                       <div className="flex flex-col gap-1 overflow-y-auto">
                         {getEventsForDay(day).map((event) => (
-                          <p
+                          <button
                             key={event.id}
-                            className="block text-xs text-white font-semibold overflow-hidden text-ellipsis whitespace-nowrap w-full bg-gradient-to-r from-green-500 to-emerald-500 rounded px-2 py-1 shadow-md hover:shadow-lg hover:from-green-600 hover:to-emerald-600 transition-all duration-200 cursor-pointer"
+                            type="button"
+                            onClick={() => setSelectedEvent(event)}
+                            className="block text-left text-xs text-white font-semibold overflow-hidden text-ellipsis whitespace-nowrap w-full bg-gradient-to-r from-green-500 to-emerald-500 rounded px-2 py-1 shadow-md hover:shadow-lg hover:from-green-600 hover:to-emerald-600 transition-all duration-200 cursor-pointer"
                             title={event.summary}
                           >
                             {event.summary}
-                          </p>
+                          </button>
                         ))}
                       </div>
                     </>
@@ -225,6 +228,31 @@ const Calendar = () => {
           }
         })}
       </div>
+      {selectedEvent && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          onClick={() => setSelectedEvent(null)}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="calendar-event-title"
+            className="w-full max-w-md rounded-lg bg-white p-6 shadow-xl"
+            onClick={(clickEvent) => clickEvent.stopPropagation()}
+          >
+            <h2 id="calendar-event-title" className="break-words text-xl font-semibold text-gray-900">
+              {selectedEvent.summary}
+            </h2>
+            <button
+              type="button"
+              onClick={() => setSelectedEvent(null)}
+              className="mt-5 rounded bg-green-700 px-4 py-2 font-semibold text-white hover:bg-green-800"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       <div></div>
     </div>
   );
